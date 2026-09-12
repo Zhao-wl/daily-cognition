@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>潮汐锁定｜每日认知探索</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/visual.css">
+<style>
+.resonance-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}.resonance-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:16px;padding:14px;text-align:left;cursor:pointer}.resonance-btn b{display:block;color:var(--accent);font-size:18px;margin-bottom:4px}.resonance-btn.active{background:var(--soft);border-color:var(--accent)}.resonance-detail{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:16px;border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:18px;margin-bottom:22px}.resonance-copy{align-self:center;color:var(--muted)}.resonance-copy b{color:var(--accent)}
+.model{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:18px;margin:22px 0}.model-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.model label{display:block;color:var(--muted);font:14px/1.5 ui-sans-serif,system-ui,sans-serif}.model input{width:100%;margin-top:8px}.model-result{margin-top:12px;padding:14px;border-radius:14px;background:var(--soft);color:var(--muted)}
+.matrix{display:grid;grid-template-columns:1.2fr repeat(3,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin:22px 0;font-family:ui-sans-serif,system-ui,sans-serif;font-size:14px}.matrix>div{padding:12px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}.matrix>div:nth-child(4n){border-right:0}.matrix .head{font-weight:700;color:var(--accent);background:var(--soft)}.matrix .lastrow{border-bottom:0}.source-list a{color:var(--accent);word-break:break-word}.formula{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:18px 0;overflow:auto}.formula b{color:var(--accent)}.kicker{font-family:ui-sans-serif,system-ui,sans-serif;color:var(--accent2);font-weight:700}
+@media(max-width:700px){.resonance-board{grid-template-columns:1fr}.resonance-detail{grid-template-columns:1fr}.model-grid{grid-template-columns:1fr}.matrix{grid-template-columns:1fr}.matrix>div{border-right:0}.matrix .head:not(:first-child){margin-top:-1px}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="shell">
+<div class="topbar"><a href="index.html">← 返回本周目录</a><div class="tools"><a class="btn" href="2026-09-11-domestication.html">← 上一篇</a><button class="btn" id="theme">切换明暗</button></div></div>
+
+<header class="hero">
+<div>
+<div class="eyebrow">2026-09-12 · 天文学 · 动力学 · 行星科学 · 系外行星</div>
+<h1>潮汐锁定</h1>
+<div class="en">Tidal Locking</div>
+<div class="tagline">月球不是“没有自转”，而是自转得刚刚好：转一圈的时间，恰好等于绕地球一圈的时间。</div>
+<p class="intro">这看似只是天空里一个熟悉的小事实，却通向一个更深的动力学主题：引力不仅决定天体“往哪里走”，还会通过形变、摩擦和耗散，慢慢改写它“怎样转”。潮汐锁定把角动量守恒、能量耗散、共振、材料内部结构、卫星潮汐加热和系外行星气候串成一条完整因果链。</p>
+</div>
+<div class="visual">
+<svg viewBox="0 0 460 350" role="img" aria-label="月球同步自转使同一面持续朝向地球的示意图" style="width:100%;height:auto">
+<defs><marker id="heroarr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="var(--accent)"/></marker></defs>
+<circle cx="230" cy="175" r="52" fill="var(--soft)" stroke="var(--accent)" stroke-width="2"/><text x="230" y="181" text-anchor="middle" fill="var(--text)" font-size="22" font-weight="700">地球</text>
+<circle cx="230" cy="46" r="29" fill="var(--panel)" stroke="var(--accent2)" stroke-width="2"/><circle cx="230" cy="66" r="6" fill="var(--accent2)"/>
+<circle cx="359" cy="175" r="29" fill="var(--panel)" stroke="var(--accent2)" stroke-width="2"/><circle cx="339" cy="175" r="6" fill="var(--accent2)"/>
+<circle cx="230" cy="304" r="29" fill="var(--panel)" stroke="var(--accent2)" stroke-width="2"/><circle cx="230" cy="284" r="6" fill="var(--accent2)"/>
+<circle cx="101" cy="175" r="29" fill="var(--panel)" stroke="var(--accent2)" stroke-width="2"/><circle cx="121" cy="175" r="6" fill="var(--accent2)"/>
+<circle cx="230" cy="175" r="129" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="6 6"/>
+<path d="M281 76 A125 125 0 0 1 337 122" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#heroarr)"/>
+<text x="342" y="70" text-anchor="middle" fill="var(--accent)" font-size="13" font-weight="700">公转 1 圈</text>
+<text x="230" y="336" text-anchor="middle" fill="var(--muted)" font-size="13">橙色小点始终指向地球：月球同时也自转了 1 圈</text>
+</svg>
+</div>
+</header>
+
+<div class="layout">
+<nav class="toc">
+<a href="#s1">01 · 到底锁住了什么</a><a href="#s2">02 · 最大误解：月球不自转</a><a href="#s3">03 · 引力梯度</a>
+<a href="#s4">04 · 潮汐隆起</a><a href="#s5">05 · 为什么会有扭矩</a><a href="#s6">06 · 岩石也会耗散</a>
+<a href="#s7">07 · 能量去哪了</a><a href="#s8">08 · 角动量去了哪</a><a href="#s9">09 · 月球如何锁定</a>
+<a href="#s10">10 · 地球为何没锁定</a><a href="#s11">11 · 月球为什么远离</a><a href="#s12">12 · 锁定不是冻结</a>
+<a href="#s13">13 · 天平动</a><a href="#s14">14 · 冥王星—卡戎</a><a href="#s15">15 · 不一定是 1:1</a>
+<a href="#s16">16 · 水星的 3:2</a><a href="#s17">17 · 偏心率与共振</a><a href="#s18">18 · 距离的六次方</a>
+<a href="#s19">19 · Q 与 Love 数</a><a href="#s20">20 · 内部结构会改结局</a><a href="#s21">21 · 同步后仍可发热</a>
+<a href="#s22">22 · 木卫一与土卫二</a><a href="#s23">23 · “黑暗面”不存在</a><a href="#s24">24 · 红矮星行星</a>
+<a href="#s25">25 · 永昼与永夜</a><a href="#s26">26 · 大气能搬运热量</a><a href="#s27">27 · 终结线不是唯一绿洲</a>
+<a href="#s28">28 · 宜居性不是只看锁定</a><a href="#s29">29 · 如何判断系外行星自转</a><a href="#s30">30 · 最深层：动力学吸引子</a>
+<a href="#mechanism">视觉 · 潮汐扭矩链</a><a href="#resonance">交互 · 自转—轨道共振</a><a href="#model">交互 · 锁定教学模型</a><a href="#climate">视觉 · 永昼永夜气候</a>
+<a href="#sources">研究线索</a><a href="#links">跨主题连接</a><a href="#upgrade">认知升级</a><a href="#questions">继续追问</a>
+</nav>
+
+<article>
+<section id="s1"><div class="section-num">SECTION 01</div><h2>潮汐锁定到底“锁”住了什么：不是位置，而是两个周期的比例</h2><div class="bodycopy">
+<p>最常见的潮汐锁定，是<strong>同步自转</strong>：一个天体的自转周期与它绕另一个天体的轨道周期相等。用角速度写，就是自转角速度 <strong>ω</strong> 与轨道平均运动 <strong>n</strong> 相等：ω = n。</p>
+<p>这意味着卫星绕主天体转过 90° 时，自己也恰好转过 90°；绕过 180° 时，自转也完成 180°。于是朝向主天体的那一面不断被“补转回来”，看起来像同一张脸永远对着你。</p>
+<div class="formula"><b>同步条件：</b> ω = n = 2π / P<sub>orb</sub> ，因此 P<sub>rot</sub> = P<sub>orb</sub></div>
+</div></section>
+
+<section id="s2"><div class="section-num">SECTION 02</div><h2>最大的直觉陷阱：月球并不是“没有自转”</h2><div class="bodycopy">
+<p>如果月球真的不自转，那么它绕地球走半圈后，原本朝向地球的那一面会朝向外侧；再走半圈，另一面就会转到我们眼前。恰恰是因为它在公转同时也自转，我们才总看到大致相同的半球。</p>
+<p>一个简单的思想实验是：拿一本书，始终让封面朝向房间中央，然后绕中央走一圈。走完时你的身体相对房间已经转了一整圈。书的“同一面始终朝向中央”，不是没转，而是<strong>自转与绕行完全同步</strong>。</p>
+</div></section>
+
+<section id="s3"><div class="section-num">SECTION 03</div><h2>潮汐的起点不是“引力”，而是“引力不均匀”</h2><div class="bodycopy">
+<p>若整个天体每一点都受到完全相同的引力加速度，它只会整体自由落体，不会被拉长。潮汐来自<strong>引力梯度</strong>：靠近主天体的一侧距离更短、引力更强，远侧引力更弱，于是天体不同部分不能获得完全相同的加速度。</p>
+<p>对半径 R、中心距离 a 的小天体，潮汐差分加速度的量级近似随 <strong>R/a³</strong> 增长。这里最重要的不是系数，而是距离的高次幂：靠近一点，差分引力会迅速增强。</p>
+<div class="formula"><b>量级直觉：</b> Δg ∝ GM R / a³。潮汐不是“主天体拉得有多强”，而是“近端和远端拉得有多不一样”。</div>
+</div></section>
+
+<section id="s4"><div class="section-num">SECTION 04</div><h2>引力梯度会把天体拉成一个轻微的椭球</h2><div class="bodycopy">
+<p>真实的月球、行星或恒星都不是绝对刚体。引力梯度会让它沿着两天体连线方向产生微小形变：靠近主天体的一边隆起，远侧也会形成另一处隆起。海洋里的潮汐最显眼，但岩石行星也会发生固体潮。</p>
+<p>若天体能瞬间、无损耗地完成形变，那么潮汐隆起的长轴会精确沿着两天体连线，不产生长期净扭矩。真正让自转改变的，是下一步：<strong>材料反应有延迟，而且形变会耗散能量</strong>。</p>
+</div></section>
+
+<section id="s5"><div class="section-num">SECTION 05</div><h2>为什么形变会改变自转：隆起与连心线产生相位差，就有了扭矩</h2><div class="bodycopy">
+<p>当一个天体相对轨道转得过快或过慢时，它内部的岩石、冰、海洋来不及完美追随不断移动的潮汐势。潮汐隆起会与两天体连线产生一个小小的相位差。</p>
+<p>主天体对这个偏离的隆起施加引力，于是产生扭矩。若卫星自转过快，这个扭矩通常把它往较慢方向推；若自转过慢，方向反过来。长期看，系统倾向减少“自转频率与稳定共振之间的偏差”。</p>
+</div></section>
+
+<section id="s6"><div class="section-num">SECTION 06</div><h2>岩石也会“摩擦”：耗散不是海水专属</h2><div class="bodycopy">
+<p>我们容易把潮汐摩擦想成海水拍岸，但即便没有海洋，岩石和冰在周期性拉伸、压缩时也会经历粘弹性变形、晶格缺陷运动和内部摩擦。机械能因此转成热。</p>
+<p>这也是为什么同样大小、同样轨道的两个天体，锁定速度可以不同。它们的内部温度、熔融程度、冰层厚度、岩石流变性质都会改变“每一次潮汐形变要损失多少能量”。</p>
+</div></section>
+
+<section id="s7"><div class="section-num">SECTION 07</div><h2>潮汐锁定的关键是：机械能会减少</h2><div class="bodycopy">
+<p>一个完全保守的两体引力系统可以永久交换动能和势能，却不会自动选择某个特定自转状态。潮汐耗散打破了这种“永远来回”的理想：每个周期都有一小部分有序机械能变成内部热。</p>
+<p>因此潮汐演化本质上是一类<strong>耗散动力学</strong>。系统不是在所有可能状态里等概率游走，而是在损失机械能的同时，逐渐靠近某些稳定吸引子，例如圆轨道、低倾角、同步自转或其他自转—轨道共振。</p>
+</div></section>
+
+<section id="s8"><div class="section-num">SECTION 08</div><h2>但角动量没有凭空消失：它会在自转和轨道之间搬家</h2><div class="bodycopy">
+<p>能量可以通过内部摩擦转成热，但在没有显著外部扭矩时，系统总角动量近似守恒。于是潮汐演化常表现为：一部分<strong>自转角动量</strong>转移到<strong>轨道角动量</strong>，或反过来。</p>
+<p>地球—月球就是经典例子：地球自转比月球公转快，地球潮汐扭矩让地球慢慢减速，同时把角动量送入月球轨道，使月球逐渐向外迁移。能量在减少，但角动量只是换了“账户”。</p>
+</div></section>
+
+<section id="s9"><div class="section-num">SECTION 09</div><h2>月球为什么先被锁定：较小天体更容易被主天体重塑自转</h2><div class="bodycopy">
+<p>早期月球的自转速度并不一定像今天。地球在月球内部激发周期性潮汐形变，持续耗散其自转相关机械能。经过漫长演化，月球被捕获到 1:1 同步状态：约每 27.3 天自转一圈，也约每 27.3 天绕地球一圈。</p>
+<p>一旦进入稳定同步状态，月球相对地球的平均朝向不再持续漂移，潮汐扭矩的长期平均值大幅降低。注意这不是“潮汐作用停止”，而是最主要的自转不同步项被消除了。</p>
+</div></section>
+
+<section id="s10"><div class="section-num">SECTION 10</div><h2>为什么地球没有反过来也锁住月球</h2><div class="bodycopy">
+<p>潮汐作用是双向的，月球也在给地球施加潮汐扭矩，所以地球自转确实正在变慢。但地球质量更大、角动量库更大，而且当前地月系统的演化时间还远不足以让地球一天变成一个月球轨道周期。</p>
+<p>NASA 用一个极端思想实验说明长期趋势：如果太阳的演化可以被忽略，几十亿年之后地球可能继续朝“也总用同一面朝向月球”的方向发展；但真实太阳会更早进入后主序演化，所以这个最终态并不会在现实地月系统中简单实现。</p>
+</div></section>
+
+<section id="s11"><div class="section-num">SECTION 11</div><h2>月球为什么每年还在远离地球：锁定了自转，不等于轨道停止演化</h2><div class="bodycopy">
+<p>NASA 的测量与综述指出，月球今天仍以大约每年 4 厘米的速度远离地球。原因不是月球自己“挣脱”，而是地球更快的自转通过潮汐扭矩持续把角动量转给月球轨道。</p>
+<p>轨道获得角动量后，月球进入更高、周期更长的轨道；地球则失去自转角动量，一天极缓慢变长。这个例子非常适合纠正一个误解：<strong>锁定描述的是旋转关系，不是整个两体系统进入静止</strong>。</p>
+</div></section>
+
+<section id="s12"><div class="section-num">SECTION 12</div><h2>潮汐锁定不是“冻结”：被锁定的天体仍然在高速运动</h2><div class="bodycopy">
+<p>月球每秒仍以约一公里量级的速度绕地球运动，自身也持续自转；它只是让自转角度和轨道相位保持某种稳定关系。把“锁定”理解成“停止”，就会错过共振真正的含义。</p>
+<p>更好的类比不是把齿轮焊死，而是两套节拍进入同步：一个节拍仍在走，另一个也仍在走，只是它们的相位关系不再无限漂移。</p>
+</div></section>
+
+<section id="s13"><div class="section-num">SECTION 13</div><h2>为什么我们并非永远只看到严格的 50% 月面：天平动让月球轻轻“点头摇头”</h2><div class="bodycopy">
+<p>月球轨道是椭圆而不是完美圆形，公转角速度会随位置变化；月球自转却更接近均匀。两者在一个月内并非每一刻都完全同速，于是我们会从东西方向多窥见一点边缘。</p>
+<p>再加上月球轨道倾角与视角变化，长期累计可见区域会略多于一个严格半球。这种现象叫<strong>天平动（libration）</strong>。所以“同一面朝向地球”是平均意义上的同步，不是几何上毫无摆动。</p>
+</div></section>
+
+<section id="s14"><div class="section-num">SECTION 14</div><h2>冥王星—卡戎展示了更彻底的终局：彼此都锁定</h2><div class="bodycopy">
+<p>卡戎相对冥王星非常大，两者围绕共同质心运动，潮汐耦合也很强。今天冥王星自转周期与卡戎公转周期都约 6.4 个地球日，同时卡戎自身也保持同一面朝向冥王星。</p>
+<p>结果是<strong>相互潮汐锁定</strong>：站在冥王星上某些地点，卡戎会长期悬在天空中同一个方向；而冥王星也总用同一面面对卡戎。这是“自转与轨道角动量经过长期耗散重新分配”最直观的终态之一。</p>
+</div></section>
+
+<section id="s15"><div class="section-num">SECTION 15</div><h2>不是所有潮汐演化都会落到 1:1：更一般的概念叫自转—轨道共振</h2><div class="bodycopy">
+<p>同步锁定只是最简单的共振：每公转 1 圈，自转 1 圈。若轨道有显著偏心率，而天体形状又不是完美球体，潮汐耗散在减慢自转时可能让它被其他低整数比“卡住”，例如 3:2、2:1。</p>
+<p>这类共振的数学核心是：某个由自转角度和轨道相位组成的组合不再持续漂移，而是在一个有限范围内来回摆动。系统仍然运动，但相位关系被束缚。</p>
+</div></section>
+
+<section id="s16"><div class="section-num">SECTION 16</div><h2>水星是最著名的反例：它不是 1:1，而是 3:2</h2><div class="bodycopy">
+<p>很长时间里，人们也曾认为水星像月球一样总用同一面朝向太阳。1965 年雷达观测推翻了这个判断。今天我们知道：水星约 59 个地球日自转一圈，约 88 天绕太阳一圈，因此每完成两次公转，会自转三次。</p>
+<p>这就是<strong>3:2 自转—轨道共振</strong>。它提醒我们：潮汐演化不是“必然把所有近邻天体做成月球复制品”，最终状态取决于轨道偏心、天体永久形变和内部耗散模型。</p>
+</div></section>
+
+<section id="s17"><div class="section-num">SECTION 17</div><h2>为什么偏心率会改变结局：近日点附近的潮汐特别强</h2><div class="bodycopy">
+<p>圆轨道中，天体到主星距离近似不变；椭圆轨道中，近日点和远日点距离差异显著，而潮汐对距离极其敏感。这意味着每一圈中，最强扭矩集中在接近近日点的短时间窗口。</p>
+<p>若天体恰好以某个共振速度自转，它的长轴可以在最强潮汐时刻反复以相似方式朝向主星，从而形成稳定的“相位陷阱”。水星较大的轨道偏心率，是 3:2 状态能够稳定的重要条件。</p>
+</div></section>
+
+<section id="s18"><div class="section-num">SECTION 18</div><h2>为什么距离如此关键：简化潮汐扭矩大致按 a⁻⁶ 衰减</h2><div class="bodycopy">
+<p>在经典的简化平衡潮模型里，潮汐扭矩的量级包含非常陡峭的距离项：大致与 <strong>1/a⁶</strong> 成正比。把轨道距离增加一倍，其他条件相同，扭矩量级可能只剩约 1/64。</p>
+<p>这解释了为什么近距离卫星和短周期系外行星容易在宇宙时间内显著潮汐演化，而远距离天体可能几乎保留初始自转。距离不是“一个影响因素”，而是压倒性的尺度杠杆。</p>
+<div class="formula"><b>简化扭矩量级：</b> T ∝ (k₂ / Q) · G m² R⁵ / a⁶。这里只用于看尺度；真实潮汐响应会随频率和材料流变而变化。</div>
+</div></section>
+
+<section id="s19"><div class="section-num">SECTION 19</div><h2>两个常见参数：Love 数 k₂ 描述“容易被拉变形”，Q 描述“每周期损失多少能量”</h2><div class="bodycopy">
+<p><strong>Love 数 k₂</strong>可以粗略理解为天体对外部潮汐势的形变响应程度；越容易形成明显潮汐隆起，k₂ 往往越大。<strong>品质因数 Q</strong>则描述耗散强弱：在简化语境中，Q 越高，每个周期损失的能量比例越小。</p>
+<p>因此“软不软”与“耗不耗”不是同一件事。一个天体可以容易变形但近似弹性恢复，也可以在较小形变中耗掉很多能量。现代潮汐理论尤其强调材料响应随频率改变，不能把一个固定 Q 当成所有状态下的万能常数。</p>
+</div></section>
+
+<section id="s20"><div class="section-num">SECTION 20</div><h2>内部结构会改写潮汐历史：海洋、冰壳、熔融层都可能改变耗散</h2><div class="bodycopy">
+<p>如果一个卫星有地下海洋，外部冰壳可以与内部岩石核发生相对运动；如果行星内部部分熔融，粘度会随温度急剧改变；如果有深海，海盆几何还会影响潮汐波共振。这些都会改变耗散率。</p>
+<p>反过来，潮汐耗散又会发热，温度变化再改变材料粘度和耗散效率，于是出现反馈。潮汐演化因此不是简单的“给定 Q，算到结束”，而可能与天体热演化彼此耦合。</p>
+</div></section>
+
+<section id="s21"><div class="section-num">SECTION 21</div><h2>一个反直觉事实：已经同步自转的卫星，仍然可以持续潮汐加热</h2><div class="bodycopy">
+<p>如果轨道完美圆、轴倾角为零、同步状态绝对稳定，周期性形变会大幅减弱。但现实里只要轨道仍有偏心率，卫星到主星距离就会周期变化，潮汐隆起的大小也会跟着变化；若有倾角或复杂共振，形变还会更丰富。</p>
+<p>所以“自转已经锁定”并不意味着“内部摩擦归零”。同步消除了一个主要相对运动，但偏心轨道仍能像反复揉捏橡皮球一样持续输入形变。</p>
+</div></section>
+
+<section id="s22"><div class="section-num">SECTION 22</div><h2>木卫一与土卫二：潮汐锁定之后，轨道共振还能继续“给火炉上发条”</h2><div class="bodycopy">
+<p>木卫一早已同步自转，但它与木卫二、木卫三处在轨道共振链中，邻居的引力扰动持续维持其轨道偏心率。木星因此不断揉捏木卫一内部，造成太阳系最强烈的火山活动之一。</p>
+<p>土卫二也在土星潮汐和轨道共振作用下保持内部热源，支持地下海洋与喷流活动。关键结构是：<strong>共振阻止轨道轻易圆化 → 偏心率维持周期形变 → 潮汐耗散持续发热</strong>。锁定不是故事结尾，反而可能成为复杂热演化的背景条件。</p>
+</div></section>
+
+<section id="s23"><div class="section-num">SECTION 23</div><h2>“月球黑暗面”是一个语言陷阱：远侧也会得到阳光</h2><div class="bodycopy">
+<p>潮汐锁定只决定哪一面长期朝向地球，并不决定哪一面朝向太阳。随着月球绕地球公转，太阳照明方向不断变化，远侧同样经历白天和黑夜。</p>
+<p>真正可能长期不见阳光的是月球两极某些深坑里的<strong>永久阴影区</strong>，那是由于地形与极小轴倾角造成的局部几何现象，与“远侧”完全不是一回事。把 far side 叫 dark side，会把观察方向和照明方向混成一个概念。</p>
+</div></section>
+
+<section id="s24"><div class="section-num">SECTION 24</div><h2>为什么潮汐锁定在系外行星时代突然变得重要：红矮星的宜居带离恒星很近</h2><div class="bodycopy">
+<p>低质量红矮星光度低，要获得类似地球的辐照，行星必须比地球离太阳近得多。更近的轨道意味着更强潮汐，因此许多红矮星宜居带岩质行星在几十亿年内可能进入 1:1 或其他低阶自转—轨道共振。</p>
+<p>这让“行星一天有多长”从一个次要参数变成气候系统的核心边界条件。恒星辐射不再每天扫过整个表面，而可能长期固定在同一个经度附近。</p>
+</div></section>
+
+<section id="s25"><div class="section-num">SECTION 25</div><h2>1:1 锁定的行星会拥有永久的昼半球与夜半球</h2><div class="bodycopy">
+<p>同步公转的行星对恒星保持同一面，恒星在一个固定的<strong>恒星直下点</strong>附近长期高悬；相对的一面则长期见不到恒星。两者之间是一圈永恒的晨昏过渡带。</p>
+<p>如果你只画一颗没有大气和海洋的裸岩星球，直觉会非常极端：昼面炙热、夜面寒冷。但真实宜居性问题的关键恰恰在于：行星通常不是孤立的表面，而是有大气、云、海洋、冰和地质热流的耦合系统。</p>
+</div></section>
+
+<section id="s26"><div class="section-num">SECTION 26</div><h2>大气和海洋会搬运热量：永夜不一定等于大气冻结</h2><div class="bodycopy">
+<p>恒星直下点的暖空气可以上升，在高空向夜侧输送能量，再在夜侧下沉并沿近地面回流。海洋也能通过环流运输热量。大气越厚、红外吸收越强、环流越有效，昼夜温差通常越容易被压小。</p>
+<p>因此“潮汐锁定 = 一半烧焦、一半冻结”只是无大气极限的直觉。三维气候模型长期显示，在适当大气压力和成分下，热输送可以让夜面保持远高于完全辐射平衡的温度。</p>
+</div></section>
+
+<section id="s27"><div class="section-num">SECTION 27</div><h2>“只有终结线能住”也过度简化：最适宜区域取决于整个气候反馈</h2><div class="bodycopy">
+<p>科幻作品常把宜居区放在永昼与永夜之间的一条窄环带，俗称 terminator habitability。但若大气环流强，昼面并不一定过热；若恒星直下点形成厚云，它还可能提高反照率，帮助昼面降温。</p>
+<p>反过来，若大气太稀薄，夜侧确实可能冷到主要气体凝结，引发大气坍缩风险。矿物尘埃、海洋覆盖、陆地分布、云微物理和表面压力都会改变答案。所谓“锁定行星气候”，不是一张固定的温度贴图，而是一族依赖参数的系统。</p>
+</div></section>
+
+<section id="s28"><div class="section-num">SECTION 28</div><h2>宜居性不能只问“是否锁定”：恒星活动、辐射、磁场和大气逃逸同样关键</h2><div class="bodycopy">
+<p>红矮星可能有强烈耀斑和高能辐射，近轨行星还面对更强恒星风。它们会影响高层大气、电离、化学和长期大气保留。潮汐锁定只是边界条件之一，不能单独判定“可居住”或“不可居住”。</p>
+<p>更可靠的问题应该是一个组合：行星被锁在哪个共振？大气有多厚？恒星光谱和活动历史怎样？是否有水循环、云与海洋？内部热流多强？只有把这些变量放进同一物理模型，宜居性判断才有意义。</p>
+</div></section>
+
+<section id="s29"><div class="section-num">SECTION 29</div><h2>我们怎样知道遥远系外行星是否锁定：通常不是“直接看到它转”</h2><div class="bodycopy">
+<p>大多数系外行星无法分辨出表面纹理，因此很难像追踪木星云带那样直接测自转。研究者会综合潮汐演化模型、轨道周期与偏心率、行星半径和质量，先估计哪些共振在动力学上合理。</p>
+<p>随后再寻找间接观测：热相位曲线能告诉我们最热点相对恒星直下点的位置，大气光谱随轨道相位的变化可约束三维环流；未来更高精度观测可能进一步区分 1:1 与 3:2 等状态。因此“是否锁定”通常是一项<strong>模型—观测联合推断</strong>，而不是单个读数。</p>
+</div></section>
+
+<section id="s30"><div class="section-num">SECTION 30</div><h2>最深层的理解：潮汐锁定是一种耗散系统寻找动力学吸引子的过程</h2><div class="bodycopy">
+<p>把月球、水星、卡戎和红矮星行星放在一起，潮汐锁定就不再是“同一面朝向另一个天体”的孤立事实。它展示了一类更普遍的系统行为：存在周期驱动、存在内部耗散、存在角动量约束时，系统会从大量初始状态逐渐流向少数稳定的相位关系。</p>
+<p>稳定状态不是因为宇宙“喜欢整齐的整数比”，而是因为某些整数比附近存在恢复扭矩，耗散又不断削去偏离状态的机械能。最终看到的共振，是<strong>保守动力学给出结构，耗散过程负责选择</strong>。</p>
+<div class="quote">潮汐锁定不是天体停止了自由，而是长期耗散把自由度压缩成了稳定关系。</div>
+</div></section>
+
+<section id="mechanism"><div class="section-num">VISUAL 01</div><h2>潮汐扭矩的完整因果链：从距离差到自转改变</h2>
+<div class="visual-figure">
+<div class="visual-title">五步看懂：为什么“被拉变形”最后会变成“转速改变”</div>
+<svg viewBox="0 0 900 430" role="img" aria-label="潮汐锁定从引力梯度到耗散再到自转趋向共振的五步机制图">
+<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="var(--muted)"/></marker></defs>
+<g font-family="ui-sans-serif,system-ui,sans-serif">
+<rect x="24" y="42" width="150" height="120" rx="18" fill="var(--panel)" stroke="var(--line)"/><text x="99" y="72" text-anchor="middle" fill="var(--accent)" font-size="14" font-weight="700">① 引力梯度</text><circle cx="66" cy="116" r="18" fill="var(--soft)" stroke="var(--accent)"/><circle cx="137" cy="116" r="12" fill="var(--panel)" stroke="var(--accent2)"/><path d="M122 116 L86 116" stroke="var(--muted)" stroke-width="2" marker-end="url(#arr)"/><text x="99" y="150" text-anchor="middle" fill="var(--muted)" font-size="12">近端与远端受力不同</text>
+<rect x="200" y="42" width="150" height="120" rx="18" fill="var(--panel)" stroke="var(--line)"/><text x="275" y="72" text-anchor="middle" fill="var(--accent)" font-size="14" font-weight="700">② 产生形变</text><ellipse cx="275" cy="116" rx="51" ry="24" fill="var(--soft)" stroke="var(--accent2)" stroke-width="2"/><text x="275" y="150" text-anchor="middle" fill="var(--muted)" font-size="12">形成潮汐隆起</text>
+<rect x="376" y="42" width="150" height="120" rx="18" fill="var(--panel)" stroke="var(--line)"/><text x="451" y="72" text-anchor="middle" fill="var(--accent)" font-size="14" font-weight="700">③ 响应有延迟</text><line x1="405" y1="116" x2="500" y2="116" stroke="var(--line)" stroke-dasharray="5 4"/><ellipse cx="451" cy="116" rx="51" ry="24" fill="var(--soft)" stroke="var(--accent2)" stroke-width="2" transform="rotate(-12 451 116)"/><text x="451" y="150" text-anchor="middle" fill="var(--muted)" font-size="12">隆起与连心线错开</text>
+<rect x="552" y="42" width="150" height="120" rx="18" fill="var(--panel)" stroke="var(--line)"/><text x="627" y="72" text-anchor="middle" fill="var(--accent)" font-size="14" font-weight="700">④ 引力产生扭矩</text><path d="M598 132 A34 34 0 0 1 651 92" fill="none" stroke="var(--accent2)" stroke-width="3" marker-end="url(#arr)"/><text x="627" y="150" text-anchor="middle" fill="var(--muted)" font-size="12">推快或拖慢自转</text>
+<rect x="728" y="42" width="150" height="120" rx="18" fill="var(--panel)" stroke="var(--line)"/><text x="803" y="72" text-anchor="middle" fill="var(--accent)" font-size="14" font-weight="700">⑤ 耗散选择稳定态</text><text x="803" y="116" text-anchor="middle" fill="var(--text)" font-size="26" font-weight="700">ω → n</text><text x="803" y="150" text-anchor="middle" fill="var(--muted)" font-size="12">或进入其他稳定共振</text>
+<g stroke="var(--muted)" stroke-width="2" marker-end="url(#arr)"><line x1="174" y1="102" x2="196" y2="102"/><line x1="350" y1="102" x2="372" y2="102"/><line x1="526" y1="102" x2="548" y2="102"/><line x1="702" y1="102" x2="724" y2="102"/></g>
+<rect x="92" y="220" width="716" height="150" rx="22" fill="var(--soft)" stroke="var(--line)"/><text x="450" y="255" text-anchor="middle" fill="var(--text)" font-size="18" font-weight="700">真正不可逆的一步是“耗散”</text><text x="450" y="290" text-anchor="middle" fill="var(--muted)" font-size="14">没有耗散：形变可以来回弹，平均状态未必收敛</text><text x="450" y="320" text-anchor="middle" fill="var(--muted)" font-size="14">有耗散：机械能不断变热，偏离稳定共振的运动被逐步削弱</text><text x="450" y="350" text-anchor="middle" fill="var(--accent2)" font-size="14" font-weight="700">角动量仍近似守恒，所以变化会在“自转 ↔ 轨道”之间重新分配</text>
+</g></svg>
+<div class="visual-caption">这是一张机制图，而不是按比例的真实天体形变。真实潮汐隆起通常极小，且材料响应、轨道偏心与频率依赖会让扭矩公式更复杂。</div>
+</div>
+<div class="visual-reading"><b>怎么看这张图：</b>先看前两步，它们只说明“潮汐存在”；真正让自转长期改变的是第 ③～⑤ 步。尤其注意：如果形变完全无损耗，系统不会自动忘记初始自转。耗散才提供“时间箭头”。</div>
+</section>
+
+<section id="resonance"><div class="section-num">INTERACTIVE 01</div><h2>1:1、3:2、2:1：同一个“锁定”直觉背后其实有一整族共振</h2>
+<p class="interaction-hint">点击比例，比较每两圈轨道中天体自转次数、天空中的日夜节律与典型例子。</p>
+<div class="resonance-board">
+<button class="resonance-btn active" data-key="one"><b>1 : 1</b>同步自转</button>
+<button class="resonance-btn" data-key="three"><b>3 : 2</b>水星型共振</button>
+<button class="resonance-btn" data-key="two"><b>2 : 1</b>更高阶共振示例</button>
+</div>
+<div class="resonance-detail"><svg id="resSvg" viewBox="0 0 360 280" role="img" aria-label="自转轨道共振示意图" style="width:100%;height:auto"><circle cx="180" cy="140" r="43" fill="var(--soft)" stroke="var(--accent)" stroke-width="2"/><text x="180" y="146" text-anchor="middle" fill="var(--text)" font-size="18" font-weight="700">主天体</text><circle cx="180" cy="35" r="25" fill="var(--panel)" stroke="var(--accent2)" stroke-width="2"/><line id="faceLine" x1="180" y1="35" x2="180" y2="58" stroke="var(--accent2)" stroke-width="5" stroke-linecap="round"/><circle cx="180" cy="140" r="105" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="6 6"/><text id="resLabel" x="180" y="266" text-anchor="middle" fill="var(--muted)" font-size="13">每公转 1 圈，自转 1 圈</text></svg><div class="resonance-copy" id="resCopy"></div></div>
+<div class="visual-reading"><b>怎么看这个交互：</b>整数比描述的是两个频率的关系，不是“转了多少以后停下”。1:1 的特殊之处是会出现永久昼夜半球；3:2 仍然有日出日落，只是一个太阳日可能非常漫长。</div>
+</section>
+
+<section id="model"><div class="section-num">INTERACTIVE 02</div><h2>一个教学模型：耗散越强，越快忘记初始自转</h2>
+<p class="bodycopy">真实潮汐扭矩高度依赖距离、偏心率、材料流变和共振附近的细节。下面故意使用一个最简单的“向 1:1 吸引子收敛”模型，只用来建立动态直觉：令 r = ω/n，自转比率按 dr/dτ = -γ(r-1) 衰减。它不是任何具体天体的年龄预测器。</p>
+<div class="model"><div class="model-grid">
+<label>初始自转比 r₀ = ω/n：<b id="rVal">4.0</b><input id="r0" type="range" min="20" max="800" value="400"></label>
+<label>耗散强度 γ：<b id="gVal">0.18</b><input id="gamma" type="range" min="2" max="50" value="18"></label>
+</div>
+<svg id="modelPlot" viewBox="0 0 760 340" role="img" aria-label="自转比率在简化耗散模型中逐渐趋向一比一的曲线" style="width:100%;height:auto;margin-top:12px"><line x1="62" y1="24" x2="62" y2="286" stroke="var(--line)" stroke-width="2"/><line x1="62" y1="286" x2="720" y2="286" stroke="var(--line)" stroke-width="2"/><line id="syncLine" x1="62" y1="253" x2="720" y2="253" stroke="var(--accent2)" stroke-width="1.5" stroke-dasharray="6 5"/><text x="625" y="244" fill="var(--accent2)" font-size="12">1:1 同步</text><text x="18" y="35" fill="var(--muted)" font-size="12">r=8</text><text x="29" y="258" fill="var(--muted)" font-size="12">r=1</text><text x="620" y="318" fill="var(--muted)" font-size="12">归一化时间 τ</text><polyline id="lockLine" fill="none" stroke="var(--accent)" stroke-width="4" points=""/></svg>
+<div class="model-result" id="modelResult"></div></div>
+<div class="visual-reading"><b>怎么玩：</b>先固定 γ，改变初始自转，你会看到长期都朝同一吸引子靠近；再提高 γ，收敛明显变快。真实天体里，γ 不是常数，而是距离、k₂、Q、频率与内部结构共同作用的压缩表示。</div>
+</section>
+
+<section id="climate"><div class="section-num">VISUAL 02</div><h2>潮汐锁定行星的气候：真正关键的是“热量能不能越过永昼—永夜边界”</h2>
+<div class="visual-figure"><div class="visual-title">一颗有大气的同步行星：恒星加热固定，但空气仍然可以环流</div>
+<svg viewBox="0 0 900 460" role="img" aria-label="潮汐锁定系外行星永久昼面夜面和大气热输送示意图">
+<defs><linearGradient id="planetGrad" x1="0" x2="1"><stop offset="0" stop-color="var(--accent2)"/><stop offset=".48" stop-color="var(--soft)"/><stop offset=".52" stop-color="var(--soft)"/><stop offset="1" stop-color="var(--panel)"/></linearGradient><marker id="carrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="var(--accent)"/></marker></defs>
+<circle cx="110" cy="230" r="70" fill="var(--accent2)" opacity=".18" stroke="var(--accent2)" stroke-width="2"/><text x="110" y="236" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="700">恒星</text><g stroke="var(--accent2)" stroke-width="2" opacity=".7"><line x1="185" y1="185" x2="280" y2="185"/><line x1="185" y1="215" x2="280" y2="215"/><line x1="185" y1="245" x2="280" y2="245"/><line x1="185" y1="275" x2="280" y2="275"/></g>
+<circle cx="500" cy="230" r="150" fill="url(#planetGrad)" stroke="var(--line)" stroke-width="2"/><line x1="500" y1="80" x2="500" y2="380" stroke="var(--line)" stroke-dasharray="6 5"/><text x="395" y="230" text-anchor="middle" fill="var(--text)" font-size="22" font-weight="700">永久昼面</text><text x="612" y="230" text-anchor="middle" fill="var(--text)" font-size="22" font-weight="700">永久夜面</text><text x="500" y="405" text-anchor="middle" fill="var(--muted)" font-size="13">晨昏圈 / terminator</text>
+<path d="M390 145 C500 75 610 110 646 176" fill="none" stroke="var(--accent)" stroke-width="4" marker-end="url(#carrow)"/><path d="M640 292 C540 370 420 350 368 285" fill="none" stroke="var(--accent)" stroke-width="4" marker-end="url(#carrow)"/><text x="512" y="92" text-anchor="middle" fill="var(--accent)" font-size="14" font-weight="700">高空把热量送往夜侧</text><text x="510" y="370" text-anchor="middle" fill="var(--accent)" font-size="14" font-weight="700">近地面回流</text>
+<circle cx="348" cy="230" r="18" fill="var(--panel)" stroke="var(--accent2)"/><text x="348" y="235" text-anchor="middle" fill="var(--accent2)" font-size="12" font-weight="700">↑</text><text x="332" y="270" text-anchor="middle" fill="var(--muted)" font-size="12">直下点强对流</text>
+<rect x="700" y="120" width="174" height="205" rx="18" fill="var(--soft)" stroke="var(--line)"/><text x="787" y="150" text-anchor="middle" fill="var(--text)" font-size="15" font-weight="700">温差由什么控制？</text><text x="720" y="184" fill="var(--muted)" font-size="13">· 大气压力与成分</text><text x="720" y="211" fill="var(--muted)" font-size="13">· 云与水汽反馈</text><text x="720" y="238" fill="var(--muted)" font-size="13">· 海洋 / 陆地分布</text><text x="720" y="265" fill="var(--muted)" font-size="13">· 自转周期与环流</text><text x="720" y="292" fill="var(--muted)" font-size="13">· 恒星光谱与活动</text>
+</svg><div class="visual-caption">示意图只表达一阶结构：恒星加热固定在昼面，但大气环流可以跨越晨昏圈搬运能量。实际环流形态会随自转速度、压力、表面与辐射条件变化。</div></div>
+<div class="visual-reading"><b>怎么看这张图：</b>先忽略“哪边热哪边冷”的结论，先追踪能量路径：恒星只在左侧输入，但热量不必留在左侧。判断夜面会不会冻结，关键不是“有没有太阳”，而是输送时间尺度能否打败辐射冷却时间尺度。</div>
+</section>
+
+<section id="sources"><div class="section-num">RESEARCH NOTES</div><h2>研究线索与边界</h2><div class="bodycopy source-list">
+<p>本文把“潮汐锁定”作为动力学入口，因此有意区分严格的 1:1 同步自转与更一般的自转—轨道共振。水星是 3:2 共振，不应简单说成“永远同一面朝太阳”。此外，常见的固定 Q 平衡潮模型适合建立尺度直觉，但真实岩石与冰的频率依赖流变会显著影响捕获概率和演化时间。</p>
+<p>可继续阅读：<a href="https://science.nasa.gov/moon/tidal-locking/">NASA：Tidal Locking</a>；<a href="https://science.nasa.gov/mercury/facts/">NASA：Mercury Facts</a>；<a href="https://science.nasa.gov/dwarf-planets/pluto/moons/charon/">NASA：Charon 与相互潮汐锁定</a>；<a href="https://pubmed.ncbi.nlm.nih.gov/15273391/">Nature：水星 3:2 共振捕获机制</a>；<a href="https://arxiv.org/abs/2402.10875">2024：潮汐流变与自转—轨道动力学</a>；<a href="https://www.nature.com/articles/s41467-020-16543-8">Nature Communications：矿物尘埃如何改变同步行星宜居性</a>；<a href="https://arxiv.org/abs/2410.19108">2024：1:1 与 3:2 系外行星的大气动力学和光谱差异</a>。</p>
+</div></section>
+
+<section id="links"><div class="section-num">NETWORK</div><h2>跨主题连接</h2><div class="links">
+<a class="linkcard" href="2026-09-09-cybernetics.html"><b>控制论</b><div>两者都关心“偏差如何被压回稳定状态”，但潮汐锁定提醒我们：稳定并不一定需要传感器和控制器，物理耗散本身就能制造吸引子。</div></a>
+<a class="linkcard" href="2026-09-08-bayesianism.html"><b>贝叶斯主义</b><div>水星曾长期被认为是 1:1 同步；1965 年雷达观测迫使天文学更新模型。它是一个漂亮的“强先验被新证据推翻”的科学案例。</div></a>
+<a class="linkcard" href="../w36/2026-09-05-standard-time.html"><b>标准时间</b><div>“一天”看似自然单位，实际由自转定义，而潮汐正在缓慢改变自转周期。天文学时间、原子时间与文明时间标准因此存在持续校准关系。</div></a>
+<a class="linkcard" href="../w36/2026-08-31-emergence.html"><b>涌现</b><div>稳定的整数共振不是某个中央机制“指定”的，而是引力、形变、材料耗散和初始条件共同作用后，从连续状态空间里筛选出的宏观秩序。</div></a>
+</div></section>
+
+<section id="upgrade"><div class="section-num">COGNITIVE UPGRADE</div><h2>这个关键词改变了什么视角</h2><div class="bodycopy">
+<p>潮汐锁定最值得带走的，不是“月球总用同一面朝地球”，而是<strong>耗散如何改变长期命运</strong>。在短时间尺度上，天体看起来遵守可逆的力学方程；在漫长时间尺度上，极弱的内部摩擦会一遍遍削去某些自由度，最终把系统推入少数稳定关系。</p>
+<p>这会改变我们看待“稳定”的方式。稳定不一定意味着有谁在不断纠错，也不一定意味着系统停止运动。很多稳定状态其实是<strong>运动仍在继续，但相位关系不再自由漂移</strong>。从摆钟同步、锁相环到轨道共振，这种“动态中的稳定”比静止更普遍。</p>
+</div></section>
+
+<section id="questions"><div class="section-num">OPEN QUESTIONS</div><h2>值得继续追问的问题</h2><ol class="questions">
+<li>如果真实潮汐耗散强烈依赖频率和材料流变，那么我们从今天的自转共振反推一颗行星的内部结构，能做到多精确？</li>
+<li>水星落在 3:2 而不是 1:1，是历史偶然还是在它的偏心率和内部结构下具有高概率？</li>
+<li>红矮星宜居带行星如果处于 3:2 而非 1:1，共振状态会如何重画云、海洋和大气化学的全球分布？</li>
+<li>轨道共振能持续给卫星潮汐加热，那么“宜居带”是否应该同时考虑恒星辐照与潮汐热源，而不是只看离恒星的距离？</li>
+<li>从更抽象的系统论看，哪些复杂系统也存在“保守结构给出可能状态，耗散过程负责选择稳定态”的同构机制？</li>
+</ol></section>
+</article>
+</div>
+<footer class="footer">每日认知探索 · 2026-09-12 · 潮汐锁定</footer>
+</div>
+<script>
+const progress=document.getElementById('progress');addEventListener('scroll',()=>{const h=document.documentElement;progress.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100||0)+'%'});document.getElementById('theme').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark'});
+const resonanceData={one:{label:'每公转 1 圈，自转 1 圈',title:'1:1 同步：同一面长期朝向主天体',text:'月球与地球是最熟悉的例子。若行星对恒星处于 1:1，同一个经度长期面对恒星，因此会形成永久昼面与永久夜面。',turn:1},three:{label:'每公转 2 圈，自转 3 圈',title:'3:2 共振：仍有日出日落',text:'水星约 59 天自转一圈、88 天公转一圈；两次公转对应三次自转。它没有永久昼夜半球，一个太阳日约等于两个水星年。',turn:1.5},two:{label:'每公转 1 圈，自转 2 圈',title:'2:1 共振：更快的稳定相位关系',text:'这是高阶自转—轨道共振的示意。是否能被捕获取决于轨道偏心、天体永久三轴形变和潮汐流变；并非所有整数比都同样稳定。',turn:2}};
+function renderRes(k){document.querySelectorAll('.resonance-btn').forEach(b=>b.classList.toggle('active',b.dataset.key===k));const d=resonanceData[k];document.getElementById('resLabel').textContent=d.label;document.getElementById('resCopy').innerHTML='<b>'+d.title+'</b><p>'+d.text+'</p>';const ang=-90+360*d.turn;const cx=180,cy=35,len=23,rad=ang*Math.PI/180;document.getElementById('faceLine').setAttribute('x2',cx+Math.cos(rad)*len);document.getElementById('faceLine').setAttribute('y2',cy+Math.sin(rad)*len)}document.querySelectorAll('.resonance-btn').forEach(b=>b.addEventListener('click',()=>renderRes(b.dataset.key)));renderRes('one');
+const r0=document.getElementById('r0'),gamma=document.getElementById('gamma');function drawModel(){const r=+r0.value/100,g=+gamma.value/100;let pts=[];for(let i=0;i<=80;i++){const t=i/8;const yv=1+(r-1)*Math.exp(-g*t);const x=62+i*(658/80),y=286-(Math.min(8,Math.max(0,yv))/8)*262;pts.push(x.toFixed(1)+','+y.toFixed(1))}document.getElementById('lockLine').setAttribute('points',pts.join(' '));document.getElementById('rVal').textContent=r.toFixed(1);document.getElementById('gVal').textContent=g.toFixed(2);const t10=Math.log(Math.abs(r-1)/.1)/g;document.getElementById('modelResult').textContent=(Math.abs(r-1)<.1?'初始状态已经非常接近 1:1。':'在这个教学模型里，进入 |r-1| < 0.1 的时间约为 τ = '+Math.max(0,t10).toFixed(1)+'。')+' 这只展示“耗散让系统忘记初始条件”的结构，不对应真实年份。'}r0.addEventListener('input',drawModel);gamma.addEventListener('input',drawModel);drawModel();
+const toc=[...document.querySelectorAll('.toc a[href^="#"]')];const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){toc.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-25% 0px -65% 0px'});document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+</script>
+</body></html>
