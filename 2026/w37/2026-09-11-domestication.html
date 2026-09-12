@@ -34,7 +34,7 @@
 <body>
 <div class="progress" id="progress"></div>
 <div class="shell">
-<div class="topbar"><a href="index.html">← 返回本周目录</a><div class="tools"><a class="btn" href="2026-09-10-containerization.html">← 上一篇</a><button class="btn" id="theme">切换明暗</button></div></div>
+<div class="topbar"><a href="index.html">← 返回本周目录</a><div class="tools"><a class="btn" href="2026-09-10-containerization.html">← 上一篇</a><a class="btn" href="2026-09-12-tidal-locking.html">下一篇 →</a><button class="btn" id="theme">切换明暗</button></div></div>
 
 <header class="hero">
 <div>
@@ -130,243 +130,37 @@
 
 <section id="s10"><div class="section-num">SECTION 10</div><h2>小麦最反直觉的变化：被人类选中的，反而是“不会自己播种”的植株</h2><div class="bodycopy">
 <p>野生一粒小麦和野生二粒小麦成熟后，穗轴容易断裂，种子散落到地面。这对植物自身非常合理：它必须把下一代撒出去。但对手持镰刀的人而言，这很糟——你一碰，粮食就掉了。</p>
-<div class="visual-figure">
-<div class="visual-title">同一个性状，对野生植物和农业系统的“适应度”方向相反</div>
-<svg viewBox="0 0 820 360" role="img" aria-label="野生小麦易断穗轴和驯化小麦不易断穗轴的对比示意图">
-<line x1="410" y1="35" x2="410" y2="330" stroke="var(--line)" stroke-width="2"/>
-<text x="205" y="34" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="700">野生型：成熟后易散落</text>
-<text x="615" y="34" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="700">驯化型：籽粒留在穗上</text>
-<g transform="translate(150 65)" stroke="var(--accent2)" stroke-width="5" fill="none" stroke-linecap="round">
-<line x1="55" y1="230" x2="55" y2="20"/><line x1="55" y1="70" x2="20" y2="45"/><line x1="55" y1="90" x2="90" y2="65"/><line x1="55" y1="110" x2="18" y2="95"/><line x1="55" y1="130" x2="92" y2="112"/>
-</g>
-<g fill="var(--accent2)"><ellipse cx="170" cy="205" rx="14" ry="8" transform="rotate(-25 170 205)"/><ellipse cx="248" cy="245" rx="14" ry="8" transform="rotate(20 248 245)"/><ellipse cx="125" cy="280" rx="14" ry="8" transform="rotate(-10 125 280)"/></g>
-<g transform="translate(560 65)" stroke="var(--accent)" stroke-width="5" fill="none" stroke-linecap="round">
-<line x1="55" y1="230" x2="55" y2="20"/><line x1="55" y1="60" x2="20" y2="35"/><line x1="55" y1="80" x2="90" y2="55"/><line x1="55" y1="100" x2="18" y2="85"/><line x1="55" y1="120" x2="92" y2="102"/><line x1="55" y1="140" x2="20" y2="132"/><line x1="55" y1="160" x2="90" y2="150"/>
-</g>
-<path d="M105 304 C175 330 265 330 320 300" fill="none" stroke="var(--muted)" stroke-dasharray="6 5"/>
-<text x="205" y="344" text-anchor="middle" fill="var(--muted)" font-size="13">对植物：有利于扩散　对收获：容易损失</text>
-<text x="615" y="344" text-anchor="middle" fill="var(--muted)" font-size="13">对植物：难自行扩散　对收获：更容易完整带走</text>
-</svg>
-<div class="visual-caption">这是结构示意，不是具体穗形复原。2023 与 2026 年的小麦古基因组研究都进一步说明，驯化不是某个地点突然出现的单次“发明”，而可能经历长期、区域交织、杂交与基因流。</div>
-</div>
-<div class="visual-reading"><b>怎么看这张图：</b>先问“如果没人类，哪一边更容易留下后代？”答案是左边。再问“如果种子主要通过人类收获再播种，哪一边更容易进入下一代？”答案变成右边。驯化的本质，就是评价函数变了。</div>
-<p>这种<strong>不易落粒（non-shattering）</strong>性状，是谷物驯化最经典的“驯化综合征”之一。它展示了一个更深的结构：在野外是缺陷的性状，一旦进入农业生态位，可能变成巨大优势。</p>
+<div class="visual-figure"><div class="visual-title">同一个性状，对野生植物和农业系统的“适应度”方向相反</div><svg viewBox="0 0 820 360" role="img" aria-label="野生小麦易断穗轴和驯化小麦不易断穗轴的对比示意图"><line x1="410" y1="35" x2="410" y2="330" stroke="var(--line)" stroke-width="2"/><text x="205" y="34" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="700">野生型：成熟后易散落</text><text x="615" y="34" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="700">驯化型：籽粒留在穗上</text><g transform="translate(150 65)" stroke="var(--accent2)" stroke-width="5" fill="none" stroke-linecap="round"><line x1="55" y1="230" x2="55" y2="20"/><line x1="55" y1="70" x2="20" y2="45"/><line x1="55" y1="90" x2="90" y2="65"/><line x1="55" y1="110" x2="18" y2="95"/><line x1="55" y1="130" x2="92" y2="112"/></g><g fill="var(--accent2)"><ellipse cx="170" cy="205" rx="14" ry="8" transform="rotate(-25 170 205)"/><ellipse cx="248" cy="245" rx="14" ry="8" transform="rotate(20 248 245)"/><ellipse cx="125" cy="280" rx="14" ry="8" transform="rotate(-10 125 280)"/></g><g transform="translate(560 65)" stroke="var(--accent)" stroke-width="5" fill="none" stroke-linecap="round"><line x1="55" y1="230" x2="55" y2="20"/><line x1="55" y1="60" x2="20" y2="35"/><line x1="55" y1="80" x2="90" y2="55"/><line x1="55" y1="100" x2="18" y2="85"/><line x1="55" y1="120" x2="92" y2="102"/><line x1="55" y1="140" x2="20" y2="132"/><line x1="55" y1="160" x2="90" y2="150"/></g><path d="M105 304 C175 330 265 330 320 300" fill="none" stroke="var(--muted)" stroke-dasharray="6 5"/><text x="205" y="344" text-anchor="middle" fill="var(--muted)" font-size="13">对植物：有利于扩散　对收获：容易损失</text><text x="615" y="344" text-anchor="middle" fill="var(--muted)" font-size="13">对植物：难自行扩散　对收获：更容易完整带走</text></svg><div class="visual-caption">这是结构示意，不是具体穗形复原。2023 与 2026 年的小麦古基因组研究都进一步说明，驯化不是某个地点突然出现的单次“发明”，而可能经历长期、区域交织、杂交与基因流。</div></div><div class="visual-reading"><b>怎么看这张图：</b>先问“如果没人类，哪一边更容易留下后代？”答案是左边。再问“如果种子主要通过人类收获再播种，哪一边更容易进入下一代？”答案变成右边。驯化的本质，就是评价函数变了。</div><p>这种<strong>不易落粒（non-shattering）</strong>性状，是谷物驯化最经典的“驯化综合征”之一。它展示了一个更深的结构：在野外是缺陷的性状，一旦进入农业生态位，可能变成巨大优势。</p>
 </div></section>
 
-<section id="s11"><div class="section-num">SECTION 11</div><h2>选择不是“一次改造”，而是每一代都让某些后代多一点</h2><div class="bodycopy">
-<p>驯化最容易被误读成工程设计：先决定目标，再把物种改造成目标。演化真正发生的尺度却是频率。假设一个影响落粒、应激或体型的遗传变体最初只占种群 5%，只要携带者在人的环境里平均留下更多后代，这个比例就会一代代增加。</p>
-<p>因此“选择”不要求所有个体都被人工配对，也不要求某个农民理解遗传。它只要求繁殖成功率与某些可遗传差异存在稳定关联。长期重复以后，小偏差可以积累成明显的种群差异。</p>
-</div></section>
+<section id="s11"><div class="section-num">SECTION 11</div><h2>选择不是“一次改造”，而是每一代都让某些后代多一点</h2><div class="bodycopy"><p>驯化最容易被误读成工程设计：先决定目标，再把物种改造成目标。演化真正发生的尺度却是频率。假设一个影响落粒、应激或体型的遗传变体最初只占种群 5%，只要携带者在人的环境里平均留下更多后代，这个比例就会一代代增加。</p><p>因此“选择”不要求所有个体都被人工配对，也不要求某个农民理解遗传。它只要求繁殖成功率与某些可遗传差异存在稳定关联。长期重复以后，小偏差可以积累成明显的种群差异。</p></div></section>
+<section id="s12"><div class="section-num">SECTION 12</div><h2>基因流为什么重要：家养与野生不是两个密封容器</h2><div class="bodycopy"><p>早期驯化种群经常与野生亲缘种杂交。传统模型喜欢假设：少量个体被捕获 → 与野生群隔离 → 经瓶颈迅速形成家养种。猪、谷物等基因组研究却一次次显示，这种“封闭瓶颈”并不普遍。</p><p>这看似产生矛盾：如果野生基因一直流入，为什么驯化特征没有被冲淡？答案是<strong>基因流和选择可以同时存在</strong>。只要某些关键性状在人类生态位中受到持续选择，即使大部分基因组不断交换，相关区域仍可保持差异。驯化因此常呈现“网状演化”，而不是一棵干净分叉的树。</p></div></section>
+<section id="s13"><div class="section-num">SECTION 13</div><h2>早期驯化往往没有现代育种那么“聪明”</h2><div class="bodycopy"><p>现代育种让人想到血统簿、人工授精、基因组选择和明确的性状指标。但研究早期动物管理时，把这些技术直觉倒投回一万年前会产生误解。考古与遗传证据表明，早期阶段的选择性配种可能远没有想象中普遍，野生回交也很常见。</p><p>人类更可能先控制空间、食物、猎杀年龄、迁徙与繁殖机会；这些管理行为本身已经足以改变选择压力。换句话说，驯化早期更像<strong>环境工程</strong>，而不是<strong>遗传工程</strong>。</p></div></section>
+<section id="s14"><div class="section-num">SECTION 14</div><h2>驯化、品种形成、现代育种：三个经常被混成一个词的阶段</h2><div class="bodycopy"><p>驯化让一个种群适应人类生态位；之后的<strong>品种形成</strong>会在不同地区、用途和文化偏好下继续分化；近代<strong>系统育种</strong>则进一步强化血统记录、繁殖隔离和极端目标性状。今天许多犬种的体型、毛色和头骨差异，主要来自很晚近的品种育种，而不是最初从狼到狗的那一步。</p><p>把这些阶段拆开有一个重要收益：你不再把“家犬有垂耳、短鼻”直接归因于最初驯化，也不会把工业育种造成的狭窄遗传基础误认为所有驯化都必然经历同样瓶颈。</p></div></section>
+<section id="s15"><div class="section-num">SECTION 15</div><h2>“驯化综合征”：为什么许多家养动物看起来出现了相似变化</h2><div class="bodycopy"><p>达尔文就注意到，不同家养哺乳动物似乎反复出现某些相似特征：更温顺、耳朵形态变化、吻部缩短、毛色斑块、生殖周期改变、脑容量或体型比例变化。后来这些相关变化被概括为<strong>驯化综合征（domestication syndrome）</strong>。</p><p>真正有趣的问题不是列清单，而是解释：为什么人类主要选“更少攻击、更容易管理”，却可能连带改变耳朵、色素或颅面形态？如果这些性状共享发育通路，一个被选择的上游机制就可能产生多种下游效应。</p></div></section>
+<section id="s16"><div class="section-num">SECTION 16</div><h2>神经嵴假说：一个很漂亮、但不能当成定论的统一解释</h2><div class="bodycopy"><p>2014 年提出的著名假说把许多哺乳动物驯化性状联系到胚胎发育中的<strong>神经嵴细胞</strong>。这类细胞会迁移并参与形成颅面骨骼、色素细胞、外周神经和肾上腺相关组织。假如对恐惧与应激反应的选择轻微改变了神经嵴发育，理论上可能同时影响行为、色素、耳软骨和脸部形态。</p><p>它的魅力在于用一个发育机制解释多个看似无关性状。但科学上，“机制漂亮”不等于“证据已经闭合”。不同家养物种并不共享完全相同的性状组合，很多变化也可能来自不同基因、后期人工选育或各自生态条件。</p></div></section>
+<section id="s17"><div class="section-num">SECTION 17</div><h2>俄罗斯银狐实验很重要，但它没有“一锤定音”证明驯化综合征</h2><div class="bodycopy"><p>Dmitry Belyaev 团队最著名的做法，是在银狐中持续选择对人反应更温和的个体。数十代之后，实验群在行为之外还出现了一些形态与生理变化，于是常被当作“只选温顺就能自动得到整套家养特征”的证据。</p><p>但后来研究者重新追溯这些狐狸的养殖历史，指出实验起始群体本身已经来自毛皮养殖场，并非未经人类选择的原始野生样本；而且所谓“综合征”中的许多性状，并不在所有家养物种中稳定共现。更稳妥的理解是：银狐实验强烈展示了<strong>行为选择可以快速改变一个种群</strong>，但不能单独证明所有家养哺乳动物都由同一条发育机制塑造。</p></div></section>
+<section id="s18"><div class="section-num">SECTION 18</div><h2>野化不是“按撤销键”：离开人类后，演化会走出第三条路</h2><div class="bodycopy"><p>家猪逃入野外、家猫形成野生种群、作物逸生，这叫<strong>野化（feralization）</strong>。直觉上好像只要把家养种放回自然，它就会一代代变回祖先。事实上，历史不能完全倒放。</p><p>家养阶段已经改变了基因频率、遗传多样性和行为组合；野化环境也不等同于几千年前的原始环境。新的自然选择会利用现有遗传材料重新组合适应。结果常常不是“恢复原版”，而是形成一个带着驯化历史痕迹的新野生策略。</p></div></section>
+<section id="s19"><div class="section-num">SECTION 19</div><h2>为什么我们驯化了羊和牛，却没有驯化绝大多数大型哺乳动物</h2><div class="bodycopy"><p>常见解释会列出性情、群居结构、食性、生长速度、繁殖方式等“可驯化条件”。这些因素确实重要，但不要把它们当成一张万能打分表。2018 年跨物种比较发现，被人类用于食物生产的哺乳动物在系统发育和性状空间上确实并非随机样本，例如往往具有较慢的生活史和可管理的生态特征。</p><p>但能否驯化从来不只是生物学属性，还取决于人类有没有对应的社会需求、技术、环境和足够长的稳定互动。一个物种“理论上能不能养”与“历史上是否形成了可扩张驯化体系”是两件事。</p></div></section>
+<section id="s20"><div class="section-num">SECTION 20</div><h2>农业不是把野生自然搬进村庄，而是制造了全新的生态系统</h2><div class="bodycopy"><p>田地、灌溉、清除竞争植物、播种、收获、储粮、放牧、焚烧和围栏共同形成一个“人造选择场”。作物在野外可能竞争力下降，却在除草和灌溉环境里繁殖得极其成功；牲畜可能失去部分躲避捕食者的能力，却借助人类保护获得巨大种群规模。</p><p>从物种数量看，驯化甚至可以被理解为一种奇怪的成功：少数物种牺牲了独立于人类生活的能力，却通过与人类绑定，把自己的数量扩张到自然状态下难以达到的规模。</p></div></section>
+<section id="s21"><div class="section-num">SECTION 21</div><h2>谷仓为什么会“召唤”猫：驯化常从第二级效应开始</h2><div class="bodycopy"><p>人类种谷物的直接目的是储存能量，但储粮同时创造了鼠类高密度生态位；鼠类又创造了捕食者机会。猫因此不是被“设计出来保护粮食”的设备，而更可能先以近东野猫的身份被吸引到农业聚落。</p><p>2023 年的古基因组研究继续支持家猫主要源自近东野猫，并显示它们进入欧洲后，虽然与欧洲野猫共处很久，历史上的大规模基因混合却相对有限。这个例子提醒我们：共栖关系可以很早开始，而真正的遗传结构仍可能长期复杂。</p></div></section>
+<section id="s22"><div class="section-num">SECTION 22</div><h2>马改变的不只是交通速度，而是社会可以维持的空间尺度</h2><div class="bodycopy"><p>驯化马最重要的影响不是“人跑得更快”，而是重新定义距离。信息、货物、军队和牧群能在更大的空间里移动，草原上的政治组织、贸易网络与战争方式因此获得新的可能性。</p><p>古 DNA 也迫使历史叙事更谨慎：现代家马的大规模扩张约发生在公元前 2200 年以后，时间上晚于某些更早草原人口迁徙。因此不能简单把所有早期欧亚草原扩张都解释成“骑马革命”。技术、人口和物种传播的时间轴必须彼此对齐。</p></div></section>
+<section id="s23"><div class="section-num">SECTION 23</div><h2>驯化也改变了病原体的机会结构</h2><div class="bodycopy"><p>稳定聚落、大量同种牲畜、高人口密度、粪便与饮水系统，会改变寄生虫与病原体传播的网络。这里需要避免一句过度简化的话：“所有传染病都来自家畜。”很多人类病原体的来源远比这复杂，有的来自灵长类、有的长期在人群中演化，有的经过多宿主过程。</p><p>真正稳妥的结构性结论是：农业和畜牧改变了<strong>宿主密度、接触频率与跨物种接触面</strong>，使某些病原体更容易维持持续传播。驯化因此不仅生产食物，也重新设计了疾病生态学。</p></div></section>
+<section id="s24"><div class="section-num">SECTION 24</div><h2>人类也被驯化关系反向塑造：乳糖耐受是最清楚的例子之一</h2><div class="bodycopy"><p>如果只有动物改变，那还不算完整的共演化。畜牧文化让一些人群长期消费鲜奶，随后成年人继续表达乳糖酶的遗传变体在若干牧业人群中受到强烈选择。文化先创造新的食物生态位，基因再适应这种文化环境。</p><p>类似的基因—文化共演化还可讨论淀粉摄入、免疫、代谢与高密度聚落环境，但具体因果强度各不相同。关键认知是：人类不是站在演化系统外的工程师。我们改变别的物种时，也会改变自己的选择压力。</p></div></section>
+<section id="s25"><div class="section-num">SECTION 25</div><h2>当食物可以被积累，制度问题就出现了：谁拥有田、畜群和剩余？</h2><div class="bodycopy"><p>狩猎采集社会当然也存在产权、交换与不平等，但可储存粮食、可繁殖牲畜和长期土地投入让财富获得新的形式：它可以跨季节保存、跨代继承，也可以被征税、抢夺、抵押和集中。</p><p>于是驯化的影响从生物学进入制度史。围栏、土地权、灌溉规则、牧场共享、牲畜继承、粮仓征收都成为新的协调问题。所谓“农业革命”真正改变的不只是菜单，而是可累积资源的结构。</p></div></section>
+<section id="s26"><div class="section-num">SECTION 26</div><h2>古 DNA 正在摧毁“一个地点、一个祖先、一次事件”的起源神话</h2><div class="bodycopy"><p>过去考古学主要依赖骨骼和形态：牙变小了、角形改变了、种子变大了，于是推断驯化发生。古基因组让研究者可以直接追踪群体替换、杂交、迁徙和亲缘关系。结果往往比旧故事更复杂。</p><p>2026 年对 3,000—6,000 年前南黎凡特小麦的研究支持一种多阶段模型：关键的不落粒突变可能分别出现在不同野生群体，随后通过杂交被组合到同一驯化谱系中，而且类似组合可能不止发生一次。换句话说，“驯化中心”有时不是一个点，而是一段跨区域网络。</p><p>狗也是如此：新古基因组不断把可确认的群体历史向更早推进，但并没有简单结束起源争论。数据越多，故事未必越短，反而常常从“单一答案”变成“更准确的复杂性”。</p></div></section>
+<section id="s27"><div class="section-num">SECTION 27</div><h2>“人类自我驯化”是一个有启发性、但必须标注假说身份的观点</h2><div class="bodycopy"><p>一些研究者提出，现代人演化中对反应性攻击的降低、面部与行为变化，可能与家养动物某些特征平行，于是使用<strong>人类自我驯化</strong>这个框架。可能机制包括群体对极端攻击者的社会惩罚、合作网络扩大以及文化选择。</p><p>这个观点有解释力，但证据不像“家猪由野猪驯化”那样直接。人类没有一个站在物种外部的驯化者，相关形态是否真构成统一综合征、机制是否可类比神经嵴路径，也存在争论。因此它更适合当作可检验研究计划，而不是“人类就是一只被驯化猿”的既定事实。</p></div></section>
+<section id="s28"><div class="section-num">SECTION 28</div><h2>今天的驯化并没有结束，只是选择工具变了</h2><div class="bodycopy"><p>现代家养物种仍在被选择，只不过驱动力从早期生计管理扩展为工业化育种、宠物审美、运动性能、疾病抵抗、产量、气候适应和基因组选择。我们甚至可以直接编辑特定位点，但“能改”不等于“应该改”或“系统一定更稳”。</p><p>极端提高单一产量可能牺牲抗病性、繁殖能力或遗传多样性；高度标准化品种能提高工业效率，也可能放大同质化风险。驯化史因此给现代生物技术一个很古老的提醒：任何优化目标都会重排整个选择景观，副作用常来自被目标函数忽略的维度。</p></div></section>
+<section id="s29"><div class="section-num">SECTION 29</div><h2>最深层的理解：驯化是一种“生态位接管”</h2><div class="bodycopy"><p>把一万年历史压缩成一句话，驯化不是人类对其他物种的单向控制，而是<strong>人类把某些物种的适应度函数接入了自己的社会系统</strong>。谁能更好地适应田地、谷仓、围栏、聚落、迁徙路线和人的偏好，谁就更容易留下后代。</p><p>与此同时，人类也把自己的生计押在这些物种上：我们为它们修灌溉、清除捕食者、建仓库、制定产权、迁徙牧场、发动战争、研发疫苗。被驯化种依赖我们，我们也依赖它们。双方都因此进入一个难以轻易退出的新生态位。</p><div class="quote">驯化不是“自然结束、文化开始”的边界；它恰恰是自然选择与文化选择纠缠在一起的地方。</div></div></section>
 
-<section id="s12"><div class="section-num">SECTION 12</div><h2>基因流为什么重要：家养与野生不是两个密封容器</h2><div class="bodycopy">
-<p>早期驯化种群经常与野生亲缘种杂交。传统模型喜欢假设：少量个体被捕获 → 与野生群隔离 → 经瓶颈迅速形成家养种。猪、谷物等基因组研究却一次次显示，这种“封闭瓶颈”并不普遍。</p>
-<p>这看似产生矛盾：如果野生基因一直流入，为什么驯化特征没有被冲淡？答案是<strong>基因流和选择可以同时存在</strong>。只要某些关键性状在人类生态位中受到持续选择，即使大部分基因组不断交换，相关区域仍可保持差异。驯化因此常呈现“网状演化”，而不是一棵干净分叉的树。</p>
-</div></section>
-
-<section id="s13"><div class="section-num">SECTION 13</div><h2>早期驯化往往没有现代育种那么“聪明”</h2><div class="bodycopy">
-<p>现代育种让人想到血统簿、人工授精、基因组选择和明确的性状指标。但研究早期动物管理时，把这些技术直觉倒投回一万年前会产生误解。考古与遗传证据表明，早期阶段的选择性配种可能远没有想象中普遍，野生回交也很常见。</p>
-<p>人类更可能先控制空间、食物、猎杀年龄、迁徙与繁殖机会；这些管理行为本身已经足以改变选择压力。换句话说，驯化早期更像<strong>环境工程</strong>，而不是<strong>遗传工程</strong>。</p>
-</div></section>
-
-<section id="s14"><div class="section-num">SECTION 14</div><h2>驯化、品种形成、现代育种：三个经常被混成一个词的阶段</h2><div class="bodycopy">
-<p>驯化让一个种群适应人类生态位；之后的<strong>品种形成</strong>会在不同地区、用途和文化偏好下继续分化；近代<strong>系统育种</strong>则进一步强化血统记录、繁殖隔离和极端目标性状。今天许多犬种的体型、毛色和头骨差异，主要来自很晚近的品种育种，而不是最初从狼到狗的那一步。</p>
-<p>把这些阶段拆开有一个重要收益：你不再把“家犬有垂耳、短鼻”直接归因于最初驯化，也不会把工业育种造成的狭窄遗传基础误认为所有驯化都必然经历同样瓶颈。</p>
-</div></section>
-
-<section id="s15"><div class="section-num">SECTION 15</div><h2>“驯化综合征”：为什么许多家养动物看起来出现了相似变化</h2><div class="bodycopy">
-<p>达尔文就注意到，不同家养哺乳动物似乎反复出现某些相似特征：更温顺、耳朵形态变化、吻部缩短、毛色斑块、生殖周期改变、脑容量或体型比例变化。后来这些相关变化被概括为<strong>驯化综合征（domestication syndrome）</strong>。</p>
-<p>真正有趣的问题不是列清单，而是解释：为什么人类主要选“更少攻击、更容易管理”，却可能连带改变耳朵、色素或颅面形态？如果这些性状共享发育通路，一个被选择的上游机制就可能产生多种下游效应。</p>
-</div></section>
-
-<section id="s16"><div class="section-num">SECTION 16</div><h2>神经嵴假说：一个很漂亮、但不能当成定论的统一解释</h2><div class="bodycopy">
-<p>2014 年提出的著名假说把许多哺乳动物驯化性状联系到胚胎发育中的<strong>神经嵴细胞</strong>。这类细胞会迁移并参与形成颅面骨骼、色素细胞、外周神经和肾上腺相关组织。假如对恐惧与应激反应的选择轻微改变了神经嵴发育，理论上可能同时影响行为、色素、耳软骨和脸部形态。</p>
-<p>它的魅力在于用一个发育机制解释多个看似无关性状。但科学上，“机制漂亮”不等于“证据已经闭合”。不同家养物种并不共享完全相同的性状组合，很多变化也可能来自不同基因、后期人工选育或各自生态条件。</p>
-</div></section>
-
-<section id="s17"><div class="section-num">SECTION 17</div><h2>俄罗斯银狐实验很重要，但它没有“一锤定音”证明驯化综合征</h2><div class="bodycopy">
-<p>Dmitry Belyaev 团队最著名的做法，是在银狐中持续选择对人反应更温和的个体。数十代之后，实验群在行为之外还出现了一些形态与生理变化，于是常被当作“只选温顺就能自动得到整套家养特征”的证据。</p>
-<p>但后来研究者重新追溯这些狐狸的养殖历史，指出实验起始群体本身已经来自毛皮养殖场，并非未经人类选择的原始野生样本；而且所谓“综合征”中的许多性状，并不在所有家养物种中稳定共现。更稳妥的理解是：银狐实验强烈展示了<strong>行为选择可以快速改变一个种群</strong>，但不能单独证明所有家养哺乳动物都由同一条发育机制塑造。</p>
-</div></section>
-
-<section id="s18"><div class="section-num">SECTION 18</div><h2>野化不是“按撤销键”：离开人类后，演化会走出第三条路</h2><div class="bodycopy">
-<p>家猪逃入野外、家猫形成野生种群、作物逸生，这叫<strong>野化（feralization）</strong>。直觉上好像只要把家养种放回自然，它就会一代代变回祖先。事实上，历史不能完全倒放。</p>
-<p>家养阶段已经改变了基因频率、遗传多样性和行为组合；野化环境也不等同于几千年前的原始环境。新的自然选择会利用现有遗传材料重新组合适应。结果常常不是“恢复原版”，而是形成一个带着驯化历史痕迹的新野生策略。</p>
-</div></section>
-
-<section id="s19"><div class="section-num">SECTION 19</div><h2>为什么我们驯化了羊和牛，却没有驯化绝大多数大型哺乳动物</h2><div class="bodycopy">
-<p>常见解释会列出性情、群居结构、食性、生长速度、繁殖方式等“可驯化条件”。这些因素确实重要，但不要把它们当成一张万能打分表。2018 年跨物种比较发现，被人类用于食物生产的哺乳动物在系统发育和性状空间上确实并非随机样本，例如往往具有较慢的生活史和可管理的生态特征。</p>
-<p>但能否驯化从来不只是生物学属性，还取决于人类有没有对应的社会需求、技术、环境和足够长的稳定互动。一个物种“理论上能不能养”与“历史上是否形成了可扩张驯化体系”是两件事。</p>
-</div></section>
-
-<section id="s20"><div class="section-num">SECTION 20</div><h2>农业不是把野生自然搬进村庄，而是制造了全新的生态系统</h2><div class="bodycopy">
-<p>田地、灌溉、清除竞争植物、播种、收获、储粮、放牧、焚烧和围栏共同形成一个“人造选择场”。作物在野外可能竞争力下降，却在除草和灌溉环境里繁殖得极其成功；牲畜可能失去部分躲避捕食者的能力，却借助人类保护获得巨大种群规模。</p>
-<p>从物种数量看，驯化甚至可以被理解为一种奇怪的成功：少数物种牺牲了独立于人类生活的能力，却通过与人类绑定，把自己的数量扩张到自然状态下难以达到的规模。</p>
-</div></section>
-
-<section id="s21"><div class="section-num">SECTION 21</div><h2>谷仓为什么会“召唤”猫：驯化常从第二级效应开始</h2><div class="bodycopy">
-<p>人类种谷物的直接目的是储存能量，但储粮同时创造了鼠类高密度生态位；鼠类又创造了捕食者机会。猫因此不是被“设计出来保护粮食”的设备，而更可能先以近东野猫的身份被吸引到农业聚落。</p>
-<p>2023 年的古基因组研究继续支持家猫主要源自近东野猫，并显示它们进入欧洲后，虽然与欧洲野猫共处很久，历史上的大规模基因混合却相对有限。这个例子提醒我们：共栖关系可以很早开始，而真正的遗传结构仍可能长期复杂。</p>
-</div></section>
-
-<section id="s22"><div class="section-num">SECTION 22</div><h2>马改变的不只是交通速度，而是社会可以维持的空间尺度</h2><div class="bodycopy">
-<p>驯化马最重要的影响不是“人跑得更快”，而是重新定义距离。信息、货物、军队和牧群能在更大的空间里移动，草原上的政治组织、贸易网络与战争方式因此获得新的可能性。</p>
-<p>古 DNA 也迫使历史叙事更谨慎：现代家马的大规模扩张约发生在公元前 2200 年以后，时间上晚于某些更早草原人口迁徙。因此不能简单把所有早期欧亚草原扩张都解释成“骑马革命”。技术、人口和物种传播的时间轴必须彼此对齐。</p>
-</div></section>
-
-<section id="s23"><div class="section-num">SECTION 23</div><h2>驯化也改变了病原体的机会结构</h2><div class="bodycopy">
-<p>稳定聚落、大量同种牲畜、高人口密度、粪便与饮水系统，会改变寄生虫与病原体传播的网络。这里需要避免一句过度简化的话：“所有传染病都来自家畜。”很多人类病原体的来源远比这复杂，有的来自灵长类、有的长期在人群中演化，有的经过多宿主过程。</p>
-<p>真正稳妥的结构性结论是：农业和畜牧改变了<strong>宿主密度、接触频率与跨物种接触面</strong>，使某些病原体更容易维持持续传播。驯化因此不仅生产食物，也重新设计了疾病生态学。</p>
-</div></section>
-
-<section id="s24"><div class="section-num">SECTION 24</div><h2>人类也被驯化关系反向塑造：乳糖耐受是最清楚的例子之一</h2><div class="bodycopy">
-<p>如果只有动物改变，那还不算完整的共演化。畜牧文化让一些人群长期消费鲜奶，随后成年人继续表达乳糖酶的遗传变体在若干牧业人群中受到强烈选择。文化先创造新的食物生态位，基因再适应这种文化环境。</p>
-<p>类似的基因—文化共演化还可讨论淀粉摄入、免疫、代谢与高密度聚落环境，但具体因果强度各不相同。关键认知是：人类不是站在演化系统外的工程师。我们改变别的物种时，也会改变自己的选择压力。</p>
-</div></section>
-
-<section id="s25"><div class="section-num">SECTION 25</div><h2>当食物可以被积累，制度问题就出现了：谁拥有田、畜群和剩余？</h2><div class="bodycopy">
-<p>狩猎采集社会当然也存在产权、交换与不平等，但可储存粮食、可繁殖牲畜和长期土地投入让财富获得新的形式：它可以跨季节保存、跨代继承，也可以被征税、抢夺、抵押和集中。</p>
-<p>于是驯化的影响从生物学进入制度史。围栏、土地权、灌溉规则、牧场共享、牲畜继承、粮仓征收都成为新的协调问题。所谓“农业革命”真正改变的不只是菜单，而是可累积资源的结构。</p>
-</div></section>
-
-<section id="s26"><div class="section-num">SECTION 26</div><h2>古 DNA 正在摧毁“一个地点、一个祖先、一次事件”的起源神话</h2><div class="bodycopy">
-<p>过去考古学主要依赖骨骼和形态：牙变小了、角形改变了、种子变大了，于是推断驯化发生。古基因组让研究者可以直接追踪群体替换、杂交、迁徙和亲缘关系。结果往往比旧故事更复杂。</p>
-<p>2026 年对 3,000—6,000 年前南黎凡特小麦的研究支持一种多阶段模型：关键的不落粒突变可能分别出现在不同野生群体，随后通过杂交被组合到同一驯化谱系中，而且类似组合可能不止发生一次。换句话说，“驯化中心”有时不是一个点，而是一段跨区域网络。</p>
-<p>狗也是如此：新古基因组不断把可确认的群体历史向更早推进，但并没有简单结束起源争论。数据越多，故事未必越短，反而常常从“单一答案”变成“更准确的复杂性”。</p>
-</div></section>
-
-<section id="s27"><div class="section-num">SECTION 27</div><h2>“人类自我驯化”是一个有启发性、但必须标注假说身份的观点</h2><div class="bodycopy">
-<p>一些研究者提出，现代人演化中对反应性攻击的降低、面部与行为变化，可能与家养动物某些特征平行，于是使用<strong>人类自我驯化</strong>这个框架。可能机制包括群体对极端攻击者的社会惩罚、合作网络扩大以及文化选择。</p>
-<p>这个观点有解释力，但证据不像“家猪由野猪驯化”那样直接。人类没有一个站在物种外部的驯化者，相关形态是否真构成统一综合征、机制是否可类比神经嵴路径，也存在争论。因此它更适合当作可检验研究计划，而不是“人类就是一只被驯化猿”的既定事实。</p>
-</div></section>
-
-<section id="s28"><div class="section-num">SECTION 28</div><h2>今天的驯化并没有结束，只是选择工具变了</h2><div class="bodycopy">
-<p>现代家养物种仍在被选择，只不过驱动力从早期生计管理扩展为工业化育种、宠物审美、运动性能、疾病抵抗、产量、气候适应和基因组选择。我们甚至可以直接编辑特定位点，但“能改”不等于“应该改”或“系统一定更稳”。</p>
-<p>极端提高单一产量可能牺牲抗病性、繁殖能力或遗传多样性；高度标准化品种能提高工业效率，也可能放大同质化风险。驯化史因此给现代生物技术一个很古老的提醒：任何优化目标都会重排整个选择景观，副作用常来自被目标函数忽略的维度。</p>
-</div></section>
-
-<section id="s29"><div class="section-num">SECTION 29</div><h2>最深层的理解：驯化是一种“生态位接管”</h2><div class="bodycopy">
-<p>把一万年历史压缩成一句话，驯化不是人类对其他物种的单向控制，而是<strong>人类把某些物种的适应度函数接入了自己的社会系统</strong>。谁能更好地适应田地、谷仓、围栏、聚落、迁徙路线和人的偏好，谁就更容易留下后代。</p>
-<p>与此同时，人类也把自己的生计押在这些物种上：我们为它们修灌溉、清除捕食者、建仓库、制定产权、迁徙牧场、发动战争、研发疫苗。被驯化种依赖我们，我们也依赖它们。双方都因此进入一个难以轻易退出的新生态位。</p>
-<div class="quote">驯化不是“自然结束、文化开始”的边界；它恰恰是自然选择与文化选择纠缠在一起的地方。</div>
-</div></section>
-
-<section id="timeline"><div class="section-num">VISUAL 01</div><h2>一万多年时间轴：不要把“农业革命”想成一个同时发生的开关</h2>
-<p class="interaction-hint">点击时间节点，查看该阶段真正改变了什么，以及仍有哪些不确定性。</p>
-<div class="timeline">
-<button class="timebtn" data-detail="晚旧石器时代：狗已经先于农业进入人类生活。2026 年古基因组研究显示，至少约 14,300 年前，遗传上相对一致的狗群已经在西欧亚不同文化群体间广泛分布。起源地点和更早阶段仍有争论。"><strong>≥14,300年前</strong>狗已广泛分布</button>
-<button class="timebtn" data-detail="约一万年前的肥沃新月：一粒小麦等谷物进入长期栽培与驯化过程。关键并非某一天“发明农业”，而是数百至数千年收获、播种、迁移、杂交共同改变种群。"><strong>约10,000年前</strong>早期谷物驯化</button>
-<button class="timebtn" data-detail="新石器时代：山羊、绵羊、猪、牛等不同物种在西亚及其他地区逐步进入持续管理。多个物种都显示长期野生基因流，说明“关进围栏就隔离”并不是普遍现实。"><strong>新石器时代</strong>牲畜体系扩展</button>
-<button class="timebtn" data-detail="农业聚落的谷仓提高鼠类密度，近东野猫获得新的捕食生态位。猫与人类关系很可能先从共栖和互利开始，而不是从严格繁殖控制开始。"><strong>农业扩张后</strong>猫跟随聚落</button>
-<button class="timebtn" data-detail="约4,200年前：现代家马核心谱系从西欧亚伏尔加—顿河草原迅速扩张。更早的 Botai 马管理是真实的，但并非今天家马的主要祖先。"><strong>约4,200年前</strong>现代家马扩张</button>
-<button class="timebtn" data-detail="近现代：血统簿、人工选择、遗传统计、基因组选择与基因编辑把驯化推向高度目标化。与此同时，遗传多样性、福利与系统韧性成为新的约束。"><strong>近现代</strong>从驯化到精密育种</button>
-</div>
-<div class="timedetail" id="timedetail">先点一个节点。你会看到不同物种不是排队经过同一扇“驯化之门”，而是在不同生态关系中进入人类系统。</div>
-<div class="visual-reading"><b>怎么看这条时间轴：</b>不要只比较谁更早。更重要的是比较“进入关系的方式”：狗可能先从共栖开始，谷物通过收获—播种筛选，牲畜经过猎物管理，而马的大规模家养扩张出现在更成熟的畜牧社会中。</div>
-</section>
-
-<section id="pathways"><div class="section-num">INTERACTIVE 01</div><h2>三条驯化路径：改变的是“第一步由谁推动”</h2>
-<div class="pathway-board">
-<button class="pathway-btn active" data-key="commensal"><b>共栖路径</b>动物先靠近人类生态位</button>
-<button class="pathway-btn" data-key="prey"><b>猎物路径</b>人类先管理猎物种群</button>
-<button class="pathway-btn" data-key="directed"><b>定向路径</b>人类带着明确用途介入</button>
-</div>
-<div class="pathway-detail" id="pathwayDetail"></div>
-<div class="visual-reading"><b>怎么看这个框架：</b>先问“最初为什么会持续接触”，再问“什么时候开始影响繁殖”。这比直接问“是谁把它抓回来养”更能区分不同物种的历史。</div>
-</section>
-
-<section id="model"><div class="section-num">INTERACTIVE 02</div><h2>选择 × 基因流：为什么野生基因不断进入，驯化性状仍能上升</h2>
-<p class="bodycopy">下面是一个<strong>概念模型</strong>，不是任何具体物种的参数拟合。设某个“适应人类生态位”的性状频率为 p；人类环境给它选择优势 s，同时每代有比例 m 的个体来自野生群体，野生群体中该性状频率固定为 0.10。模型每代近似更新：选择让 p 上升，基因流把 p 拉回野生水平。</p>
-<div class="model">
-<div class="model-grid">
-<label>人类生态位中的选择强度 s：<b id="sVal">0.12</b><input id="sel" type="range" min="0" max="30" value="12"></label>
-<label>每代野生基因流 m：<b id="mVal">0.03</b><input id="mig" type="range" min="0" max="20" value="3"></label>
-</div>
-<svg id="modelPlot" viewBox="0 0 760 330" role="img" aria-label="驯化性状频率在选择与野生基因流共同作用下变化的概念曲线" style="width:100%;height:auto;margin-top:12px">
-<line x1="60" y1="25" x2="60" y2="275" stroke="var(--line)" stroke-width="2"/><line x1="60" y1="275" x2="720" y2="275" stroke="var(--line)" stroke-width="2"/>
-<text x="28" y="40" fill="var(--muted)" font-size="12">100%</text><text x="36" y="280" fill="var(--muted)" font-size="12">0%</text><text x="642" y="305" fill="var(--muted)" font-size="12">40代</text>
-<line id="wildLine" x1="60" y1="250" x2="720" y2="250" stroke="var(--accent2)" stroke-width="1.5" stroke-dasharray="6 5"/>
-<text x="565" y="242" fill="var(--accent2)" font-size="12">野生群体频率 10%</text>
-<polyline id="traitLine" fill="none" stroke="var(--accent)" stroke-width="4" points=""/>
-</svg>
-<div class="model-result" id="modelResult"></div>
-</div>
-<div class="visual-reading"><b>怎么看这张图：</b>把“基因流”推高，你会看到曲线被野生群体持续拉低；再把“选择”推高，曲线又能重新上升。两股力量可以长期拉扯，因此“存在杂交”并不等于“驯化差异无法维持”。</div>
-</section>
-
-<section id="sources"><div class="section-num">RESEARCH NOTES</div><h2>研究线索与争议边界</h2><div class="bodycopy source-list">
-<p>这篇文章刻意避免把驯化写成已经完全定论的单线历史。尤其是狗的起源、人类自我驯化、动物“驯化综合征”的统一机制，以及某些作物的具体驯化中心，仍会被新古 DNA 与发育遗传学不断修订。</p>
-<p>可继续阅读：<a href="https://www.nature.com/articles/s41586-026-10170-x">Nature 2026：晚旧石器时代狗的古基因组</a>；<a href="https://www.nature.com/articles/s41576-020-0225-0">Nature Reviews Genetics：古基因组时代的动物驯化综述</a>；<a href="https://pubmed.ncbi.nlm.nih.gov/25713127/">PNAS：Zeder 关于驯化核心问题</a>；<a href="https://www.nature.com/articles/s41586-023-06389-7">Nature 2023：一粒小麦基因组与驯化史</a>；<a href="https://www.nature.com/articles/s41477-026-02283-y">Nature Plants 2026：古小麦揭示多阶段、杂交式驯化</a>；<a href="https://www.nature.com/articles/ng.3394">Nature Genetics：猪的长期基因流</a>；<a href="https://www.nature.com/articles/s41586-021-04018-9">Nature：现代家马的西欧亚草原起源</a>；<a href="https://pubmed.ncbi.nlm.nih.gov/31810775/">Trends in Ecology & Evolution：银狐实验与驯化综合征的再评估</a>。</p>
-</div></section>
-
-<section id="links"><div class="section-num">NETWORK</div><h2>跨主题连接</h2><div class="links">
-<a class="linkcard" href="2026-09-09-cybernetics.html"><b>控制论</b><div>驯化同样是反馈系统：人类管理改变选择压力，种群变化又改变管理收益；当反馈持续跨越世代，微小偏差会累积成新的稳定状态。</div></a>
-<a class="linkcard" href="2026-09-07-commons.html"><b>公地</b><div>畜群、牧场、灌溉与土地把生物驯化转化为制度问题：资源一旦可积累、可繁殖，谁能使用、谁承担成本、谁拥有下一代就必须被治理。</div></a>
-<a class="linkcard" href="../w36/2026-08-31-emergence.html"><b>涌现</b><div>早期驯化往往没有中央设计者，却能从无数局部选择、收获习惯、动物行为和基因流中涌现出稳定的种群级结构。</div></a>
-<a class="linkcard" href="../w36/2026-09-06-affordance.html"><b>可供性</b><div>同一环境对不同物种提供不同机会：谷仓对人是储粮设施，对鼠是食物富集区，对猫则是高密度猎场。驯化常从这些“关系性的机会”开始。</div></a>
-</div></section>
-
-<section id="upgrade"><div class="section-num">COGNITIVE UPGRADE</div><h2>这个关键词改变了什么视角</h2><div class="bodycopy">
-<p>以前看到家犬、麦田或奶牛，很容易把它们当成“人类技术的产物”。更准确的视角是：它们是<strong>长期反馈的产物</strong>。人类不需要先拥有完整设计，只要持续改变谁更容易生存和繁殖，演化就会把文化习惯写进另一个物种的基因和形态。</p>
-<p>这个视角还能反过来用于理解技术与制度：当一个系统长期改变参与者的成功条件时，参与者会逐渐适应这个系统。平台会“驯化”内容形式，市场会“驯化”企业策略，组织指标会“驯化”员工行为。这里当然不是生物学意义上的遗传驯化，但结构上的共同点值得警惕：<strong>真正强大的规则，不只筛选结果，还会重塑产生结果的主体。</strong></p>
-</div></section>
-
-<section id="questions"><div class="section-num">OPEN QUESTIONS</div><h2>值得继续追问的问题</h2>
-<ol class="questions">
-<li>如果驯化常伴随长期基因流，那么我们应当用什么标准定义“野生种群”和“家养种群”的边界？</li>
-<li>人类最初没有遗传学知识，却能稳定改变作物和动物；今天算法推荐系统是否也在无意中制造类似的长期“选择环境”？</li>
-<li>为什么某些驯化性状在不同物种中反复出现，而另一些只属于特定谱系？神经嵴假说最终能解释多大比例？</li>
-<li>古 DNA 越来越显示驯化是网络而非单点事件，那么“文明起源中心”这类历史叙事是否也需要从点状模型改成网络模型？</li>
-<li>现代育种把选择压力推到前所未有的强度后，如何在产量、福利、遗传多样性与系统韧性之间设计更好的目标函数？</li>
-</ol></section>
-</article>
-</div>
-
-<footer class="footer">每日认知探索 · 2026-09-11 · 驯化</footer>
-</div>
-
+<section id="timeline"><div class="section-num">VISUAL 01</div><h2>一万多年时间轴：不要把“农业革命”想成一个同时发生的开关</h2><p class="interaction-hint">点击时间节点，查看该阶段真正改变了什么，以及仍有哪些不确定性。</p><div class="timeline"><button class="timebtn" data-detail="晚旧石器时代：狗已经先于农业进入人类生活。2026 年古基因组研究显示，至少约 14,300 年前，遗传上相对一致的狗群已经在西欧亚不同文化群体间广泛分布。起源地点和更早阶段仍有争论。"><strong>≥14,300年前</strong>狗已广泛分布</button><button class="timebtn" data-detail="约一万年前的肥沃新月：一粒小麦等谷物进入长期栽培与驯化过程。关键并非某一天“发明农业”，而是数百至数千年收获、播种、迁移、杂交共同改变种群。"><strong>约10,000年前</strong>早期谷物驯化</button><button class="timebtn" data-detail="新石器时代：山羊、绵羊、猪、牛等不同物种在西亚及其他地区逐步进入持续管理。多个物种都显示长期野生基因流，说明“关进围栏就隔离”并不是普遍现实。"><strong>新石器时代</strong>牲畜体系扩展</button><button class="timebtn" data-detail="农业聚落的谷仓提高鼠类密度，近东野猫获得新的捕食生态位。猫与人类关系很可能先从共栖和互利开始，而不是从严格繁殖控制开始。"><strong>农业扩张后</strong>猫跟随聚落</button><button class="timebtn" data-detail="约4,200年前：现代家马核心谱系从西欧亚伏尔加—顿河草原迅速扩张。更早的 Botai 马管理是真实的，但并非今天家马的主要祖先。"><strong>约4,200年前</strong>现代家马扩张</button><button class="timebtn" data-detail="近现代：血统簿、人工选择、遗传统计、基因组选择与基因编辑把驯化推向高度目标化。与此同时，遗传多样性、福利与系统韧性成为新的约束。"><strong>近现代</strong>从驯化到精密育种</button></div><div class="timedetail" id="timedetail">先点一个节点。你会看到不同物种不是排队经过同一扇“驯化之门”，而是在不同生态关系中进入人类系统。</div><div class="visual-reading"><b>怎么看这条时间轴：</b>不要只比较谁更早。更重要的是比较“进入关系的方式”：狗可能先从共栖开始，谷物通过收获—播种筛选，牲畜经过猎物管理，而马的大规模家养扩张出现在更成熟的畜牧社会中。</div></section>
+<section id="pathways"><div class="section-num">INTERACTIVE 01</div><h2>三条驯化路径：改变的是“第一步由谁推动”</h2><div class="pathway-board"><button class="pathway-btn active" data-key="commensal"><b>共栖路径</b>动物先靠近人类生态位</button><button class="pathway-btn" data-key="prey"><b>猎物路径</b>人类先管理猎物种群</button><button class="pathway-btn" data-key="directed"><b>定向路径</b>人类带着明确用途介入</button></div><div class="pathway-detail" id="pathwayDetail"></div><div class="visual-reading"><b>怎么看这个框架：</b>先问“最初为什么会持续接触”，再问“什么时候开始影响繁殖”。这比直接问“是谁把它抓回来养”更能区分不同物种的历史。</div></section>
+<section id="model"><div class="section-num">INTERACTIVE 02</div><h2>选择 × 基因流：为什么野生基因不断进入，驯化性状仍能上升</h2><p class="bodycopy">下面是一个<strong>概念模型</strong>，不是任何具体物种的参数拟合。设某个“适应人类生态位”的性状频率为 p；人类环境给它选择优势 s，同时每代有比例 m 的个体来自野生群体，野生群体中该性状频率固定为 0.10。模型每代近似更新：选择让 p 上升，基因流把 p 拉回野生水平。</p><div class="model"><div class="model-grid"><label>人类生态位中的选择强度 s：<b id="sVal">0.12</b><input id="sel" type="range" min="0" max="30" value="12"></label><label>每代野生基因流 m：<b id="mVal">0.03</b><input id="mig" type="range" min="0" max="20" value="3"></label></div><svg id="modelPlot" viewBox="0 0 760 330" role="img" aria-label="驯化性状频率在选择与野生基因流共同作用下变化的概念曲线" style="width:100%;height:auto;margin-top:12px"><line x1="60" y1="25" x2="60" y2="275" stroke="var(--line)" stroke-width="2"/><line x1="60" y1="275" x2="720" y2="275" stroke="var(--line)" stroke-width="2"/><text x="28" y="40" fill="var(--muted)" font-size="12">100%</text><text x="36" y="280" fill="var(--muted)" font-size="12">0%</text><text x="642" y="305" fill="var(--muted)" font-size="12">40代</text><line id="wildLine" x1="60" y1="250" x2="720" y2="250" stroke="var(--accent2)" stroke-width="1.5" stroke-dasharray="6 5"/><text x="565" y="242" fill="var(--accent2)" font-size="12">野生群体频率 10%</text><polyline id="traitLine" fill="none" stroke="var(--accent)" stroke-width="4" points=""/></svg><div class="model-result" id="modelResult"></div></div><div class="visual-reading"><b>怎么看这张图：</b>把“基因流”推高，你会看到曲线被野生群体持续拉低；再把“选择”推高，曲线又能重新上升。两股力量可以长期拉扯，因此“存在杂交”并不等于“驯化差异无法维持”。</div></section>
+<section id="sources"><div class="section-num">RESEARCH NOTES</div><h2>研究线索与争议边界</h2><div class="bodycopy source-list"><p>这篇文章刻意避免把驯化写成已经完全定论的单线历史。尤其是狗的起源、人类自我驯化、动物“驯化综合征”的统一机制，以及某些作物的具体驯化中心，仍会被新古 DNA 与发育遗传学不断修订。</p><p>可继续阅读：<a href="https://www.nature.com/articles/s41586-026-10170-x">Nature 2026：晚旧石器时代狗的古基因组</a>；<a href="https://www.nature.com/articles/s41576-020-0225-0">Nature Reviews Genetics：古基因组时代的动物驯化综述</a>；<a href="https://pubmed.ncbi.nlm.nih.gov/25713127/">PNAS：Zeder 关于驯化核心问题</a>；<a href="https://www.nature.com/articles/s41586-023-06389-7">Nature 2023：一粒小麦基因组与驯化史</a>；<a href="https://www.nature.com/articles/s41477-026-02283-y">Nature Plants 2026：古小麦揭示多阶段、杂交式驯化</a>；<a href="https://www.nature.com/articles/ng.3394">Nature Genetics：猪的长期基因流</a>；<a href="https://www.nature.com/articles/s41586-021-04018-9">Nature：现代家马的西欧亚草原起源</a>；<a href="https://pubmed.ncbi.nlm.nih.gov/31810775/">Trends in Ecology & Evolution：银狐实验与驯化综合征的再评估</a>。</p></div></section>
+<section id="links"><div class="section-num">NETWORK</div><h2>跨主题连接</h2><div class="links"><a class="linkcard" href="2026-09-09-cybernetics.html"><b>控制论</b><div>驯化同样是反馈系统：人类管理改变选择压力，种群变化又改变管理收益；当反馈持续跨越世代，微小偏差会累积成新的稳定状态。</div></a><a class="linkcard" href="2026-09-07-commons.html"><b>公地</b><div>畜群、牧场、灌溉与土地把生物驯化转化为制度问题：资源一旦可积累、可繁殖，谁能使用、谁承担成本、谁拥有下一代就必须被治理。</div></a><a class="linkcard" href="../w36/2026-08-31-emergence.html"><b>涌现</b><div>早期驯化往往没有中央设计者，却能从无数局部选择、收获习惯、动物行为和基因流中涌现出稳定的种群级结构。</div></a><a class="linkcard" href="../w36/2026-09-06-affordance.html"><b>可供性</b><div>同一环境对不同物种提供不同机会：谷仓对人是储粮设施，对鼠是食物富集区，对猫则是高密度猎场。驯化常从这些“关系性的机会”开始。</div></a></div></section>
+<section id="upgrade"><div class="section-num">COGNITIVE UPGRADE</div><h2>这个关键词改变了什么视角</h2><div class="bodycopy"><p>以前看到家犬、麦田或奶牛，很容易把它们当成“人类技术的产物”。更准确的视角是：它们是<strong>长期反馈的产物</strong>。人类不需要先拥有完整设计，只要持续改变谁更容易生存和繁殖，演化就会把文化习惯写进另一个物种的基因和形态。</p><p>这个视角还能反过来用于理解技术与制度：当一个系统长期改变参与者的成功条件时，参与者会逐渐适应这个系统。平台会“驯化”内容形式，市场会“驯化”企业策略，组织指标会“驯化”员工行为。这里当然不是生物学意义上的遗传驯化，但结构上的共同点值得警惕：<strong>真正强大的规则，不只筛选结果，还会重塑产生结果的主体。</strong></p></div></section>
+<section id="questions"><div class="section-num">OPEN QUESTIONS</div><h2>值得继续追问的问题</h2><ol class="questions"><li>如果驯化常伴随长期基因流，那么我们应当用什么标准定义“野生种群”和“家养种群”的边界？</li><li>人类最初没有遗传学知识，却能稳定改变作物和动物；今天算法推荐系统是否也在无意中制造类似的长期“选择环境”？</li><li>为什么某些驯化性状在不同物种中反复出现，而另一些只属于特定谱系？神经嵴假说最终能解释多大比例？</li><li>古 DNA 越来越显示驯化是网络而非单点事件，那么“文明起源中心”这类历史叙事是否也需要从点状模型改成网络模型？</li><li>现代育种把选择压力推到前所未有的强度后，如何在产量、福利、遗传多样性与系统韧性之间设计更好的目标函数？</li></ol></section>
+</article></div><footer class="footer">每日认知探索 · 2026-09-11 · 驯化</footer></div>
 <script>
-const progress=document.getElementById('progress');
-addEventListener('scroll',()=>{const h=document.documentElement;progress.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100||0)+'%'});
-document.getElementById('theme').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark'});
-
-document.querySelectorAll('.timebtn').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.timebtn').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  const d=document.getElementById('timedetail');d.textContent=b.dataset.detail;d.classList.add('has-content');
-}));
-
-const pathwayData={
-commensal:{title:'共栖：动物先利用人类制造的新生态位',text:'典型讨论对象包括狗与猫。最初不一定存在捕获和配种计划；营地残食、谷仓鼠类等资源让某些个体更愿意靠近人类。随后，低恐惧、低反应性攻击、能在高密度环境生活等性状可能获得优势。关键动作：先有生态接近，后有更强管理。'},
-prey:{title:'猎物：人类先从“捕杀”转向“管理种群”',text:'典型对象包括羊、山羊、牛、猪等。人类通过选择猎杀年龄与性别、保护繁殖雌性、控制水源和迁徙逐步改变种群结构。关键动作：先提高猎物资源的可持续性，随后管理强度增加，繁殖与基因频率开始长期偏移。'},
-directed:{title:'定向：人类已经知道如何管理动物，并追求明确新功能',text:'常用于理解较晚出现的驯化关系，例如运输、负重等用途。它依赖已有畜牧知识与社会组织，因而更接近我们直觉中的“主动驯化”。关键动作：目标先出现，再把新物种纳入成熟的人类管理系统。'}
-};
-function renderPathway(k){
- document.querySelectorAll('.pathway-btn').forEach(b=>b.classList.toggle('active',b.dataset.key===k));
- const x=pathwayData[k];document.getElementById('pathwayDetail').innerHTML='<b style="color:var(--accent)">'+x.title+'</b><p style="margin:.6em 0 0">'+x.text+'</p>';
-}
-document.querySelectorAll('.pathway-btn').forEach(b=>b.addEventListener('click',()=>renderPathway(b.dataset.key)));renderPathway('commensal');
-
-const sel=document.getElementById('sel'),mig=document.getElementById('mig');
-function drawModel(){
- const s=+sel.value/100,m=+mig.value/100,q=.10;
- let p=.10, pts=[];
- for(let t=0;t<=40;t++){
-   const x=60+t*(660/40), y=275-p*250;pts.push(x.toFixed(1)+','+y.toFixed(1));
-   p=Math.max(0,Math.min(1,p+s*p*(1-p)+m*(q-p)));
- }
- document.getElementById('traitLine').setAttribute('points',pts.join(' '));
- document.getElementById('sVal').textContent=s.toFixed(2);document.getElementById('mVal').textContent=m.toFixed(2);
- let msg='';
- if(s===0&&m>0) msg='没有定向选择时，基因流会把种群维持在接近野生频率。';
- else if(s>m*2) msg='此时选择明显强于野生基因流：即使每代都有外来基因，性状仍可持续上升。';
- else if(m>s) msg='此时野生基因流很强：驯化性状上升被显著压制，种群差异更难扩大。';
- else msg='选择与基因流在持续拉扯：这更接近许多早期驯化的“开放种群”直觉，而不是完全隔离。';
- document.getElementById('modelResult').textContent=msg;
-}
-sel.addEventListener('input',drawModel);mig.addEventListener('input',drawModel);drawModel();
-
-const toc=[...document.querySelectorAll('.toc a[href^="#"]')];
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){toc.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-25% 0px -65% 0px'});
-document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
-</script>
-</body></html>
+const progress=document.getElementById('progress');addEventListener('scroll',()=>{const h=document.documentElement;progress.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100||0)+'%'});document.getElementById('theme').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark'});document.querySelectorAll('.timebtn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.timebtn').forEach(x=>x.classList.remove('active'));b.classList.add('active');const d=document.getElementById('timedetail');d.textContent=b.dataset.detail;d.classList.add('has-content')}));const pathwayData={commensal:{title:'共栖：动物先利用人类制造的新生态位',text:'典型讨论对象包括狗与猫。最初不一定存在捕获和配种计划；营地残食、谷仓鼠类等资源让某些个体更愿意靠近人类。随后，低恐惧、低反应性攻击、能在高密度环境生活等性状可能获得优势。关键动作：先有生态接近，后有更强管理。'},prey:{title:'猎物：人类先从“捕杀”转向“管理种群”',text:'典型对象包括羊、山羊、牛、猪等。人类通过选择猎杀年龄与性别、保护繁殖雌性、控制水源和迁徙逐步改变种群结构。关键动作：先提高猎物资源的可持续性，随后管理强度增加，繁殖与基因频率开始长期偏移。'},directed:{title:'定向：人类已经知道如何管理动物，并追求明确新功能',text:'常用于理解较晚出现的驯化关系，例如运输、负重等用途。它依赖已有畜牧知识与社会组织，因而更接近我们直觉中的“主动驯化”。关键动作：目标先出现，再把新物种纳入成熟的人类管理系统。'}};function renderPathway(k){document.querySelectorAll('.pathway-btn').forEach(b=>b.classList.toggle('active',b.dataset.key===k));const x=pathwayData[k];document.getElementById('pathwayDetail').innerHTML='<b style="color:var(--accent)">'+x.title+'</b><p style="margin:.6em 0 0">'+x.text+'</p>'}document.querySelectorAll('.pathway-btn').forEach(b=>b.addEventListener('click',()=>renderPathway(b.dataset.key)));renderPathway('commensal');const sel=document.getElementById('sel'),mig=document.getElementById('mig');function drawModel(){const s=+sel.value/100,m=+mig.value/100,q=.10;let p=.10,pts=[];for(let t=0;t<=40;t++){const x=60+t*(660/40),y=275-p*250;pts.push(x.toFixed(1)+','+y.toFixed(1));p=Math.max(0,Math.min(1,p+s*p*(1-p)+m*(q-p)))}document.getElementById('traitLine').setAttribute('points',pts.join(' '));document.getElementById('sVal').textContent=s.toFixed(2);document.getElementById('mVal').textContent=m.toFixed(2);let msg='';if(s===0&&m>0)msg='没有定向选择时，基因流会把种群维持在接近野生频率。';else if(s>m*2)msg='此时选择明显强于野生基因流：即使每代都有外来基因，性状仍可持续上升。';else if(m>s)msg='此时野生基因流很强：驯化性状上升被显著压制，种群差异更难扩大。';else msg='选择与基因流在持续拉扯：这更接近许多早期驯化的“开放种群”直觉，而不是完全隔离。';document.getElementById('modelResult').textContent=msg}sel.addEventListener('input',drawModel);mig.addEventListener('input',drawModel);drawModel();const toc=[...document.querySelectorAll('.toc a[href^="#"]')];const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){toc.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-25% 0px -65% 0px'});document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+</script></body></html>
