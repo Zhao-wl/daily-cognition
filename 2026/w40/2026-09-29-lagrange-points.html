@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拉格朗日点｜每日认知探索</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/visual.css">
+<style>
+.formula{font:600 15px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:18px 0;overflow:auto}
+.source-list a{color:var(--accent);word-break:break-word}
+.point-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:14px 0}
+.point-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:14px;padding:12px 10px;cursor:pointer;text-align:center;font-family:ui-sans-serif,system-ui,sans-serif}
+.point-btn b{display:block;color:var(--accent);font-size:18px}
+.point-btn.active{background:var(--soft);border-color:var(--accent)}
+.point-detail{border:1px solid var(--line);background:var(--soft);border-radius:18px;padding:18px;min-height:140px}
+.point-detail h3{margin:0 0 8px;font-size:22px}
+.point-detail p{margin:6px 0;color:var(--muted)}
+.status{display:inline-flex;align-items:center;gap:7px;font:700 12px/1.4 ui-sans-serif,system-ui,sans-serif;border-radius:999px;padding:5px 9px;background:var(--panel);border:1px solid var(--line);margin-right:7px}
+.mass-lab{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:18px;margin:24px 0}
+.mass-row{display:grid;grid-template-columns:160px 1fr 100px;gap:12px;align-items:center;margin:14px 0;font-family:ui-sans-serif,system-ui,sans-serif}
+.mass-row input{width:100%}
+.mass-result{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.mass-card{border:1px solid var(--line);background:var(--soft);border-radius:15px;padding:14px}
+.mass-card span{display:block;color:var(--muted);font:12px/1.4 ui-sans-serif,system-ui,sans-serif}
+.mass-card b{display:block;color:var(--accent);font:700 22px/1.2 ui-sans-serif,system-ui,sans-serif;margin-top:4px}
+.stability-canvas{position:relative;height:180px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--panel),var(--soft));overflow:hidden;margin-top:14px}
+.ball{position:absolute;width:18px;height:18px;border-radius:50%;background:var(--accent2);left:50%;top:72px;transform:translateX(-50%);transition:.25s}
+.bowl{position:absolute;left:14%;right:14%;bottom:18px;height:90px;border-bottom:4px solid var(--accent);border-radius:0 0 50% 50%}
+.saddle-x,.saddle-y{position:absolute;left:10%;right:10%;top:88px;border-top:3px solid var(--accent)}
+.saddle-x{transform:rotate(8deg)}.saddle-y{transform:rotate(-8deg);opacity:.45}
+.mode-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.mode-tabs button{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:999px;padding:8px 12px;cursor:pointer}
+.mode-tabs button.active{background:var(--soft);border-color:var(--accent)}
+.mode-copy{color:var(--muted)}
+.mission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}
+.mission-card{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:16px}
+.mission-card b{color:var(--accent);font-family:ui-sans-serif,system-ui,sans-serif}
+.mission-card p{margin:7px 0 0;color:var(--muted)}
+.cross-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.cross-card{display:block;border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:16px;text-decoration:none;color:var(--text)}
+.cross-card:hover,.cross-card:focus-visible{border-color:var(--accent);background:var(--soft);outline:none}
+.cross-card b{color:var(--accent);font-family:ui-sans-serif,system-ui,sans-serif}
+.cross-card p{color:var(--muted);margin:7px 0 0}
+.chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:18px 0}
+.chain-step{position:relative;border:1px solid var(--line);background:var(--panel);border-radius:15px;padding:13px;min-height:112px}
+.chain-step b{display:block;color:var(--accent);font:700 13px/1.4 ui-sans-serif,system-ui,sans-serif}
+.chain-step p{font-size:13px;color:var(--muted);margin:6px 0 0}
+.chain-step:not(:last-child):after{content:'→';position:absolute;right:-12px;top:44px;color:var(--accent2);font-weight:700;z-index:2}
+.timeline-mini{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:18px 0}
+.timeline-mini button{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:14px;padding:12px;cursor:pointer;text-align:left;min-height:92px}
+.timeline-mini button.active{background:var(--soft);border-color:var(--accent)}
+.timeline-mini strong{display:block;color:var(--accent)}
+.timeline-copy{border:1px solid var(--line);background:var(--soft);border-radius:16px;padding:16px;min-height:120px}
+.compare-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:15px}.compare-table th,.compare-table td{border:1px solid var(--line);padding:10px 12px;vertical-align:top}.compare-table th{background:var(--soft);text-align:left}
+@media(max-width:850px){.point-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.mass-result,.mission-grid,.cross-grid{grid-template-columns:1fr}.chain{grid-template-columns:1fr}.chain-step:not(:last-child):after{content:'↓';right:12px;top:auto;bottom:-18px}.timeline-mini{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.point-grid{grid-template-columns:1fr 1fr}.mass-row{grid-template-columns:1fr}.timeline-mini{grid-template-columns:1fr}.compare-table{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="shell">
+<div class="topbar"><a href="index.html">← 返回本周目录</a><div class="tools"><a class="btn" href="../w39/2026-09-27-queueing-theory.html">← 上一篇</a><a class="btn" href="2026-09-30-quorum-sensing.html">下一篇 →</a><button class="btn" id="theme">切换明暗</button></div></div>
+
+<header class="hero">
+<div>
+<div class="eyebrow">2026-09-29 · 天体力学 · 数学史 · 航天工程 · 非线性动力学</div>
+<h1>拉格朗日点</h1>
+<div class="en">Lagrange Points</div>
+<div class="tagline">太空里没有路标，也没有地面；为什么某些“空无一物的位置”，却能像港口一样长期组织卫星、望远镜和小行星？</div>
+<p class="intro">拉格朗日点不是五个神秘的“零重力点”，而是三体关系里出现的五种相对平衡构型。理解它，需要把视角从“某处引力多大”切换成“在一个随轨道一起旋转的参考系里，怎样让第三个小物体与另外两个大天体保持固定几何关系”。它把三体问题、旋转参考系、有效势、科里奥利效应、稳定性、航天器驻留、JWST 与木星特洛伊小行星串成一条完整的认知链。</p>
+</div>
+<div class="visual">
+<svg viewBox="0 0 560 420" role="img" aria-label="太阳地球系统五个拉格朗日点示意图">
+<defs><marker id="arrh" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L9 4 L0 8Z" fill="var(--accent)"/></marker></defs>
+<circle cx="250" cy="210" r="47" fill="var(--soft)" stroke="var(--accent2)" stroke-width="2"/>
+<text x="250" y="216" text-anchor="middle" fill="var(--text)" font-size="18" font-weight="700">太阳</text>
+<circle cx="445" cy="210" r="20" fill="var(--panel)" stroke="var(--accent)" stroke-width="2"/>
+<text x="445" y="246" text-anchor="middle" fill="var(--text)" font-size="13">地球</text>
+<circle cx="250" cy="210" r="195" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="7 7"/>
+<g fill="var(--accent)" font-size="14" font-weight="700">
+<circle cx="405" cy="210" r="7"/><text x="405" y="190" text-anchor="middle">L1</text>
+<circle cx="486" cy="210" r="7"/><text x="486" y="190" text-anchor="middle">L2</text>
+<circle cx="54" cy="210" r="7"/><text x="54" y="190" text-anchor="middle">L3</text>
+<circle cx="347.5" cy="41" r="7"/><text x="347.5" y="25" text-anchor="middle">L4</text>
+<circle cx="347.5" cy="379" r="7"/><text x="347.5" y="404" text-anchor="middle">L5</text>
+</g>
+<line x1="250" y1="210" x2="445" y2="210" stroke="var(--line)" stroke-width="2"/>
+<line x1="250" y1="210" x2="347.5" y2="41" stroke="var(--line)" stroke-width="2"/>
+<line x1="445" y1="210" x2="347.5" y2="41" stroke="var(--line)" stroke-width="2"/>
+<line x1="250" y1="210" x2="347.5" y2="379" stroke="var(--line)" stroke-width="2"/>
+<line x1="445" y1="210" x2="347.5" y2="379" stroke="var(--line)" stroke-width="2"/>
+<path d="M465 68 A170 170 0 0 1 514 136" fill="none" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrh)"/>
+<text x="466" y="62" fill="var(--accent)" font-size="12" font-weight="700">与地球一起绕太阳旋转</text>
+<text x="280" y="340" fill="var(--muted)" font-size="12">L4 / L5 与两大天体构成等边三角形</text>
+</svg>
+</div>
+</header>
+
+<div class="layout">
+<nav class="toc">
+<a href="#s1">01 · 空无一物为何成“地点”</a><a href="#s2">02 · 定义：相对平衡</a><a href="#s3">03 · 两体问题为何太简单</a><a href="#s4">04 · 限制性三体问题</a>
+<a href="#s5">05 · 旋转参考系</a><a href="#map">视觉 · 五点地图</a><a href="#s6">06 · L1 的力学直觉</a><a href="#s7">07 · L2 的力学直觉</a><a href="#s8">08 · L3 的力学直觉</a>
+<a href="#s9">09 · L4 / L5 的几何</a><a href="#points">交互 · 五点切换</a><a href="#s10">10 · 有效势</a><a href="#s11">11 · 科里奥利不是装饰</a><a href="#stability">视觉 · 稳定与不稳定</a>
+<a href="#s12">12 · 为什么三点不稳定</a><a href="#s13">13 · 为什么两点能稳定</a><a href="#masslab">交互 · 质量比阈值</a><a href="#s14">14 · Routh 条件</a>
+<a href="#s15">15 · Jacobi 常数</a><a href="#s16">16 · 零速度曲线</a><a href="#s17">17 · 点上为何通常不放卫星</a><a href="#s18">18 · Halo 与 Lissajous</a>
+<a href="#webb">视觉 · JWST 的 L2 几何</a><a href="#s19">19 · 为什么 L2 适合红外</a><a href="#s20">20 · 驻留为何还要燃料</a><a href="#s21">21 · L1 与太空天气</a>
+<a href="#s22">22 · L4/L5 与特洛伊群</a><a href="#s23">23 · 1906：数学变成天体</a><a href="#s24">24 · Lucy：当前现实锚点</a><a href="#s25">25 · 不同系统有不同五点</a>
+<a href="#s26">26 · 地月空间与低能通道</a><a href="#s27">27 · 不变流形</a><a href="#s28">28 · 三个常见误解</a><a href="#history">交互 · 思想演化</a>
+<a href="#s29">29 · “静止”取决于参考系</a><a href="#s30">30 · 最深层：关系创造位置</a><a href="#sources">研究线索</a><a href="#links">跨主题连接</a><a href="#upgrade">视角变化</a><a href="#questions">继续追问</a>
+</nav>
+
+<article>
+<section id="s1"><div class="section-num">SECTION 01</div><h2>最反直觉的地方：一个“空无一物的位置”，可以比附近很多真实地点更重要</h2><div class="bodycopy">
+<p>在地球表面，我们把地点理解成山峰、港口、城市或坐标。太空里却没有地面可以“停靠”。只要你想待在某处，就必须继续运动；否则你会沿引力场自由落下。拉格朗日点之所以特殊，是因为它们不是普通空间坐标，而是<strong>相对运动关系中的固定点</strong>。</p>
+<p>在太阳—地球系统里，如果第三个物体足够小，不显著改变太阳和地球本身的运动，那么存在五种特殊构型：第三个物体可以与太阳、地球一起绕共同中心运动，并在随系统旋转的视角中保持近似固定。所谓“点”，首先是动力学意义上的位置。</p>
+</div></section>
+
+<section id="s2"><div class="section-num">SECTION 02</div><h2>拉格朗日点的定义：不是引力为零，而是第三个小物体能保持相同的相对几何</h2><div class="bodycopy">
+<p>想象太阳和地球已经按照近似圆轨道运行。现在放入一个质量极小的探测器。我们要求它不影响太阳和地球，只问：有没有某些位置，使它也能用与地球相同的角速度绕太阳，并且从地球看起来长期停在同一个方向？答案有五个。</p>
+<p>NASA 常用“两个大质量天体的引力提供恰好所需的向心作用”来解释。更精确地说，在<strong>与太阳—地球一起旋转的参考系</strong>里，引力、离心项以及运动时出现的科里奥利项共同决定第三个物体的轨迹；五个平衡点是这个旋转动力系统的特殊解。</p>
+<div class="callout">因此，“L1 那里太阳引力和地球引力相等”是错误说法。L1 处太阳引力仍远大于地球引力；关键是合力恰好让小物体以合适的角速度与地球共同绕太阳。</div>
+</div></section>
+
+<section id="s3"><div class="section-num">SECTION 03</div><h2>为什么先从两体问题说起：两个天体很优雅，第三个加入后世界突然变复杂</h2><div class="bodycopy">
+<p>牛顿引力下的理想两体问题可以被完全化简：两个天体围绕共同质心运动，轨道是圆锥曲线，能量与角动量给出清晰约束。它的可解性很容易让人误以为“再加一个天体只是多几项公式”。</p>
+<p>三体问题却没有一个能像两体问题那样覆盖所有初始条件的简单闭式解。第三个天体不仅被另外两个拉扯，三者还会彼此改变轨道。一般三体系统可以呈现复杂乃至混沌行为。拉格朗日点的价值就在这里：它们是在一个通常很难的问题里，找到的少数高度结构化特殊解。</p>
+</div></section>
+
+<section id="s4"><div class="section-num">SECTION 04</div><h2>限制性三体问题：先让第三个物体“轻到可以忽略”</h2><div class="bodycopy">
+<p>经典拉格朗日点通常在<strong>圆形限制性三体问题</strong>里讨论：两个大天体质量分别为 M₁、M₂，沿近似圆轨道绕共同质心转；第三个质量 m 小得多，以至于 m 的引力不反过来改变 M₁ 与 M₂ 的轨道。</p>
+<p>这个假设对航天器尤其好用。JWST 相比太阳和地球轻得近乎可以忽略，因此完全可以把太阳—地球先当作既定背景，再研究 JWST 如何运动。数学上，这一步把“所有人互相影响”的问题，压缩成“一个测试粒子在时间依赖引力场里怎么走”。</p>
+<div class="formula">m ≪ M₁, M₂；并假设 M₁、M₂ 以角速度 n 做近似圆周运动。</div>
+</div></section>
+
+<section id="s5"><div class="section-num">SECTION 05</div><h2>真正让五个点显现出来的，是换一个参考系</h2><div class="bodycopy">
+<p>如果站在太阳系外的惯性参考系看，地球每年绕太阳转一圈，五个拉格朗日点也跟着整体转动；它们当然不是“固定在宇宙里”。但如果我们把坐标系也以一年一圈的角速度旋转，让太阳和地球看起来静止，几何结构突然简单起来。</p>
+<p>在这个旋转参考系中，需要加入离心与科里奥利这类惯性项。代价是方程里出现“虚拟力”，收益则是：原本不断随时间移动的引力场，变成一个近似静态的有效势景观。拉格朗日点就是这个景观中的五个平衡位置。</p>
+<div class="quote">有时难题并不是缺少答案，而是你站错了参考系。</div>
+</div></section>
+
+<section id="map"><div class="section-num">VISUAL 01</div><h2>五个点到底在哪里：三个排成一线，两个组成等边三角形</h2>
+<figure class="visual-figure">
+<div class="visual-title">太阳—地球系统的五个拉格朗日点（示意，不按真实距离比例）</div>
+<svg viewBox="0 0 900 480" role="img" aria-label="五个拉格朗日点位置结构图">
+<circle cx="360" cy="240" r="70" fill="var(--soft)" stroke="var(--accent2)" stroke-width="2"/><text x="360" y="247" text-anchor="middle" fill="var(--text)" font-size="22" font-weight="700">太阳</text>
+<circle cx="700" cy="240" r="26" fill="var(--panel)" stroke="var(--accent)" stroke-width="3"/><text x="700" y="285" text-anchor="middle" fill="var(--text)" font-size="15" font-weight="700">地球</text>
+<circle cx="360" cy="240" r="340" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="8 8"/>
+<g fill="var(--accent)">
+<circle cx="635" cy="240" r="9"/><circle cx="766" cy="240" r="9"/><circle cx="20" cy="240" r="9"/>
+<circle cx="530" cy="-54" r="9"/><circle cx="530" cy="534" r="9"/>
+</g>
+<g fill="var(--text)" font-size="16" font-weight="700">
+<text x="635" y="216" text-anchor="middle">L1</text><text x="766" y="216" text-anchor="middle">L2</text><text x="35" y="216" text-anchor="middle">L3</text>
+<text x="530" y="38" text-anchor="middle">L4 · 领先 60°</text><text x="530" y="454" text-anchor="middle">L5 · 落后 60°</text>
+</g>
+<line x1="360" y1="240" x2="700" y2="240" stroke="var(--line)" stroke-width="2"/>
+<line x1="360" y1="240" x2="530" y2="60" stroke="var(--line)" stroke-width="2"/><line x1="700" y1="240" x2="530" y2="60" stroke="var(--line)" stroke-width="2"/>
+<line x1="360" y1="240" x2="530" y2="420" stroke="var(--line)" stroke-width="2"/><line x1="700" y1="240" x2="530" y2="420" stroke="var(--line)" stroke-width="2"/>
+<text x="500" y="170" fill="var(--muted)" font-size="13">≈ 等边三角形</text>
+</svg>
+<figcaption class="visual-caption">L1 位于两大天体之间，L2 位于较小天体外侧，L3 位于大天体另一侧；L4、L5 则与两大天体形成等边三角形。所有位置都随系统共同旋转。</figcaption>
+</figure>
+<div class="visual-reading"><b>怎么看这张图：</b>先只看结构，不看“引力大小”。L1、L2、L3 是共线点；L4、L5 的关键不是距离，而是相位——它们与较小天体相差 ±60°。第二步再问：为什么这些位置能与两大天体保持同样的角速度？</div>
+</section>
+
+<section id="s6"><div class="section-num">SECTION 06</div><h2>L1 为什么在地球和太阳之间：地球把“本该绕得太快”的位置拉回到一年一圈</h2><div class="bodycopy">
+<p>比地球更靠近太阳的普通小天体，按开普勒规律应该拥有更短的公转周期，也就是绕太阳转得比地球快。如果我们希望它虽然更靠近太阳，却仍然每一年只转一圈，就必须削弱它所需要的净向心加速度。</p>
+<p>地球恰好从外侧拉它，部分抵消太阳向内的拉力，于是小物体可以在比地球更靠近太阳的位置，以和地球相同的角速度共同运行。这个位置就是 L1。它非常适合太阳观测，因为它始终位于太阳和地球之间的同一几何方向。</p>
+</div></section>
+
+<section id="s7"><div class="section-num">SECTION 07</div><h2>L2 为什么在地球外侧：地球给“本该绕得太慢”的位置补上一把力</h2><div class="bodycopy">
+<p>比地球更远离太阳的普通物体，按开普勒规律应该绕得更慢，周期长于一年。但在 L2 附近，地球与太阳都大致从同一个方向拉小物体，地球的附加引力让它能够以更大的角速度运行，从而仍然与地球保持同步。</p>
+<p>太阳—地球 L2 距离地球约 150 万公里。它的工程价值并不是“那里引力弱”，而是太阳、地球、月球大体位于航天器同一侧，使大型红外望远镜更容易用遮阳板同时隔离这些热源。</p>
+</div></section>
+
+<section id="s8"><div class="section-num">SECTION 08</div><h2>L3 为什么在太阳另一边：它数学上存在，却很少成为工程优选</h2><div class="bodycopy">
+<p>L3 位于太阳背对地球的一侧，略超出地球轨道半径。它同样是共线平衡构型，但对地球通信极不友好：太阳本身挡在中间，而且 L3 与 L1、L2 一样是动力学不稳定的。</p>
+<p>科幻作品常想象太阳背后藏着一颗“反地球”。但一个宏观行星若真在那里，不仅会破坏“第三个物体质量可以忽略”的前提，也会通过引力摄动暴露自身，更不可能因为 L3 的数学存在就永久隐身。L3 是很好的例子：<strong>有平衡解，不等于有自然隐藏物</strong>。</p>
+</div></section>
+
+<section id="s9"><div class="section-num">SECTION 09</div><h2>L4 与 L5 为什么是 60°：等边三角形让三体的角速度可以整齐匹配</h2><div class="bodycopy">
+<p>L4 和 L5 分别位于较小天体轨道前方与后方约 60°。如果把两大天体和 L4 连起来，三点构成等边三角形；L5 亦然。这个几何条件使第三个小物体受到两大天体引力的合力，恰好指向系统共同质心，并拥有适合共同旋转的大小。</p>
+<p>这不是“两个引力互相抵消”。相反，两股引力共同提供向心作用。真正惊人的地方是：三角形不是静止的，它整体绕共同质心旋转，却保持形状不变。这属于三体问题中少数可以精确描述的<strong>相对平衡构型</strong>。</p>
+</div></section>
+
+<section id="points"><div class="section-num">INTERACTIVE 01</div><h2>同样叫“拉格朗日点”，五个点承担的是五种不同角色</h2>
+<div class="point-grid">
+<button class="point-btn active" data-point="L1"><b>L1</b>两体之间</button>
+<button class="point-btn" data-point="L2"><b>L2</b>较小天体外侧</button>
+<button class="point-btn" data-point="L3"><b>L3</b>大天体背侧</button>
+<button class="point-btn" data-point="L4"><b>L4</b>领先 60°</button>
+<button class="point-btn" data-point="L5"><b>L5</b>落后 60°</button>
+</div>
+<div class="point-detail" id="pointDetail"></div>
+</section>
+
+<section id="s10"><div class="section-num">SECTION 10</div><h2>有效势：把“旋转中的引力问题”画成一张地形图</h2><div class="bodycopy">
+<p>在共旋参考系中，可以把两个天体的引力势与离心势合并成一个<strong>有效势 Ω</strong>。平衡点满足 ∇Ω = 0：如果第三个物体在旋转系里恰好静止，它在这些位置没有一阶净加速度。</p>
+<div class="formula">Ω(x,y) = GM₁/r₁ + GM₂/r₂ + ½ n²(x²+y²)</div>
+<p>这个表达式非常有用，因为它把原本“两个引力源 + 一个旋转坐标系”的问题压缩成了一个地形。但要小心：只看势能地形仍不足以判断全部稳定性，因为一旦物体移动，旋转系里的科里奥利项会参与轨迹。</p>
+</div></section>
+
+<section id="s11"><div class="section-num">SECTION 11</div><h2>科里奥利效应为什么不是数学附录：L4 / L5 的稳定性离不开它</h2><div class="bodycopy">
+<p>在旋转参考系里，物体若偏离 L4 或 L5，会开始获得速度；这时科里奥利加速度与速度垂直，改变它接下来“掉向哪里”。NASA 的直观比喻是：只看有效势，L4/L5 看起来并不像普通碗底；但偏移后产生的运动与科里奥利作用会共同把轨迹弯成围绕 L4/L5 的 libration。</p>
+<p>因此“稳定”不是简单的静力学问题，而是<strong>速度—位置耦合的动力学问题</strong>。这也是为什么把拉格朗日点理解为“重力平衡点”会漏掉最重要的一半。</p>
+</div></section>
+
+<section id="stability"><div class="section-num">VISUAL 02</div><h2>稳定和不稳定的区别：一个是“偏一点会回来”，一个是“偏一点会越走越远”</h2>
+<div class="mode-tabs"><button class="active" data-mode="collinear">L1 / L2 / L3 · 鞍点</button><button data-mode="triangular">L4 / L5 · 条件稳定</button></div>
+<div class="visual-figure">
+<div class="visual-title" id="stabTitle">共线点：局部像鞍面，误差会沿某些方向放大</div>
+<div class="stability-canvas" id="stabCanvas"><div class="saddle-x"></div><div class="saddle-y"></div><div class="ball" id="stabBall"></div></div>
+<figcaption class="visual-caption" id="stabCaption">L1、L2、L3 只要受一点摄动，就可能沿不稳定方向离开，因此实际航天器必须做轨道维持。这里的“鞍面”是概念示意，不是三维真实重力地形。</figcaption>
+</div>
+<div class="visual-reading"><b>怎么看这张图：</b>不要把“稳定”理解成是否存在平衡点。五个点都能满足瞬时平衡；区别在于偏离以后，系统会把误差压回去，还是把误差继续放大。</div>
+</section>
+
+<section id="s12"><div class="section-num">SECTION 12</div><h2>为什么 L1、L2、L3 不稳定：它们更像山脊上的停车位</h2><div class="bodycopy">
+<p>在三个共线点附近，位置扰动存在会指数增长的方向。你可以精确把航天器放到名义解附近，但太阳辐射压、行星摄动、导航误差和微小推力偏差都会慢慢积累，使它偏离。</p>
+<p>这并不意味着它们“不能用”。恰恰相反，L1 和 L2 被大量任务采用，因为离开速度相对缓慢、修正代价低，而且其几何视野极有价值。工程上更准确的概念是<strong>低成本维持的不稳定轨道</strong>，而不是“不稳定所以不可停靠”。</p>
+</div></section>
+
+<section id="s13"><div class="section-num">SECTION 13</div><h2>为什么 L4、L5 能稳定：偏离后不会直接逃走，而会在附近摆动</h2><div class="bodycopy">
+<p>对质量差足够大的两个主天体，L4、L5 对小扰动是线性稳定的。小物体被推开后，不会像离开 L1 那样沿某个不稳定方向持续放大，而会在科里奥利与有效势共同作用下绕着平衡点做蝌蚪形或马蹄形的 libration。</p>
+<p>因此木星轨道前后聚集了大量特洛伊小行星。它们并不是全都精确坐在一个几何点上，而是在 L4 或 L5 周围占据一个广阔的相空间区域。这一点非常重要：<strong>“稳定点”在自然中常表现为稳定运动族，而不是针尖坐标。</strong></p>
+</div></section>
+
+<section id="masslab"><div class="section-num">INTERACTIVE 02</div><h2>为什么不是所有双星系统都能稳定 L4 / L5：质量比有阈值</h2>
+<div class="mass-lab">
+<p class="interaction-hint">拖动较小天体占总质量的比例 μ。教学模型采用经典圆形限制性三体问题的线性稳定条件 μ &lt; μ<sub>R</sub> ≈ 0.03852。</p>
+<div class="mass-row"><label for="mu">μ = M₂ / (M₁+M₂)</label><input id="mu" type="range" min="0.001" max="0.08" step="0.001" value="0.01"><output id="muOut">0.010</output></div>
+<div class="mass-result">
+<div class="mass-card"><span>当前 μ</span><b id="muCard">0.010</b></div>
+<div class="mass-card"><span>临界 μR</span><b>0.03852</b></div>
+<div class="mass-card"><span>L4/L5 小扰动</span><b id="stableState">稳定</b></div>
+</div>
+<p class="mode-copy" id="massExplain"></p>
+</div>
+</section>
+
+<section id="s14"><div class="section-num">SECTION 14</div><h2>Routh 条件：稳定性并不是“有 L4/L5 就自动成立”</h2><div class="bodycopy">
+<p>经典圆形限制性三体问题的线性分析给出一个著名阈值：</p>
+<div class="formula">μ = M₂ / (M₁ + M₂) &lt; μR = ½(1 − √(23/27)) ≈ 0.0385209</div>
+<p>换成“大质量 / 小质量”的比值，大约要求 M₁/M₂ &gt; 24.96。太阳—地球、太阳—木星、地球—月球都满足这个数量级条件，因此 L4/L5 在理想模型中可稳定。若两个主天体质量太接近，三角平衡仍存在，但对小扰动不再稳定。</p>
+<p>这条公式非常有认知价值：<strong>平衡的存在条件与平衡的稳定条件，是两件不同的事。</strong></p>
+</div></section>
+
+<section id="s15"><div class="section-num">SECTION 15</div><h2>Jacobi 常数：三体问题虽然难，却仍留下一个强约束</h2><div class="bodycopy">
+<p>圆形限制性三体问题在旋转系里存在一个重要积分量——Jacobi 常数。常见写法是：</p>
+<div class="formula">C = 2Ω(x,y) − v²</div>
+<p>它不像普通两体问题中的机械能那样直观，但作用类似：给定 C 后，物体并不能任意穿越整个平面。某些区域因为需要“负的速度平方”才能进入，因而在动力学上被禁止。</p>
+<p>这为三体轨道设计提供了一种地图语言：不是只问“从 A 到 B 需要多少 Δv”，还可以问“当前能量层级下，哪些通道已经打开，哪些颈口仍然关闭”。</p>
+</div></section>
+
+<section id="s16"><div class="section-num">SECTION 16</div><h2>零速度曲线：看不见的“地形门”决定物体能否穿过 L1 / L2 附近</h2><div class="bodycopy">
+<p>令 v = 0，Jacobi 常数给出一组边界曲线。随着 C 改变，这些边界会在 L1、L2 等位置出现“颈口”。颈口关闭时，轨迹被困在某个区域；颈口打开后，物体才有可能从一个动力学区域穿到另一个区域。</p>
+<p>这类图比“拉格朗日点是停车点”更接近现代轨道设计：L1/L2 还是不同相空间区域之间的<strong>门户</strong>。许多低能转移与不变流形设计，都在利用这些天然通道。</p>
+</div></section>
+
+<section id="s17"><div class="section-num">SECTION 17</div><h2>为什么实际任务通常不把航天器“放在点上”</h2><div class="bodycopy">
+<p>理想的 L1/L2 点在太阳—地球连线上，但把望远镜直接停在名义点往往不是最优工程方案。太阳、地球、月球的遮挡关系、通信、热设计、轨道可控性与连续观测都会推动工程师选择围绕点运动的三维周期或准周期轨道。</p>
+<p>因此现实任务常谈“在 L2”，实际意思通常是“在 L2 附近的 halo / Lissajous 轨道族中”。这和“城市在河口”类似：不是每栋建筑都压在河流中心线上，而是利用那个地理节点提供的整体条件。</p>
+</div></section>
+
+<section id="s18"><div class="section-num">SECTION 18</div><h2>Halo 与 Lissajous 轨道：围着一个“没有物体的点”绕圈</h2><div class="bodycopy">
+<p>共线拉格朗日点附近存在丰富的周期与准周期轨道族。Halo orbit 是三维周期轨道，Lissajous orbit 则通常是准周期的；航天器围绕 L1 或 L2 作大尺度摆动，同时整体与地球一起绕太阳。</p>
+<p>这听起来像“绕空点公转”，其实并不是 L 点本身在吸引卫星。轨道是太阳与地球引力、旋转系动力学以及精确初始条件共同产生的三体解。把它称为“绕 L2”是方便的人类语言，而不是说 L2 有质量。</p>
+</div></section>
+
+<section id="webb"><div class="section-num">VISUAL 03</div><h2>JWST 为什么在 L2 附近，而不是绕地球做普通高轨</h2>
+<figure class="visual-figure">
+<div class="visual-title">太阳—地球—JWST 的热几何：把热源都放在遮阳板同一侧</div>
+<svg viewBox="0 0 880 380" role="img" aria-label="JWST在太阳地球L2附近晕轨道的示意">
+<circle cx="110" cy="190" r="54" fill="var(--soft)" stroke="var(--accent2)" stroke-width="2"/><text x="110" y="196" text-anchor="middle" fill="var(--text)" font-size="20" font-weight="700">太阳</text>
+<circle cx="540" cy="190" r="26" fill="var(--panel)" stroke="var(--accent)" stroke-width="2"/><text x="540" y="230" text-anchor="middle" fill="var(--text)" font-size="14">地球</text>
+<circle cx="645" cy="190" r="7" fill="var(--accent)"/><text x="645" y="168" text-anchor="middle" fill="var(--accent)" font-size="14" font-weight="700">L2</text>
+<ellipse cx="645" cy="190" rx="80" ry="125" fill="none" stroke="var(--accent2)" stroke-width="3" stroke-dasharray="8 7"/>
+<circle cx="690" cy="87" r="11" fill="var(--accent2)"/><text x="715" y="89" fill="var(--text)" font-size="14" font-weight="700">JWST</text>
+<path d="M165 190 H503" stroke="var(--line)" stroke-width="2"/><path d="M567 190 H620" stroke="var(--line)" stroke-width="2"/>
+<path d="M570 145 L690 87" stroke="var(--accent2)" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="342" y="170" text-anchor="middle" fill="var(--muted)" font-size="13">太阳、地球、月球大体位于同一侧</text>
+<text x="650" y="347" text-anchor="middle" fill="var(--muted)" font-size="13">JWST 不是停在 L2 点，而是绕 L2 做约 168 天的 halo orbit</text>
+</svg>
+<figcaption class="visual-caption">NASA 的最新 Webb 资料给出：太阳—地球 L2 距地球约 150 万公里；JWST 围绕 L2 的 halo orbit 尺度约数十万公里，约 168 天完成一圈。</figcaption>
+</figure>
+<div class="visual-reading"><b>怎么看这张图：</b>关键不是“离地球更远”，而是热几何稳定。太阳、地球和月球长期集中在遮阳板一侧，望远镜主体则朝深空保持低温环境，同时仍能与地球通信。</div>
+</section>
+
+<section id="s19"><div class="section-num">SECTION 19</div><h2>L2 对红外天文学的真正价值：不是黑暗，而是稳定的热边界条件</h2><div class="bodycopy">
+<p>红外望远镜最怕自身发热。若航天器在普通地球轨道不断穿过日照与阴影，结构温度反复变化，会增加热扰动与观测复杂度。L2 附近让太阳、地球和月球大致聚集在同一方向，JWST 的多层遮阳板便能长期把这些热源挡在一侧。</p>
+<p>NASA 资料指出，JWST 并不精确停在 L2，而是在距 L2 数十万公里尺度的 halo orbit 上运行，并周期性做轨道修正。这里的工程收益来自<strong>稳定几何 + 可维持轨道 + 视场</strong>的组合，而不是某个神奇零能耗点。</p>
+</div></section>
+
+<section id="s20"><div class="section-num">SECTION 20</div><h2>“省燃料”为什么不等于“不用燃料”：不稳定点最需要的是持续误差管理</h2><div class="bodycopy">
+<p>L1/L2 附近的轨道天然不稳定，因此航天器必须定期进行 station-keeping。太阳辐射压、月球与其他行星的摄动、导航误差、执行器误差都会让实际轨道偏离名义解。</p>
+<p>但与把卫星强行固定在任意太空坐标相比，维持拉格朗日附近轨道所需修正通常很小。它体现了一个很重要的工程思维：<strong>不必消除系统本身的动力学，只需把任务嵌进一个“天然愿意这么运动”的轨道族，再用少量反馈纠偏。</strong></p>
+</div></section>
+
+<section id="s21"><div class="section-num">SECTION 21</div><h2>L1 为什么适合太空天气：它给了地球一个“上游哨站”</h2><div class="bodycopy">
+<p>太阳—地球 L1 位于太阳和地球之间，因此在那里测到的太阳风与高能粒子，会在之后才扫过地球附近空间。NASA 当前的 IMAP 任务页面把 L1 描述为战略观测位置，可为近地空间的有害太阳粒子提供提前量。</p>
+<p>SOHO、ACE、WIND、DSCOVR 等任务也利用过这一区域。这里的“提前预警”不是因为 L1 更接近太阳多少，而是因为它位于<strong>沿太阳风传播方向的上游</strong>，几何关系长期稳定。</p>
+</div></section>
+
+<section id="s22"><div class="section-num">SECTION 22</div><h2>L4/L5 为什么会“积东西”：稳定区域会把偶然路过者变成长期邻居</h2><div class="bodycopy">
+<p>太阳—木星系统的 L4 与 L5 周围聚集了庞大的特洛伊小行星群。它们不是停在两个几何点，而是在两个稳定相位区附近做长期 libration。</p>
+<p>这揭示了稳定性的一个更普遍后果：稳定区域会在漫长时间里<strong>选择性保存</strong>落入其中的对象。即便形成过程复杂、早期太阳系经历迁移和散射，一旦某些天体进入合适的共振与相空间区域，就可能在那里保留数十亿年。</p>
+</div></section>
+
+<section id="s23"><div class="section-num">SECTION 23</div><h2>1906：当一颗小行星让 1772 年的数学突然变成了“真实地形”</h2><div class="bodycopy">
+<p>Euler 在 1767 年找到三体共线特殊解；Lagrange 在 1772 年提出等边三角形解。一个多世纪里，这首先是一项数学成果。直到 1906 年，Max Wolf 发现后来命名为 Achilles 的小行星，它相对木星保持约 60° 的领先关系。</p>
+<p>NASA 关于特洛伊小行星历史的文章指出，天文学家很快意识到：这正是 L4 构型的自然实例。数学里“可能存在的相对平衡”，第一次以一个真实天体族的形式被看见。随后又发现了 L5 群，整个“特洛伊”概念逐渐建立起来。</p>
+</div></section>
+
+<section id="s24"><div class="section-num">SECTION 24</div><h2>2026 的现实锚点：Lucy 正在去“看数学留下来的化石库”</h2><div class="bodycopy">
+<p>NASA 的 Lucy 是第一项专门飞越木星特洛伊小行星的任务。它 2021 年发射，已经在 2023 年飞越 Dinkinesh、2025 年飞越 Donaldjohanson；NASA 2026 年 6 月更新显示，航天器正在前往 2027 年开始的首批特洛伊目标。</p>
+<p>Lucy 的科学问题并不是“证明 L4/L5 存在”——这早已确定。真正的问题是：这些长期稳定区域里保存的天体，能告诉我们多少关于外太阳系形成、行星迁移和早期散射的信息。于是拉格朗日点从力学平衡，进一步变成了<strong>太阳系历史的样本保存机制</strong>。 </p>
+</div></section>
+
+<section id="s25"><div class="section-num">SECTION 25</div><h2>“五个拉格朗日点”不是全宇宙共用的五个坐标</h2><div class="bodycopy">
+<p>每一对主天体都定义自己的一套五点：太阳—地球有一套，地球—月球有一套，太阳—木星还有一套。它们的位置、尺度和工程意义完全不同。</p>
+<p>例如太阳—地球 L1/L2 离地球约 150 万公里，而地球—月球系统的 L 点尺度接近地月距离。说“某航天器在 L2”时，必须先问：<strong>是谁和谁的 L2？</strong> 这再次说明拉格朗日点不是绝对空间地址，而是关系坐标。</p>
+</div></section>
+
+<section id="s26"><div class="section-num">SECTION 26</div><h2>地月空间为什么越来越重要：L1/L2 附近是轨道网络的“拓扑节点”</h2><div class="bodycopy">
+<p>在地月圆形限制性三体问题里，L1 位于地球与月球之间，L2 位于月球远侧方向。它们附近的周期轨道与不变流形构成了复杂的运输网络，使航天器能够用不同于传统霍曼转移的方式，在地球、月球和更远空间之间重新分配能量。</p>
+<p>现代“地月空间”规划中，经常会见到 NRHO、halo orbit、弱稳定边界等概念。它们不是简单等同于“停在某个 L 点”，而是利用同一套三体动力学结构。真正重要的对象已经从五个点，扩展成了<strong>点附近的轨道族与相空间管道</strong>。</p>
+</div></section>
+
+<section id="s27"><div class="section-num">SECTION 27</div><h2>不变流形：航天器可以像进入高速公路一样，沿动力学天然通道转移</h2><div class="bodycopy">
+<p>共线拉格朗日点附近的周期轨道通常有稳定与不稳定流形。非常粗略地说，稳定流形是一组“会自然靠近目标轨道”的初始条件，不稳定流形则是一组“会自然离开目标轨道”的轨迹束。</p>
+<p>任务设计者可以让航天器接近这些流形，把三体系统本身的引力结构当作运输工具。这并不意味着“零燃料”，但可以显著改变何时、在哪里需要 Δv。传统直觉把空间任务看成“火箭主动把飞船推到哪”；三体轨道设计则更像<strong>找到自然流场，再选择在哪个入口并道</strong>。</p>
+</div></section>
+
+<section id="s28"><div class="section-num">SECTION 28</div><h2>三个最常见误解：零重力、绝对静止、稳定就不用管</h2><div class="bodycopy">
+<p><strong>误解一：拉格朗日点是零重力点。</strong>错。太阳、地球的引力在那里都不为零；平衡的是旋转构型所需的动力学关系。</p>
+<p><strong>误解二：航天器到了 L 点就停住。</strong>错。它仍绕太阳或主系统运动，只是在共旋参考系里保持相对位置；实际任务还常围绕点做 halo/Lissajous 轨道。</p>
+<p><strong>误解三：L4/L5 稳定，所以所有系统都一样。</strong>错。稳定性依赖质量比、偏心率、其他天体摄动、辐射压等条件；经典结论属于理想化模型。</p>
+</div></section>
+
+<section id="history"><div class="section-num">INTERACTIVE 03</div><h2>从数学特殊解到航天基础设施：250 年里，“点”的含义不断扩张</h2>
+<div class="timeline-mini">
+<button class="active" data-era="1767"><strong>1767</strong>Euler</button>
+<button data-era="1772"><strong>1772</strong>Lagrange</button>
+<button data-era="1906"><strong>1906</strong>Achilles</button>
+<button data-era="2000s"><strong>2000s</strong>L1/L2 科学任务</button>
+<button data-era="2020s"><strong>2020s</strong>Webb · Lucy</button>
+</div>
+<div class="timeline-copy" id="timeCopy"></div>
+</section>
+
+<section id="s29"><div class="section-num">SECTION 29</div><h2>“静止”不是对象属性，而是参考系关系：这是拉格朗日点最值得迁移的认知</h2><div class="bodycopy">
+<p>在惯性系里，L1、L2、L4 等位置每时每刻都在高速绕太阳运动；在共旋系里，它们却是固定点。两种说法都对，只是回答的问题不同。</p>
+<p>这和许多复杂系统问题一样：如果你坚持用一个不合适的坐标系，结构会表现成不断变化；换到贴合问题对称性的坐标系后，稳定关系才显现。物理里的“选择参考系”，并不是篡改事实，而是选择最能暴露守恒量与对称性的描述语言。</p>
+</div></section>
+
+<section id="s30"><div class="section-num">SECTION 30</div><h2>拉格朗日点最深层的启示：位置可以由关系创造，而不需要那里“有东西”</h2><div class="bodycopy">
+<p>港口的重要性来自海岸线与航路，十字路口的重要性来自道路网络；拉格朗日点更极端——它们甚至没有实体地标，却由两个天体的质量、距离、轨道角速度与参考系共同定义。</p>
+<p>因此它们训练的是一种关系论视角：不要只问“这里有什么”，还要问“这里处在什么关系网络里”。在很多系统中，最关键的节点并不拥有最多资源，而是恰好位于<strong>约束、流动与稳定性相互交汇的位置</strong>。</p>
+<div class="quote">空间不是只有“物体在哪里”；动力学还会创造“关系上值得去哪里”。</div>
+</div></section>
+
+<section id="sources"><div class="section-num">SOURCES</div><h2>研究线索与进一步阅读</h2><div class="bodycopy source-list">
+<p>• <a href="https://science.nasa.gov/resource/what-is-a-lagrange-point/" target="_blank" rel="noopener">NASA · What is a Lagrange Point?</a>：五点位置、稳定性与有效势直觉。</p>
+<p>• <a href="https://www.esa.int/Enabling_Support/Operations/What_are_Lagrange_points" target="_blank" rel="noopener">ESA · What are Lagrange points?</a>：L1/L2/L3 与 L4/L5 的工程解释。</p>
+<p>• <a href="https://science.nasa.gov/mission/webb/orbit/" target="_blank" rel="noopener">NASA Webb · Orbit</a>：JWST 的 L2 halo orbit、距离与热设计。</p>
+<p>• <a href="https://science.nasa.gov/mission/webb/science-overview/science-explainers/telescope-overview/" target="_blank" rel="noopener">NASA Webb · Telescope overview</a>：约 168 天 halo 周期与轨道尺度。</p>
+<p>• <a href="https://mathshistory.st-andrews.ac.uk/HistTopics/Orbits/" target="_blank" rel="noopener">MacTutor · Orbits</a>：Euler 共线解与 Lagrange 1772 年三角解的历史。</p>
+<p>• <a href="https://www.cambridge.org/core/books/abs/solar-system-dynamics/restricted-threebody-problem/185F25A164BF315B78A3C5B43E2E27C3" target="_blank" rel="noopener">Murray & Dermott · Solar System Dynamics</a>：限制性三体问题的经典框架。</p>
+<p>• <a href="https://www.nasa.gov/missions/how-were-the-trojan-asteroids-discovered-and-named/" target="_blank" rel="noopener">NASA · How Were the Trojan Asteroids Discovered and Named?</a>：1906 Achilles 与 L4 的历史连接。</p>
+<p>• <a href="https://science.nasa.gov/mission/lucy/" target="_blank" rel="noopener">NASA · Lucy mission</a>：木星特洛伊小行星与当前任务进度。</p>
+<p>• <a href="https://science.nasa.gov/mission/imap/" target="_blank" rel="noopener">NASA · IMAP</a>：太阳—地球 L1 的太空天气应用。</p>
+</div></section>
+
+<section id="links"><div class="section-num">CROSS LINKS</div><h2>跨主题连接：稳定、参考系与同步关系在不同学科重复出现</h2>
+<div class="cross-grid">
+<a class="cross-card" href="../w37/2026-09-12-tidal-locking.html"><b>潮汐锁定｜Tidal Locking</b><p>潮汐锁定研究耗散怎样把自转与公转压进稳定比例；拉格朗日点研究三体几何怎样在共旋系中形成相对平衡。两篇共同训练“看相位关系，而不是只看绝对位置”的动力学视角。</p></a>
+<a class="cross-card" href="../w37/2026-09-09-cybernetics.html"><b>控制论｜Cybernetics</b><p>L1/L2 本身不稳定，但航天器可以通过小而持续的 station-keeping 维持任务轨道。它是“利用系统天然动力学 + 反馈纠偏”，而不是用控制器对抗所有自然运动。</p></a>
+<a class="cross-card" href="../w36/2026-09-05-standard-time.html"><b>标准时间｜Standard Time</b><p>“几点钟”依赖选定的时间基准；“是否静止”依赖选定的参考系。两者都提醒我们：坐标并不是对象本身，合适的共同基准可以让分散运动显现出可协调结构。</p></a>
+</div>
+</section>
+
+<section id="upgrade"><div class="section-num">COGNITIVE UPGRADE</div><h2>这个关键词改变了什么视角</h2><div class="bodycopy">
+<div class="chain">
+<div class="chain-step"><b>直觉 1</b><p>空间中的地点由物体或坐标定义。</p></div>
+<div class="chain-step"><b>升级 1</b><p>运动系统里，“固定”取决于参考系。</p></div>
+<div class="chain-step"><b>升级 2</b><p>平衡存在不等于平衡稳定。</p></div>
+<div class="chain-step"><b>升级 3</b><p>真正有用的往往是点附近的轨道族与流形。</p></div>
+<div class="chain-step"><b>最终视角</b><p>关系、约束与动力学可以共同创造“值得去的地方”。</p></div>
+</div>
+<p>理解拉格朗日点以后，太空不再只是“天体之间的空白”。它开始呈现出由稳定性、共振、能量层级和流形构成的隐形地形。现代航天的一部分，本质上是在这张看不见的地形上选路。</p>
+</div></section>
+
+<section id="questions"><div class="section-num">QUESTIONS</div><h2>真正值得继续追问的问题</h2><div class="bodycopy"><ol class="questions">
+<li>如果两个主天体轨道明显偏心、质量也不能忽略，经典五个拉格朗日点的“固定”概念会怎样变形？</li>
+<li>为什么某些 halo orbit 具有稳定与不稳定流形，而这些流形怎样被实际任务用来设计低能转移？</li>
+<li>木星特洛伊小行星今天的成分与分布，能区分哪些早期太阳系迁移模型？</li>
+<li>太阳辐射压对小尘埃颗粒很强时，L4/L5 的稳定区域会如何改变？</li>
+<li>如果未来地月交通高频化，拉格朗日附近轨道会不会像海港与航路一样形成真正的“空间交通基础设施”？</li>
+</ol></div></section>
+</article>
+</div>
+
+<footer class="footer">2026-09-29 · 拉格朗日点 · GitHub Pages reading layer</footer>
+</div>
+
+<script>
+const theme=document.getElementById('theme');
+theme.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark'});
+const progress=document.getElementById('progress');
+addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;progress.style.transform='scaleX('+(h?scrollY/h:0)+')'});
+const sections=[...document.querySelectorAll('article section[id]')],tocLinks=[...document.querySelectorAll('.toc a')];
+const observer=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){tocLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-18% 0px -70%'});
+sections.forEach(s=>observer.observe(s));
+
+const pointData={
+L1:{title:'L1 · 两大天体之间的“同步内轨”',status:'不稳定',role:'上游观测 / 太阳监测',text:'更靠近太阳的位置本来应该绕得更快；较小天体从外侧提供额外引力，使第三个物体仍能用与较小天体相同的角速度运行。太阳—地球 L1 因此适合观测太阳风与太空天气。'},
+L2:{title:'L2 · 较小天体外侧的“同步外轨”',status:'不稳定',role:'深空观测 / 热环境稳定',text:'更远离太阳的位置本来应该绕得更慢；地球的附加引力让第三个物体能够跟上地球。JWST 利用 L2 附近稳定的太阳—地球—月球几何进行红外观测。'},
+L3:{title:'L3 · 大天体背侧的共线解',status:'不稳定',role:'数学意义大于工程价值',text:'L3 位于太阳背向地球的一侧。它存在于方程中，但通信与观测几何不理想，而且同样需要轨道维持，因此很少成为任务首选。'},
+L4:{title:'L4 · 领先约 60° 的三角点',status:'条件稳定',role:'特洛伊天体稳定区',text:'L4 与两大天体构成等边三角形。满足经典质量比条件时，小扰动会形成围绕 L4 的 libration，而不是持续逃离。'},
+L5:{title:'L5 · 落后约 60° 的三角点',status:'条件稳定',role:'特洛伊天体稳定区',text:'L5 是 L4 的后随对称点。同样不是“一个针尖停车位”，而是可以容纳蝌蚪形、马蹄形等稳定共振轨道的相空间区域。'}
+};
+function renderPoint(k){document.querySelectorAll('.point-btn').forEach(b=>b.classList.toggle('active',b.dataset.point===k));const d=pointData[k];pointDetail.innerHTML='<h3>'+d.title+'</h3><p><span class="status">'+d.status+'</span><span class="status">'+d.role+'</span></p><p>'+d.text+'</p>'}
+document.querySelectorAll('.point-btn').forEach(b=>b.addEventListener('click',()=>renderPoint(b.dataset.point)));renderPoint('L1');
+
+const modeData={
+collinear:{title:'共线点：局部像鞍面，误差会沿某些方向放大',caption:'L1、L2、L3 只要受一点摄动，就可能沿不稳定方向离开，因此实际航天器必须做轨道维持。这里的“鞍面”是概念示意，不是三维真实重力地形。'},
+triangular:{title:'三角点：满足质量比条件时，小扰动形成有界摆动',caption:'L4、L5 的稳定性来自完整旋转动力学，包括科里奥利项。自然天体通常围绕平衡点做 libration，而不是精确静止在一个坐标上。'}
+};
+document.querySelectorAll('[data-mode]').forEach(btn=>btn.addEventListener('click',()=>{
+document.querySelectorAll('[data-mode]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+const m=btn.dataset.mode,d=modeData[m];stabTitle.textContent=d.title;stabCaption.textContent=d.caption;
+stabCanvas.innerHTML=m==='triangular'?'<div class="bowl"></div><div class="ball" style="top:104px"></div>':'<div class="saddle-x"></div><div class="saddle-y"></div><div class="ball"></div>';
+}));
+
+const mu=document.getElementById('mu'),muR=0.0385208965;
+function renderMu(){const v=+mu.value,stable=v<muR;muOut.textContent=v.toFixed(3);muCard.textContent=v.toFixed(3);stableState.textContent=stable?'稳定':'不稳定';massExplain.textContent=stable?'当前质量比低于经典 Routh 阈值：在理想圆形限制性三体模型里，L4/L5 对小扰动线性稳定。注意这不包含轨道偏心、其他天体摄动和辐射压。':'当前质量比越过经典 Routh 阈值：三角平衡位置仍然存在，但对小扰动不再线性稳定。平衡“存在”与“能否留在附近”已经分开。'}
+mu.addEventListener('input',renderMu);renderMu();
+
+const eras={
+'1767':['1767 · Euler 的共线特殊解','Euler 在限制性三体背景中找到三种共线相对平衡构型。今天的 L1、L2、L3 继承了这条数学谱系。'],
+'1772':['1772 · Lagrange 的等边三角形解','Lagrange 在《三体问题论文》中给出非共线等边三角形解。L4、L5 因此成为最典型的“数学先于观测”案例之一。'],
+'1906':['1906 · Achilles 被发现','Max Wolf 发现一颗始终位于木星前方约 60° 的小行星。天文学家很快认出它对应 L4 稳定区；后来这一族被称为木星特洛伊小行星。'],
+'2000s':['20 世纪末—21 世纪初 · L1/L2 成为科学平台','SOHO、WMAP、Planck、Gaia 等任务把拉格朗日区域从理论构型变成太阳物理、宇宙学与天体测量的长期观测平台。'],
+'2020s':['2020s · Webb 与 Lucy 让两类 L 点同时进入公众视野','JWST 在太阳—地球 L2 附近进行红外观测；Lucy 则正在前往木星 L4/L5 特洛伊群。一个利用不稳定共线区，一个去采样稳定三角区。']
+};
+function renderEra(k){document.querySelectorAll('[data-era]').forEach(b=>b.classList.toggle('active',b.dataset.era===k));const d=eras[k];timeCopy.innerHTML='<strong>'+d[0]+'</strong><p>'+d[1]+'</p>'}
+document.querySelectorAll('[data-era]').forEach(b=>b.addEventListener('click',()=>renderEra(b.dataset.era)));renderEra('1767');
+</script>
+</body>
+</html>
