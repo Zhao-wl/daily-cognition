@@ -1,0 +1,183 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>群体感应｜每日认知探索</title>
+<link rel="stylesheet" href="../../assets/style.css"><link rel="stylesheet" href="../../assets/visual.css">
+<style>
+.formula{font:600 15px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:18px 0;overflow:auto}
+.source-list a{color:var(--accent);word-break:break-word}.cross-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.cross-card{display:block;border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:16px;text-decoration:none;color:var(--text)}.cross-card b{color:var(--accent);font-family:ui-sans-serif,system-ui,sans-serif}.cross-card p{color:var(--muted);margin:7px 0 0}.chain{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:18px 0}.chain-step{position:relative;border:1px solid var(--line);background:var(--panel);border-radius:15px;padding:13px;min-height:112px}.chain-step b{display:block;color:var(--accent);font:700 13px/1.4 ui-sans-serif,system-ui,sans-serif}.chain-step p{font-size:13px;color:var(--muted);margin:6px 0 0}.chain-step:not(:last-child):after{content:'→';position:absolute;right:-12px;top:44px;color:var(--accent2);font-weight:700;z-index:2}
+.qs-lab{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:18px;margin:18px 0}.slider-row{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:center;margin:14px 0;font:14px/1.4 ui-sans-serif,system-ui,sans-serif}.slider-row input{width:100%}.lab-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.metric{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:12px}.metric span{display:block;color:var(--muted);font:12px/1.4 ui-sans-serif,system-ui,sans-serif}.metric b{display:block;color:var(--accent);font:700 22px/1.2 ui-sans-serif,system-ui,sans-serif;margin-top:4px}.signal-track{position:relative;height:22px;background:var(--soft);border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:16px 0}.signal-fill{height:100%;width:40%;background:var(--accent);transition:width .2s}.threshold{position:absolute;left:50%;top:0;bottom:0;border-left:3px dashed var(--accent2);z-index:2}.lab-note{color:var(--muted);font-size:14px}
+.arch-panel{border:1px solid var(--line);border-radius:18px;background:var(--soft);padding:18px;min-height:190px}.arch-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;align-items:stretch}.arch-node{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:12px;text-align:center}.arch-node b{display:block;color:var(--accent);font:700 14px/1.4 ui-sans-serif,system-ui,sans-serif}.arch-node p{font-size:13px;color:var(--muted);margin:6px 0}.arch-arrow{display:grid;place-items:center;color:var(--accent2);font-weight:700}
+.public-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;border:1px solid var(--line);background:var(--soft);border-radius:18px;padding:14px;min-height:160px}.cell{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font:700 10px/1 ui-sans-serif,system-ui,sans-serif}.producer{background:var(--accent);color:var(--panel)}.cheater{background:var(--accent2);color:var(--panel)}.benefit{box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 20%,transparent)}
+.timeline{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;padding:8px 0 14px}.timebtn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:12px;border-radius:14px;text-align:left;cursor:pointer}.timebtn strong{display:block;color:var(--accent)}.timebtn.active{border-color:var(--accent);background:var(--soft)}.timedetail{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:18px;min-height:110px}.timedetail strong{display:block;color:var(--accent);font-family:ui-sans-serif,system-ui,sans-serif}
+@media(max-width:850px){.cross-grid,.chain,.arch-grid,.lab-grid{grid-template-columns:1fr}.chain-step:not(:last-child):after{content:'↓';right:12px;top:auto;bottom:-18px}.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}.slider-row{grid-template-columns:1fr}.arch-arrow{transform:rotate(90deg)}}
+@media(max-width:500px){.public-grid{grid-template-columns:repeat(5,1fr)}.timeline{grid-template-columns:1fr}}
+</style></head><body><div class="progress" id="progress"></div><div class="shell">
+<div class="topbar"><a href="index.html">← 返回本周目录</a><div class="tools"><a class="btn" href="2026-09-29-lagrange-points.html">← 上一篇</a><a class="btn" href="2026-10-01-desire-path.html">下一篇 →</a><button class="btn" id="theme">切换明暗</button></div></div>
+<header class="hero"><div><div class="eyebrow">2026-09-30 · 微生物学 · 演化 · 复杂系统 · 医学生物学</div><h1>群体感应</h1><div class="en">Quorum Sensing</div><div class="tagline">没有大脑、没有领袖、没有广播站：细菌为什么仍能“等到人够了”再一起发光、造膜或发动毒力？</div><p class="intro">群体感应研究的是一种分布式化学通信：细胞不断向环境释放信号，也不断读取环境中的信号浓度。当信号积累到某个可行动区间，整个群体会重写基因表达。真正值得理解的不是“细菌会说话”这个拟人化比喻，而是一个更普遍的机制：群体如何通过共享环境变量，在没有中央控制器的情况下形成协调。</p></div>
+<div class="visual"><svg viewBox="0 0 540 390" role="img" aria-label="细菌通过胞外信号形成群体感应示意"><rect x="28" y="22" width="484" height="346" rx="26" fill="var(--panel)" stroke="var(--line)"/><g fill="var(--accent)" opacity=".9"><ellipse cx="150" cy="122" rx="38" ry="22" transform="rotate(-15 150 122)"/><ellipse cx="250" cy="195" rx="38" ry="22" transform="rotate(18 250 195)"/><ellipse cx="365" cy="122" rx="38" ry="22" transform="rotate(12 365 122)"/><ellipse cx="380" cy="255" rx="38" ry="22" transform="rotate(-20 380 255)"/><ellipse cx="155" cy="270" rx="38" ry="22" transform="rotate(15 155 270)"/></g><g fill="var(--accent2)"><circle cx="205" cy="110" r="7"/><circle cx="222" cy="150" r="7"/><circle cx="295" cy="130" r="7"/><circle cx="308" cy="225" r="7"/><circle cx="335" cy="180" r="7"/><circle cx="420" cy="185" r="7"/><circle cx="220" cy="275" r="7"/><circle cx="300" cy="300" r="7"/><circle cx="120" cy="205" r="7"/><circle cx="440" cy="285" r="7"/></g><circle cx="272" cy="195" r="128" fill="none" stroke="var(--accent2)" stroke-width="2" stroke-dasharray="7 7"/><text x="270" y="340" text-anchor="middle" fill="var(--muted)" font-size="13">每个细胞都向同一个胞外“共享变量”写入，也从中读取</text></svg></div></header>
+<div class="layout"><nav class="toc"><a href="#s1">01 · 为什么要等别人</a><a href="#s2">02 · 定义：信号链</a><a href="#s3">03 · 发光菌起点</a><a href="#s4">04 · 协同阈值</a><a href="#s5">05 · LuxI / LuxR</a><a href="#loop">视觉 · 最小回路</a><a href="#s6">06 · 正反馈</a><a href="#s7">07 · 阈值不是常数</a><a href="#s8">08 · 最小动力学</a><a href="#lab">交互 · 密度 × 流动</a><a href="#s9">09 · diffusion sensing</a><a href="#s10">10 · efficiency sensing</a><a href="#s11">11 · AHL</a><a href="#s12">12 · 肽信号</a><a href="#s13">13 · AI-2</a><a href="#architectures">交互 · 三种架构</a><a href="#s14">14 · 多输入整合</a><a href="#s15">15 · 小 RNA 网络</a><a href="#s16">16 · 单细胞异质性</a><a href="#s17">17 · 生物膜空间</a><a href="#biofilm">视觉 · 空间梯度</a><a href="#s18">18 · 公共品</a><a href="#s19">19 · 作弊者</a><a href="#publicgood">交互 · 公地博弈</a><a href="#s20">20 · 毒力</a><a href="#s21">21 · 耐药边界</a><a href="#s22">22 · 群体淬灭</a><a href="#s23">23 · 2026 临床边界</a><a href="#s24">24 · 噬菌体窃听</a><a href="#s25">25 · 宿主加入</a><a href="#s26">26 · 合成生物学</a><a href="#s27">27 · 生态空间</a><a href="#s28">28 · 三个误解</a><a href="#s29">29 · 思想演化</a><a href="#history">交互 · 时间轴</a><a href="#s30">30 · 最深层认知</a><a href="#sources">研究线索</a><a href="#links">跨主题连接</a><a href="#upgrade">视角变化</a><a href="#questions">继续追问</a></nav><article><section id="s1"><div class="section-num">SECTION 01</div><h2>一只细菌为什么要“等别人”：很多昂贵行为，单独做几乎没有意义</h2><div class="bodycopy">
+<p>细菌常被想象成最典型的“独行者”：没有大脑，没有神经系统，每个细胞只按自己的基因和局部环境行动。但许多细菌行为偏偏只有在群体层面才划算。单个细胞分泌一点胞外酶，很快就被稀释；单个细胞制造少量毒力因子，往往不足以改变宿主环境；单个发光细菌发出的光，对宿主和自身都几乎没有生态意义。</p>
+<p>这制造了一个协调难题：<strong>如果一项行动只有当足够多同伴同时投入时才有效，单个细胞怎样知道“现在人够了”？</strong>群体感应（quorum sensing）就是微生物解决这类问题的一组化学通信机制。</p></div></section>
+<section id="s2"><div class="section-num">SECTION 02</div><h2>定义：群体感应不是“细菌聊天”的比喻，而是一条可拆解的信号链</h2><div class="bodycopy">
+<p>群体感应通常指细菌<strong>产生、释放、检测并响应</strong>胞外信号分子（autoinducers，自诱导物）的过程。随着局部细胞数量、空间拥挤程度或信号保留能力增加，胞外信号浓度上升；当感受器检测到足够强的信号后，细胞改变基因表达，于是大量个体在近似同一阶段切换行为。</p>
+<p>Bassler 实验室把这条链概括为 production → release → detection → response。这个定义的价值在于，它阻止我们把“通信”神秘化：群体感应不是细菌开会投票，而是一个由化学扩散、受体结合、转录调控与反馈共同构成的动力系统。</p></div></section>
+<section id="s3"><div class="section-num">SECTION 03</div><h2>历史起点不是疾病，而是海洋里“突然亮起来”的细菌</h2><div class="bodycopy">
+<p>20 世纪中叶，研究发光海洋细菌的人发现一个怪现象：培养物在低密度时几乎不发光，细胞积累到一定程度后，整个群体会突然变亮。1960—1970 年代，J. Woodland Hastings、Kenneth Nealson 等人把这种现象称为 <em>autoinduction</em>：细胞释放到环境中的某种物质，会反过来诱导同类细胞的发光基因。</p>
+<p>这件事最初像是发光菌的特殊生理。直到 1990 年代，人们发现类似的信号调控广泛存在于病原菌、共生菌和环境微生物中。1994 年，Fuqua、Winans 与 Greenberg 在 <em>Journal of Bacteriology</em> 的综述中正式使用“quorum sensing”这个名称，强调细胞是在感知一个足以触发群体行为的“法定人数”。</p></div></section>
+<section id="s4"><div class="section-num">SECTION 04</div><h2>为什么发光特别适合揭开这个机制：它把“协同阈值”直接变成可见输出</h2><div class="bodycopy">
+<p>自由生活在海水中的少量发光细菌，即使每个细胞都消耗能量制造荧光素酶，也很难产生有生态意义的亮度；而当它们高密度聚集在夏威夷短尾乌贼等宿主的发光器官里，集体发光才可能参与伪装或共生。</p>
+<p>因此，发光天然具有“低密度做了也白做、高密度同时做才有效”的经济学结构。群体感应不只是感知“有多少细胞”，更是在回答：<strong>现在投入这项公共行为，收益有没有可能超过成本？</strong></p></div></section>
+<section id="s5"><div class="section-num">SECTION 05</div><h2>LuxI / LuxR：群体感应最经典的“写信—收信—改基因”回路</h2><div class="bodycopy">
+<p>在经典的 <em>Vibrio fischeri</em> 系统中，LuxI 是信号合成酶，负责制造一种酰基高丝氨酸内酯（AHL）；AHL 可以穿过细胞膜进入外界。低密度时，信号被扩散和稀释，单个细胞内的 LuxR 感受器很少被激活。</p>
+<p>当局部信号积累后，AHL 与 LuxR 结合形成活性调控复合物，启动 <em>lux</em> 基因簇，包括发光相关基因以及 <em>luxI</em> 本身。于是“收到信号”会进一步促进“制造更多信号”，形成正反馈，让群体从低表达状态更快切换到高表达状态。</p></div></section>
+<section id="loop"><div class="section-num">VISUAL 01</div><h2>群体感应的最小回路：信号先积累，随后把群体推过开关</h2>
+<figure class="visual-figure"><div class="visual-title">LuxI/LuxR 教学模型：从单细胞泄漏信号到群体同步</div>
+<svg viewBox="0 0 900 390" role="img" aria-label="群体感应信号产生积累检测和正反馈示意图">
+<defs><marker id="qa" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="var(--accent)"/></marker></defs>
+<g font-size="14" font-weight="700" fill="var(--text)"><text x="125" y="44" text-anchor="middle">① 低密度</text><text x="355" y="44" text-anchor="middle">② 信号积累</text><text x="585" y="44" text-anchor="middle">③ 受体过阈值</text><text x="790" y="44" text-anchor="middle">④ 群体行为</text></g>
+<g fill="var(--panel)" stroke="var(--line)" stroke-width="2"><rect x="35" y="72" width="180" height="210" rx="22"/><rect x="265" y="72" width="180" height="210" rx="22"/><rect x="495" y="72" width="180" height="210" rx="22"/><rect x="705" y="72" width="160" height="210" rx="22"/></g>
+<g fill="var(--accent)" opacity=".88"><circle cx="90" cy="155" r="24"/><circle cx="145" cy="205" r="24"/><circle cx="315" cy="145" r="20"/><circle cx="370" cy="188" r="20"/><circle cx="410" cy="130" r="20"/><circle cx="545" cy="142" r="20"/><circle cx="600" cy="187" r="20"/><circle cx="630" cy="125" r="20"/></g>
+<g fill="var(--accent2)"><circle cx="80" cy="230" r="6"/><circle cx="168" cy="130" r="6"/><circle cx="300" cy="230" r="6"/><circle cx="335" cy="102" r="6"/><circle cx="355" cy="242" r="6"/><circle cx="392" cy="222" r="6"/><circle cx="425" cy="170" r="6"/><circle cx="520" cy="235" r="6"/><circle cx="550" cy="106" r="6"/><circle cx="575" cy="245" r="6"/><circle cx="610" cy="95" r="6"/><circle cx="640" cy="232" r="6"/></g>
+<g stroke="var(--accent)" stroke-width="3" fill="none" marker-end="url(#qa)"><path d="M218 175H258"/><path d="M448 175H488"/><path d="M678 175H698"/></g>
+<path d="M578 86 C560 58 625 54 630 92" fill="none" stroke="var(--accent2)" stroke-width="3" marker-end="url(#qa)"/>
+<g fill="var(--muted)" font-size="12"><text x="125" y="315" text-anchor="middle">信号产生，但快速流失</text><text x="355" y="315" text-anchor="middle">产生速度 &gt; 清除速度</text><text x="585" y="315" text-anchor="middle">受体激活 + 正反馈</text><text x="785" y="315" text-anchor="middle">发光 / 毒力 / 生物膜等</text></g>
+<text x="450" y="360" text-anchor="middle" fill="var(--text)" font-size="14" font-weight="700">关键变量不是“有没有信号”，而是信号产生、扩散、降解与流动之间的净积累</text>
+</svg><figcaption class="visual-caption">每个细胞都可能持续制造少量信号，但只有当局部环境允许信号积累到足够浓度，受体网络才会把微弱变化放大成群体级基因表达切换。</figcaption></figure>
+<div class="visual-reading"><b>怎么看：</b>先沿 ①→④ 看前向链，再看③上方的回箭头。群体感应之所以常呈现“突然切换”，不只因为有阈值，还因为许多系统把感知结果反馈到信号生成或受体网络中。</div></section>
+<section id="s6"><div class="section-num">SECTION 06</div><h2>正反馈为什么重要：它把模糊浓度变化压缩成更清晰的群体状态</h2><div class="bodycopy">
+<p>如果信号浓度只是线性增长，细胞的响应会相对平缓；加入正反馈后，受体一旦跨过某个区间，信号合成或下游调控就会自我加强，群体更容易出现“低态—高态”的明显差异。</p>
+<p>但这并不意味着每个细胞在同一毫秒翻转。单细胞实验显示，即使给定相同的自诱导物浓度，<em>Vibrio fischeri</em> 个体的发光启动时间和强度仍可高度异质。所谓“同步”，更多是群体统计层面的协调，而不是消除所有个体差异。</p></div></section>
+<section id="s7"><div class="section-num">SECTION 07</div><h2>“阈值”不是魔法常数：同样数量的细胞，换个容器就可能得到不同答案</h2><div class="bodycopy">
+<p>如果 10⁶ 个细胞待在一个密闭微腔里，信号很容易积累；同样 10⁶ 个细胞分散在持续流动的水体中，信号可能被立即冲走。于是“细胞密度达到某值就开启”只是最简化的实验室说法。</p>
+<p>真实环境里，信号浓度同时取决于细胞数、局部体积、扩散系数、流速、吸附、化学降解、其他生物的摄取或分解。群体感应感知的其实是<strong>细胞与环境共同产生的可通信条件</strong>。</p></div></section>
+<section id="s8"><div class="section-num">SECTION 08</div><h2>一个最小动力学模型：信号浓度是“产生 − 清除”的余额</h2><div class="bodycopy">
+<p>可以把胞外信号 A 的变化写成一个教学模型：</p><div class="formula">dA/dt = αN/V − (k<sub>deg</sub> + k<sub>flow</sub>)A</div>
+<p>其中 α 是单细胞产生速率，N 是局部细胞数，V 是有效体积，k<sub>deg</sub> 表示降解，k<sub>flow</sub> 表示被流动带走的强度。长期近似稳态时，A 大致等于“产生率 / 清除率”。这说明细胞数量只是分子，环境清除能力同样重要。</p></div></section>
+<section id="lab"><div class="section-num">INTERACTIVE 01</div><h2>参数实验：同样的“细菌人数”，为什么有时能开会、有时信号永远聚不起来</h2>
+<div class="qs-lab"><p class="interaction-hint">这是教学模型，不是某个物种的经验参数。拖动细胞密度与环境清除强度，观察稳态信号 A* 相对阈值的变化。</p>
+<div class="slider-row"><label>局部细胞密度 <b id="nVal"></b></label><input id="nSlider" type="range" min="5" max="100" step="1" value="45"></div>
+<div class="slider-row"><label>流动 / 降解强度 <b id="fVal"></b></label><input id="fSlider" type="range" min="5" max="100" step="1" value="30"></div>
+<div class="lab-grid"><div class="metric"><span>信号稳态（相对值）</span><b id="aVal"></b></div><div class="metric"><span>相对开关阈值</span><b>1.00</b></div><div class="metric"><span>预测状态</span><b id="stateVal"></b></div></div>
+<div class="signal-track"><div class="threshold"></div><div class="signal-fill" id="signalFill"></div></div>
+<p class="lab-note" id="labExplain"></p></div>
+<div class="visual-reading"><b>怎么看：</b>先固定“细胞密度”只调高流动，你会看到群体从“开启”重新掉回“关闭”。这就是为什么现代研究不再把 quorum sensing 简化成纯粹的细胞计数器。</div></section>
+<section id="s9"><div class="section-num">SECTION 09</div><h2>争议一：它真的在“数人数”吗？Redfield 提出了 diffusion sensing</h2><div class="bodycopy">
+<p>2002 年，Rosemary Redfield 提出一个尖锐质疑：许多所谓 quorum-sensing 行为，可能并不是为了感知“群体人数”，而是为了感知细胞分泌物会不会被环境迅速带走。她把这种解释称为 diffusion sensing。</p>
+<p>举例说，如果细胞准备分泌昂贵的胞外酶，真正重要的也许不是旁边有多少同伴，而是酶和信号能否停留在局部、形成足够高的回报。信号只是一个廉价探针，用来测试当前环境是否“留得住”分泌物。</p></div></section>
+<section id="s10"><div class="section-num">SECTION 10</div><h2>争议二：efficiency sensing 试图把“人数”和“环境”合并成一个问题</h2><div class="bodycopy">
+<p>2007 年 Hense 等人提出 efficiency sensing：细菌通过信号浓度同时获得关于细胞密度、空间分布、质量传输和局部环境的信息。一个高信号读数可能意味着细胞很多，也可能意味着细胞聚得很紧、流动很弱，或信号降解很慢。</p>
+<p>这比“化学人口普查”更接近现实。群体感应真正回答的可能是：<strong>此时此地，集体投入某种胞外行为，是否足够有效？</strong></p></div></section>
+<section id="s11"><div class="section-num">SECTION 11</div><h2>革兰阴性菌的常见语言：AHL 像一组可调长度的化学“频道”</h2><div class="bodycopy">
+<p>许多革兰阴性菌使用酰基高丝氨酸内酯（AHL）作为信号。不同 AHL 的酰基链长度、氧化状态等可以不同，对应不同 LuxR 类受体的识别偏好。这使得同一环境中多个物种可以拥有部分专用、部分重叠的化学频道。</p>
+<p>但“革兰阴性 = AHL”只是常见模式，不是绝对法则。细菌信号化学极其多样，Pseudomonas 还使用 quinolone 类信号，Vibrio 具有多套输入通道；任何简单二分都只能当入门地图。</p></div></section>
+<section id="s12"><div class="section-num">SECTION 12</div><h2>革兰阳性菌常见另一种架构：肽信号 + 双组分系统</h2><div class="bodycopy">
+<p>许多革兰阳性菌使用加工后的短肽作为信号。这些肽往往不直接自由穿膜，而是由膜上的组氨酸激酶受体检测，再通过磷酸转移把信息传给细胞内响应调节蛋白。</p>
+<p>这与 AHL-LuxR 的“信号进入细胞、直接结合转录因子”不同，但计算目标相似：把胞外群体状态转译成基因表达。理解群体感应时，最好把“信号化学”“受体位置”“下游网络”分成三个层次，不要把某一种经典回路当成全部。</p></div></section>
+<section id="s13"><div class="section-num">SECTION 13</div><h2>AI-2：曾被称为“跨物种通用语”，但“通用语”这个比喻要谨慎</h2><div class="bodycopy">
+<p>LuxS 酶参与生成 AI-2 前体，许多不同细菌都具有相关代谢与感知系统，因此 AI-2 曾被广泛描述为细菌之间的“通用语言”。Bassler 等人的工作推动了“种内、种间甚至跨界通信”的框架。</p>
+<p>但研究者也提醒：LuxS 同时属于活化甲基循环的一部分，某个物种产生 AI-2 并不自动证明它“进化出发送跨物种消息的目的”。只有当产生、检测和适应性响应之间形成可证明的信号功能时，“通信”解释才更扎实。</p></div></section>
+<section id="architectures"><div class="section-num">INTERACTIVE 02</div><h2>三种架构切换：相同的“群体感应”，底层线路可以完全不同</h2>
+<div class="visual-toolbar" id="archButtons"><button class="active" data-arch="ahl">AHL / LuxI-LuxR</button><button data-arch="peptide">肽 / 双组分</button><button data-arch="ai2">AI-2 / 多物种输入</button></div>
+<div class="arch-panel" id="archPanel"></div>
+<div class="visual-reading"><b>怎么看：</b>每次切换都关注三件事：谁制造信号、受体在哪里、信息怎样进入转录网络。共同的是计算问题，不是分子零件。</div></section>
+<section id="s14"><div class="section-num">SECTION 14</div><h2>多输入比单频道更接近真实世界：细菌会同时“听自己”和“听邻居”</h2><div class="bodycopy">
+<p>以 <em>Vibrio harveyi</em> 等弧菌为例，细胞能整合多种自诱导物输入。不同信号可代表“本物种成员”“相关物种”或更广泛的细菌社区组成，随后汇入共同的磷酸化网络，调控小 RNA 与主调控因子。</p>
+<p>这使群体感应更像一个小型传感器融合系统，而不是单个阈值开关。细胞面对的问题从“附近有多少我自己”升级为“附近是谁、比例如何、环境是否适合，以及这些信号是否彼此一致”。</p></div></section>
+<section id="s15"><div class="section-num">SECTION 15</div><h2>低密度和高密度不是简单的 OFF / ON：网络常通过小 RNA 重写整个表达程序</h2><div class="bodycopy">
+<p>在一些 Vibrio 系统里，低密度时受体作为激酶推动 LuxO 磷酸化，激活 Qrr 小 RNA；Qrr 再通过调控多个 mRNA，把细胞保持在低密度程序。高密度时，信号结合改变受体方向，磷酸流反转，Qrr 降低，主调控因子接管。</p>
+<p>这种架构能同时提供放大、滤噪、时间延迟和多输入整合。所谓“细菌听见一句话就改行为”，实际背后是一个多层信号处理网络。</p></div></section>
+<section id="s16"><div class="section-num">SECTION 16</div><h2>群体平均并不等于个体一致：噪声、历史和空间位置都会制造不同响应</h2><div class="bodycopy">
+<p>单细胞测量显示，在同样的外源信号浓度下，不同细胞仍可能在启动时间、表达幅度和持续时间上明显不同。来源包括蛋白数量的随机波动、细胞周期、代谢状态以及局部微环境。</p>
+<p>这提醒我们，quorum sensing 的“同步”是统计概念。群体可以在宏观上协调，同时保留微观异质性；而这种异质性本身可能是风险分散策略，让一部分细胞提前行动，另一部分保持保守。</p></div></section>
+<section id="s17"><div class="section-num">SECTION 17</div><h2>生物膜把问题从“浓度”变成“三维空间”：信号会形成梯度和局部社区</h2><div class="bodycopy">
+<p>生物膜不是均匀的一团细胞。它包含水道、胞外基质、营养与氧气梯度，不同区域细胞生长速率和代谢状态不同。自诱导物也会在这种结构中形成空间梯度，因此同一块生物膜可以同时存在不同 quorum 状态。</p>
+<p>Bassler 实验室当前研究之一正是追踪生物膜中单细胞行为的区域差异。群体感应在这里不再是“全体一起切换”，而更像为三维社区划分功能区。</p></div></section>
+<section id="biofilm"><div class="section-num">VISUAL 02</div><h2>同样数量的细胞，空间组织不同，信号世界就不同</h2>
+<figure class="visual-figure"><div class="visual-title">均匀悬浮 vs 结构化生物膜：局部邻居比全局人数更重要</div>
+<svg viewBox="0 0 900 390" role="img" aria-label="均匀悬浮和生物膜中的信号梯度对比">
+<rect x="25" y="55" width="390" height="270" rx="22" fill="var(--panel)" stroke="var(--line)"/><rect x="485" y="55" width="390" height="270" rx="22" fill="var(--panel)" stroke="var(--line)"/>
+<text x="220" y="38" text-anchor="middle" fill="var(--text)" font-size="16" font-weight="700">均匀悬浮：信号更容易被混合</text><text x="680" y="38" text-anchor="middle" fill="var(--text)" font-size="16" font-weight="700">生物膜：局部簇形成高信号区</text>
+<g fill="var(--accent)" opacity=".85"><circle cx="90" cy="120" r="12"/><circle cx="170" cy="190" r="12"/><circle cx="300" cy="115" r="12"/><circle cx="350" cy="245" r="12"/><circle cx="115" cy="270" r="12"/><circle cx="260" cy="260" r="12"/></g>
+<g fill="var(--accent2)" opacity=".45"><circle cx="90" cy="120" r="28"/><circle cx="170" cy="190" r="28"/><circle cx="300" cy="115" r="28"/><circle cx="350" cy="245" r="28"/><circle cx="115" cy="270" r="28"/><circle cx="260" cy="260" r="28"/></g>
+<path d="M500 300 C560 260 560 165 620 175 C680 80 760 120 860 88 V325 H500Z" fill="var(--soft)" stroke="var(--line)"/>
+<g fill="var(--accent)"><circle cx="560" cy="267" r="11"/><circle cx="590" cy="244" r="11"/><circle cx="610" cy="207" r="11"/><circle cx="640" cy="190" r="11"/><circle cx="675" cy="155" r="11"/><circle cx="710" cy="150" r="11"/><circle cx="748" cy="133" r="11"/><circle cx="790" cy="124" r="11"/></g>
+<g fill="var(--accent2)" opacity=".35"><circle cx="620" cy="210" r="72"/><circle cx="715" cy="155" r="80"/></g>
+<path d="M500 95 H860" stroke="var(--accent2)" stroke-width="3" stroke-dasharray="8 7"/><text x="680" y="82" text-anchor="middle" fill="var(--accent2)" font-size="12">流体边界层</text>
+<text x="220" y="353" text-anchor="middle" fill="var(--muted)" font-size="13">全局 N 相同，不代表每个细胞看到的 A 相同</text><text x="680" y="353" text-anchor="middle" fill="var(--muted)" font-size="13">微簇、基质和流动共同决定局部浓度</text>
+</svg><figcaption class="visual-caption">群体感应发生在空间里。真正进入受体的，是细胞周围局部信号浓度；这个浓度由细胞排列、扩散、流动和降解决定。</figcaption></figure>
+<div class="visual-reading"><b>怎么看：</b>不要只数圆点。比较橙色信号云是否重叠、是否容易被流体带走。空间结构能让较小群体也形成高局部信号，反过来也能让大群体因稀释而保持低信号。</div></section>
+<section id="s18"><div class="section-num">SECTION 18</div><h2>群体行为为什么会遇到“公地问题”：分泌物常是所有邻居都能享用的公共品</h2><div class="bodycopy">
+<p>许多 quorum-sensing 控制的产物在细胞外工作，例如降解大分子的酶、铁载体、某些表面活性物和毒力因子。一个细胞付出代谢成本制造它们，附近没有付费的细胞也可能共享收益。</p>
+<p>这立即产生演化难题：如果“作弊者”不制造公共品，却继续吃别人释放出来的营养，它们短期内可能比合作者长得更快。群体感应因此与演化博弈、公地治理和空间结构发生了直接连接。</p></div></section>
+<section id="s19"><div class="section-num">SECTION 19</div><h2>作弊者为什么没有简单摧毁所有合作：收益往往是局部的，关系也不是完全随机</h2><div class="bodycopy">
+<p>若群体充分混合、公共品扩散很远，作弊策略确实可能占便宜；但微生物常以克隆微团、表面附着群落或局部亲缘簇生长。此时生产者释放的好处更容易回到自己及近亲，空间结构等于给公共品划出了隐形边界。</p>
+<p>此外，有些 quorum-sensing 受控性状把私人收益和公共收益绑在一起，完全关闭网络会同时损失个体必需功能。真实演化因此不是“合作者 vs 骗子”二选一，而是多个成本、收益和空间尺度共同决定的动态平衡。</p></div></section>
+<section id="publicgood"><div class="section-num">INTERACTIVE 03</div><h2>公共品实验：为什么“作弊者比例”相同，在不同空间结构下结局不一样</h2>
+<div class="visual-toolbar" id="mixButtons"><button class="active" data-mix="mixed">充分混合</button><button data-mix="clustered">局部成簇</button></div>
+<div class="public-grid" id="publicGrid"></div><p class="lab-note" id="publicExplain"></p>
+<div class="visual-reading"><b>怎么看：</b>切换空间结构后，生产者比例没有变；变化的是“生产者更可能把收益给谁”。群体合作的稳定性不仅是基因问题，也是几何问题。</div></section>
+<section id="s20"><div class="section-num">SECTION 20</div><h2>群体感应与毒力：病原菌不是“人多了才决定作恶”，而是在等待更有利的行动窗口</h2><div class="bodycopy">
+<p><em>Pseudomonas aeruginosa</em> 是群体感应研究的经典病原菌之一。它的多个信号网络参与调控蛋白酶、毒素、表面活性物、生物膜相关性状等。1993 年的研究已显示，它的一些毒力基因表达需要细胞间通信。</p>
+<p>从病原菌视角看，过早暴露毒力因子可能浪费资源，也可能提前惊动宿主免疫系统；当局部菌群建立到一定程度，再协调启动某些外排行为，可能更有效。这里的“等待”与军事隐喻无关，本质仍是成本—收益与环境反馈。</p></div></section>
+<section id="s21"><div class="section-num">SECTION 21</div><h2>群体感应与抗生素耐药不是同一件事：但它能通过生物膜和状态改变治疗难度</h2><div class="bodycopy">
+<p>需要避免一个常见跳跃：quorum sensing 并不等于“产生抗生素耐药”。耐药通常指可遗传的药物敏感性下降；而生物膜中的扩散屏障、慢生长、代谢异质性和持留细胞可以造成耐受，二者机制不同。</p>
+<p>然而 quorum sensing 可能参与生物膜形成、毒力因子表达和应激网络，因此干扰它有机会降低感染的组织化程度。2025 年 <em>Nature Reviews Microbiology</em> 对 <em>P. aeruginosa</em> 的综述仍把 quorum sensing、毒力、生物膜和抗菌药物敏感性视为相互关联但不能混为一谈的层次。</p></div></section>
+<section id="s22"><div class="section-num">SECTION 22</div><h2>“群体淬灭”不是杀菌：它尝试让细菌失去协调能力</h2><div class="bodycopy">
+<p>quorum quenching（群体淬灭）可以从多个环节干预：抑制信号合成、用酶降解信号、竞争性占据受体、干扰下游转录网络，或改变信号在环境中的积累。目标不是一定杀死细胞，而是让病原群体难以同步表达关键性状。</p>
+<p>这类策略因此常被称为 anti-virulence therapy。理论吸引力在于：如果药物不直接阻止生长，选择压力可能不同于传统杀菌药。但“选择压力更弱”不等于“不会进化耐受”，也不意味着所有感染只靠拆通信就能治好。</p></div></section>
+<section id="s23"><div class="section-num">SECTION 23</div><h2>2026 的现实边界：群体淬灭很有前景，但临床证据远没有宣传语那么成熟</h2><div class="bodycopy">
+<p>2026 年一篇面向 <em>P. aeruginosa</em> 与 <em>Staphylococcus aureus</em> 感染的综述总结了近年的 quorum-quenching 研究：天然化合物、合成分子、纳米材料和联合疗法在体外常能降低生物膜或毒力表型，但真正进入临床仍面临药代动力学、毒性、体内验证、微生物组干扰以及功能性耐受等问题。</p>
+<p>因此今天最准确的说法不是“下一代抗生素已经出现”，而是：<strong>群体通信提供了一个不同于直接杀菌的干预维度，正在从机制研究向药物学验证缓慢推进。</strong></p></div></section>
+<section id="s24"><div class="section-num">SECTION 24</div><h2>细菌并不是唯一听众：噬菌体也会“窃听”宿主的群体信号</h2><div class="bodycopy">
+<p>一些噬菌体能够利用宿主细菌产生的 quorum-sensing 信号来判断宿主密度。在高密度环境中，启动裂解可能更容易让新生成的噬菌体颗粒迅速找到下一批宿主；在低密度时保持潜伏则可能更有利。</p>
+<p>Bassler 团队研究的 VqmA 等系统展示了这种跨界窃听。它把“通信网络”的边界彻底打开：信号并不只属于发送者和预期接收者，任何能进化出相应受体的第三方都可能偷听、欺骗或劫持。</p></div></section>
+<section id="s25"><div class="section-num">SECTION 25</div><h2>宿主也可能加入对话：真正的生态系统里，信号从来不是封闭频道</h2><div class="bodycopy">
+<p>植物、动物和真菌可以产生模拟、拮抗或改变细菌信号的分子；细菌信号也可能影响宿主细胞。于是群体感应逐渐从“细菌彼此说话”扩展到 interkingdom signaling——跨界化学信息交换。</p>
+<p>但这里必须保持证据纪律。检测到某分子引发宿主反应，并不自动等于双方“为了通信而共同进化”。要区分信号（signal）、线索（cue）与副产物，需要结合适应性功能、受体特异性和演化历史。</p></div></section>
+<section id="s26"><div class="section-num">SECTION 26</div><h2>合成生物学为什么喜欢 quorum sensing：它提供天然的“人口规模输入端口”</h2><div class="bodycopy">
+<p>工程师可以把 quorum-sensing 元件接到人工基因电路中，让细胞在低密度执行一种程序、高密度执行另一种程序；还可以用正负反馈构造振荡器、密度控制器、群体分工和空间图案。</p>
+<p>这类设计的优势是通信分子可扩散，单细胞不需要中央控制器就能协调。但自然系统告诉工程师一个重要教训：信号会被流动、体积和空间结构重写，因此实验室摇瓶里表现良好的电路，搬到组织、土壤或工业反应器后可能完全不同。</p></div></section>
+<section id="s27"><div class="section-num">SECTION 27</div><h2>生态尺度：海雪、根际、管道和医疗器械都会改写“可通信距离”</h2><div class="bodycopy">
+<p>在海洋颗粒“marine snow”上，细菌可以聚集在高营养微环境中；在根际，土壤孔隙和水膜决定信号扩散；在医疗支架和工业过滤器里，流动会把生物膜拉成长丝状 streamer。Bassler 实验室的微流控研究显示，这些 streamer 甚至会造成突然堵塞。</p>
+<p>群体感应因此连接了分子生物学与流体力学。要理解一个信号网络，不只需要知道基因和受体，还要知道细胞生活的空间几何。</p></div></section>
+<section id="s28"><div class="section-num">SECTION 28</div><h2>三个常见误解：它不是“细菌大脑”、不是精确人口普查，也不是绝对诚实的语言</h2><div class="bodycopy">
+<p><strong>误解一：群体感应让细菌变成有意识群体。</strong>没有证据支持这种拟人化。它是化学信号与基因调控形成的分布式反馈。</p>
+<p><strong>误解二：信号浓度只等于细胞数量。</strong>错误。流动、体积、降解和空间结构都能改变浓度。</p>
+<p><strong>误解三：信号一定是合作性的“诚实消息”。</strong>真实生态里存在窃听、信号降解、拮抗、作弊与劫持。通信系统本身也是竞争和演化的对象。</p></div></section>
+<section id="s29"><div class="section-num">SECTION 29</div><h2>历史演化：从“奇怪的发光”到“微生物信息处理”</h2><div class="bodycopy">
+<p>这个领域的概念演化很有代表性：最初研究的是一个表型——发光；随后识别出自诱导物与 Lux 基因回路；再发现病原菌和大量环境菌也使用类似机制；接着扩展到多信号整合、跨物种通信、空间生物膜、噬菌体窃听和宿主互作。</p>
+<p>每一步都在把问题向上抽象：从“哪种分子让细菌发光”，到“微生物怎样在没有中央控制器的情况下处理关于邻居、空间和环境的信息”。</p></div></section>
+<section id="history"><div class="section-num">INTERACTIVE 04</div><h2>概念时间轴：同一个现象，研究者用了半个世纪才看见它的层级</h2>
+<div class="timeline" id="timeButtons"><button class="timebtn active" data-era="1970s"><strong>1960s–70s</strong>autoinduction</button><button class="timebtn" data-era="1980s"><strong>1980s</strong>Lux 回路</button><button class="timebtn" data-era="1994"><strong>1994</strong>quorum sensing</button><button class="timebtn" data-era="2000s"><strong>2000s</strong>种间通信</button><button class="timebtn" data-era="2010s"><strong>2010s</strong>真实环境</button><button class="timebtn" data-era="2020s"><strong>2020s</strong>操控通信</button></div>
+<div class="timedetail has-content" id="timeDetail"></div></section>
+<section id="s30"><div class="section-num">SECTION 30</div><h2>最深层认知：群体感应不是“人数传感器”，而是微生物把环境可行性压缩成化学信号</h2><div class="bodycopy">
+<p>如果只记住“细菌达到一定密度就一起行动”，你会错过这个主题最有价值的部分。自诱导物浓度同时承载细胞数量、局部体积、空间聚集、流动、降解和其他生物干扰的信息。它是一个被环境共同计算出来的变量。</p>
+<p>这让群体感应成为一种非常通用的认知模型：个体不需要知道全局地图，也不需要中央协调器，只需反复改变一个局部共享量、感知它、再根据反馈调整行为，就可能形成集体尺度的相变。</p><div class="quote">复杂协同不一定来自“谁在指挥”，也可能来自每个个体都在读同一个会被群体共同改写的环境变量。</div></div></section><section id="sources"><div class="section-num">SOURCES</div><h2>研究线索与进一步阅读</h2><div class="bodycopy source-list">
+<p>• <a href="https://basslerlab.scholar.princeton.edu/" target="_blank" rel="noopener">Bassler Lab · Quorum Sensing</a>：群体感应的定义、研究方向与跨物种通信。</p>
+<p>• <a href="https://journals.asm.org/doi/10.1128/jb.176.2.269-275.1994" target="_blank" rel="noopener">Fuqua, Winans & Greenberg, 1994 · Quorum sensing in bacteria</a>：首次在文献标题中系统使用 quorum sensing 一词的经典综述。</p>
+<p>• <a href="https://pubmed.ncbi.nlm.nih.gov/16212498/" target="_blank" rel="noopener">Waters & Bassler, 2005 · Quorum sensing: cell-to-cell communication in bacteria</a>：机制与功能的经典 Annual Review。</p>
+<p>• <a href="https://pubmed.ncbi.nlm.nih.gov/30944413/" target="_blank" rel="noopener">Mukherjee & Bassler, 2019 · Quorum sensing in complex and dynamically changing environments</a>：流动、空间、宿主和真实环境中的群体感应。</p>
+<p>• <a href="https://pubmed.ncbi.nlm.nih.gov/12160634/" target="_blank" rel="noopener">Redfield, 2002 · Is quorum sensing a side effect of diffusion sensing?</a>：对“纯细胞密度传感”解释的经典挑战。</p>
+<p>• <a href="https://pubmed.ncbi.nlm.nih.gov/17304251/" target="_blank" rel="noopener">Hense et al., 2007 · Does efficiency sensing unify diffusion and quorum sensing?</a>：把细胞密度、空间和传质合并的理论框架。</p>
+<p>• <a href="https://www.nature.com/articles/s41579-025-01193-8" target="_blank" rel="noopener">Letizia, Diggle & Whiteley, 2025 · Pseudomonas aeruginosa</a>：毒力、生物膜、群体感应与抗菌药物敏感性的现代综述。</p>
+<p>• <a href="https://pubmed.ncbi.nlm.nih.gov/42192669/" target="_blank" rel="noopener">2026 review · Quorum sensing and quorum quenching in P. aeruginosa and S. aureus infections</a>：抗毒力策略的临床潜力、局限与风险。</p>
+</div></section><section id="links"><div class="section-num">CROSS LINKS</div><h2>跨主题连接：从细菌通信，看见四种更一般的系统结构</h2><div class="cross-grid">
+<a class="cross-card" href="../w36/2026-08-31-emergence.html"><b>涌现｜Emergence</b><p>群体感应展示一种极具体的涌现机制：每个细胞只读局部化学变量，群体却能出现同步切换、空间分区和集体行为。</p></a>
+<a class="cross-card" href="../w37/2026-09-07-commons.html"><b>公地｜Commons</b><p>胞外酶、铁载体等公共品会被非生产者分享，因此微生物合作直接遇到“贡献者与搭便车者”的治理难题；空间结构相当于隐形产权边界。</p></a>
+<a class="cross-card" href="../w37/2026-09-09-cybernetics.html"><b>控制论｜Cybernetics</b><p>产生信号、感知信号、改变基因表达、再反过来改变信号产生，是典型反馈回路；正反馈负责快速切换，负反馈与降解负责稳定和复位。</p></a>
+<a class="cross-card" href="../w38/2026-09-20-mycorrhiza.html"><b>菌根｜Mycorrhiza</b><p>菌根把植物—真菌交换放进地下网络；群体感应则把细菌—细菌—宿主化学信号放进微尺度生态网络。两者都提醒我们：个体边界之外还有关系层。</p></a>
+</div></section><section id="upgrade"><div class="section-num">COGNITIVE UPGRADE</div><h2>这个关键词改变了什么视角</h2><div class="bodycopy"><div class="chain">
+<div class="chain-step"><b>直觉 1</b><p>细菌是彼此独立的单细胞。</p></div><div class="chain-step"><b>升级 1</b><p>细胞会共同改写胞外化学环境。</p></div><div class="chain-step"><b>升级 2</b><p>信号浓度同时编码人数、空间与流动。</p></div><div class="chain-step"><b>升级 3</b><p>反馈把局部变量转成群体级状态切换。</p></div><div class="chain-step"><b>最终视角</b><p>协调可以没有中央控制器，只需要共享变量与反馈。</p></div></div>
+<p>群体感应最值得迁移的不是“细菌会说话”这个拟人化故事，而是一种分布式计算视角：一个群体可以把环境当作共享内存，每个个体不断向其中写入、读取，再据此决定下一步。</p></div></section><section id="questions"><div class="section-num">QUESTIONS</div><h2>真正值得继续追问的问题</h2><div class="bodycopy"><ol class="questions">
+<li>在真实感染灶中，怎样区分细菌是在感知“细胞密度”，还是在感知“扩散与保留效率”？</li>
+<li>如果噬菌体、宿主和其他菌种都能窃听同一种信号，细菌如何维持通信的特异性与可靠性？</li>
+<li>群体淬灭真的会比杀菌药更不容易产生耐受，还是只会把演化压力换一种形式？</li>
+<li>生物膜内部的信号梯度能否形成类似“组织分区”的稳定功能结构，这与多细胞发育有多深的同构？</li>
+<li>合成生物学能否利用 quorum sensing 构造安全的群体自治系统，同时避免突变体“逃逸”与搭便车？</li>
+</ol></div></section></article></div>
+<footer class="footer">2026-09-30 · 群体感应 / Quorum Sensing · GitHub Pages reading layer</footer></div>
+<script>
+const theme=document.getElementById('theme');theme.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark'});const progress=document.getElementById('progress');addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;progress.style.transform='scaleX('+(h?scrollY/h:0)+')'},{passive:true});const sections=[...document.querySelectorAll('article section[id]')],tocLinks=[...document.querySelectorAll('.toc a')];const observer=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)tocLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))})},{rootMargin:'-18% 0px -70%'});sections.forEach(s=>observer.observe(s));
+const nSlider=document.getElementById('nSlider'),fSlider=document.getElementById('fSlider');function renderLab(){const n=+nSlider.value,f=+fSlider.value;const A=(n/45)/(0.35+f/70);const shown=Math.min(2.2,A);nVal.textContent=n;fVal.textContent=f;aVal.textContent=A.toFixed(2);stateVal.textContent=A>=1?'开启':'关闭';signalFill.style.width=(shown/2.2*100)+'%';labExplain.textContent=A>=1?'在这个教学参数下，信号产生超过清除，稳态浓度跨过阈值。注意：真实系统还包含受体动力学、反馈、空间扩散和多信号网络。':'在这个教学参数下，信号被清除得太快，群体即使存在也难以建立高信号状态；提高密度或降低流动都可能改变结果。'}nSlider.addEventListener('input',renderLab);fSlider.addEventListener('input',renderLab);renderLab();
+const arch={ahl:{title:'AHL / LuxI-LuxR：信号可扩散，受体常在细胞内',nodes:[['LuxI','合成 AHL'],['胞外 AHL','扩散并积累'],['LuxR','结合信号'],['转录程序','发光 / 毒力等']],note:'经典革兰阴性模型。某些系统还通过激活 luxI 形成正反馈。'},peptide:{title:'肽 / 双组分：信号留在膜外，信息用磷酸流传入细胞',nodes:[['前体肽','加工并输出'],['胞外肽','局部积累'],['膜受体','组氨酸激酶'],['响应调节子','改变转录']],note:'许多革兰阳性菌使用这类架构。信号不必进入细胞本身。'},ai2:{title:'AI-2 / 多物种输入：更像共享代谢—信息通道',nodes:[['LuxS','生成 AI-2 前体'],['环境池','多物种贡献'],['物种特异受体','检测同一化学池'],['各自网络','产生不同响应']],note:'“通用语”是有用比喻，但 AI-2 的代谢来源意味着不能把所有产生都解释为有意跨物种通信。'}};function renderArch(k){document.querySelectorAll('[data-arch]').forEach(b=>b.classList.toggle('active',b.dataset.arch===k));const d=arch[k];let h='<h3>'+d.title+'</h3><div class="arch-grid">';d.nodes.forEach((x,i)=>{h+='<div class="arch-node"><b>'+x[0]+'</b><p>'+x[1]+'</p></div>';if(i<d.nodes.length-1)h+='<div class="arch-arrow">→</div>'});h+='</div><p class="lab-note">'+d.note+'</p>';archPanel.innerHTML=h}document.querySelectorAll('[data-arch]').forEach(b=>b.addEventListener('click',()=>renderArch(b.dataset.arch)));renderArch('ahl');
+const cells=Array.from({length:30},(_,i)=>i<18?'P':'C');function renderPublic(mode){document.querySelectorAll('[data-mix]').forEach(b=>b.classList.toggle('active',b.dataset.mix===mode));let arr=mode==='mixed'?[...cells].sort((a,b)=>((a.charCodeAt(0)*7+b.charCodeAt(0)*3)%5)-2):[...cells];publicGrid.innerHTML=arr.map((x,i)=>'<div class="cell '+(x==='P'?'producer':'cheater')+' '+(mode==='clustered'&&x==='P'&&i<20?'benefit':'')+'">'+x+'</div>').join('');publicExplain.textContent=mode==='mixed'?'充分混合时，生产者释放的公共品更容易被所有邻居平均分享，作弊者更容易获得“只拿不付”的短期优势。':'成簇时，生产者更常和生产者相邻，公共品收益更可能回到贡献者及近亲。生产者比例相同，但合作的局部回报更高。'}document.querySelectorAll('[data-mix]').forEach(b=>b.addEventListener('click',()=>renderPublic(b.dataset.mix)));renderPublic('mixed');
+const eras={'1970s':['1960s–70s · autoinduction','发光海洋细菌在高密度时突然变亮。研究者发现培养液中的可扩散因子能够诱导发光，群体感应的实验核心由此出现。'],'1980s':['1980s · Lux 分子回路被拆开','LuxI、LuxR 与发光基因的关系逐渐清晰：信号合成、信号检测和转录调控可以被具体基因解释。'],'1994':['1994 · “quorum sensing”进入文献标题','Fuqua、Winans 与 Greenberg 用一个新名称把多个细菌系统放进共同框架：细胞根据群体相关信号协调基因表达。'],'2000s':['2000s · 从种内通信扩展到多物种生态','AI-2、肽信号、Pseudomonas 网络等研究显示，细菌并不存在单一“语言”；通信可以跨物种、被干扰，也可以与宿主关系耦合。'],'2010s':['2010s · 从摇瓶走向流动、生物膜和宿主','研究重点从理想均匀培养转向复杂环境：流体、空间、三维微团和多物种社区会重写信号浓度与响应。'],'2020s':['2020s · 从理解通信走向操控通信','quorum quenching、噬菌体窃听、合成群落和抗毒力治疗成为热点；同时，临床转化的药代、毒性、生态副作用与耐受问题变得更重要。']};function renderEra(k){document.querySelectorAll('[data-era]').forEach(b=>b.classList.toggle('active',b.dataset.era===k));const d=eras[k];timeDetail.innerHTML='<strong>'+d[0]+'</strong><p>'+d[1]+'</p>'}document.querySelectorAll('[data-era]').forEach(b=>b.addEventListener('click',()=>renderEra(b.dataset.era)));renderEra('1970s');
+</script></body></html>
