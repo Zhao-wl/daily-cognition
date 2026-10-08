@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>文字破译｜每日认知探索</title><meta name="description" content="33 个递进章节，从罗塞塔石碑、线形文字 B 和玛雅文字，理解古文字破译的证据、方法、思想史与数字人文。">
+<link rel="stylesheet" href="../../assets/style.css"><link rel="stylesheet" href="../../assets/visual.css"><style>
+.reading-time{color:var(--muted);font:12px/1.5 ui-sans-serif,system-ui,sans-serif;margin-top:12px}
+.notice{border-left:4px solid var(--accent2);padding:14px 18px;border-radius:0 14px 14px 0;background:var(--soft);margin:18px 0;color:var(--muted)}
+.visual-section{scroll-margin-top:20px}
+.switches{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.switches button,.role-card,.compare-grid button,.timeline button{border:1px solid var(--line);color:var(--text);background:var(--panel);cursor:pointer;font-family:ui-sans-serif,system-ui,sans-serif}
+.switches button{border-radius:999px;padding:9px 13px;font-size:14px}
+.switches button.active,.role-card.active,.compare-grid button.active,.timeline button.active{background:var(--soft);border-color:var(--accent)}
+.detailbox{border:1px solid var(--line);border-radius:18px;background:var(--soft);padding:18px;min-height:132px;margin:14px 0}
+.detailbox h3{margin:0 0 7px;font:700 21px/1.4 ui-sans-serif,system-ui,sans-serif;color:var(--accent)}
+.detailbox p{margin:8px 0;color:var(--muted)}
+.role-grid,.compare-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:20px 0}
+.role-card{border-radius:18px;padding:15px;display:flex;flex-direction:column;text-align:center;min-height:130px;align-items:center;justify-content:center}
+.role-card .glyph{font-size:40px;line-height:1.2;color:var(--accent2)}
+.role-card b,.compare-grid button b{display:block;font-size:16px;line-height:1.5}
+.role-card small,.compare-grid button small{display:block;color:var(--muted);margin-top:5px;font-size:12px}
+.puzzle,.proofbox{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:18px;margin:20px 0}
+.puzzle-pairs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:15px 0}
+.puzzle-pairs div{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:13px;text-align:center}
+.puzzle-pairs b{display:block;font:700 15px/1.5 ui-sans-serif,system-ui,sans-serif;color:var(--text)}
+.puzzle-pairs span{display:block;font:800 23px/1.5 ui-sans-serif,system-ui,sans-serif;color:var(--accent);white-space:nowrap}
+.puzzle-new{padding:12px;border:1px dashed var(--line);border-radius:14px;color:var(--accent);font:600 16px/1.6 ui-sans-serif,system-ui,sans-serif}
+.compare-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.compare-grid button{border-radius:15px;min-height:105px;padding:12px 9px;text-align:left}
+.compare-grid button b{color:var(--accent)}
+.matrix{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+.matrix th,.matrix td{border:1px solid var(--line);padding:11px 12px;vertical-align:top;text-align:left}
+.matrix th{background:var(--soft)}
+.timeline{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:15px 0}
+.timeline button{border-radius:14px;padding:12px;text-align:left;min-height:93px;font-size:13px}
+.timeline button strong{display:block;color:var(--accent);font-size:16px}
+.cross-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cross-card{display:block;border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:17px;text-decoration:none;color:var(--text)}
+.cross-card:hover,.cross-card:focus-visible{border-color:var(--accent);background:var(--soft);outline:none}
+.cross-card b{display:block;color:var(--accent);font:700 16px/1.5 ui-sans-serif,system-ui,sans-serif}
+.cross-card p{color:var(--muted);margin:7px 0 0;font-size:14px}
+.source-list a{color:var(--accent);overflow-wrap:anywhere}
+.figure-legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.figure-legend div{background:var(--soft);border:1px solid var(--line);padding:9px;border-radius:12px}
+.figure-legend b{font:700 13px/1.4 ui-sans-serif,system-ui,sans-serif;color:var(--accent)}
+.figure-legend small{display:block;font-size:12px;color:var(--muted)}
+.rosetta-mobile{display:none}
+.visual-figure svg{display:block;width:100%;height:auto}
+@media(max-width:980px){.compare-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.timeline{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.role-grid,.puzzle-pairs,.figure-legend,.cross-grid{grid-template-columns:1fr}.compare-grid{grid-template-columns:1fr 1fr}.timeline{grid-template-columns:1fr 1fr}.hero .visual{max-width:450px}.puzzle-pairs span{white-space:normal}}
+@media(max-width:620px){.rosetta-svg{display:none !important}.rosetta-mobile{display:grid;grid-template-columns:1fr;gap:9px}.rosetta-mobile div{background:var(--soft);border:1px solid var(--line);border-radius:15px;padding:14px}.rosetta-mobile b{display:block;color:var(--accent)}.rosetta-mobile small{display:block;color:var(--muted)}.rosetta-mobile div:nth-child(1){min-height:62px}.rosetta-mobile div:nth-child(2){min-height:95px}.rosetta-mobile div:nth-child(3){min-height:122px}}
+@media(max-width:440px){.compare-grid,.timeline{grid-template-columns:1fr}.hero .visual text{font-size:13px}}
+</style></head><body><div class="progress" id="progress"></div><div class="shell">
+<div class="topbar"><a href="index.html">← 返回本周目录</a><div class="tools"><a class="btn" href="2026-10-07-gunpowder-empires.html">← 上一篇</a><button class="btn" id="theme">切换明暗</button></div></div>
+<header class="hero"><div>
+<div class="eyebrow">2026-10-08 · 语言学 · 古文字学 · 数学推理 · 数字人文 · 文物伦理</div>
+<h1>文字破译</h1><div class="en">Decipherment</div>
+<div class="tagline">真正打开古代文字的，不是“猜出一个词”，而是建立一套能够在未知材料上持续通过检验的读法。</div>
+<p class="intro">罗塞塔石碑为什么能改变三千年的历史？线形文字 B 没有双语碑却为何仍能被破解？玛雅文字为什么长期被误当成纯粹符号，而印度河铭记至今仍充满争议？把这些故事放在一起，会发现破译不是猜谜，而是一门从不完整证据中恢复编码规则、再用语言与历史交叉验算的学问。</p>
+<div class="reading-time">33 个递进章节 · 5 个视觉 / 交互模块 · 一条从古代碑刻到计算语言学的认知链</div>
+</div>
+<div class="visual">
+<svg viewBox="0 0 520 390" role="img" aria-label="从未知图形出发，经文字规则与外部证据交叉校验后，输出可验证读法的概念示意">
+<defs><marker id="hero-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--accent)"/></marker></defs>
+<rect x="25" y="32" width="470" height="326" rx="28" fill="var(--panel)" stroke="var(--line)"/>
+<rect x="53" y="76" width="140" height="80" rx="17" fill="var(--soft)" stroke="var(--accent2)"/>
+<text x="123" y="112" fill="var(--accent2)" font-size="29" font-weight="700" text-anchor="middle">◆ ○ △</text>
+<text x="123" y="138" fill="var(--muted)" font-size="13" text-anchor="middle">未知符号</text>
+<rect x="325" y="76" width="140" height="80" rx="17" fill="var(--soft)" stroke="var(--accent)"/>
+<text x="395" y="112" fill="var(--accent)" font-size="26" font-weight="700" text-anchor="middle">MARA</text>
+<text x="395" y="138" fill="var(--muted)" font-size="13" text-anchor="middle">已知名字锚点</text>
+<path d="M194 116H313" stroke="var(--accent)" stroke-width="3" marker-end="url(#hero-arrow)"/>
+<rect x="120" y="224" width="280" height="83" rx="17" fill="var(--soft)" stroke="var(--line)"/>
+<text x="260" y="254" fill="var(--text)" font-size="21" font-weight="700" text-anchor="middle">提出规则 → 读出新名字</text>
+<text x="260" y="280" fill="var(--muted)" font-size="13" text-anchor="middle">能在未见材料上预测，才算过关</text>
+<path d="M124 167C126 197 190 208 218 218" fill="none" stroke="var(--accent)" stroke-width="3" marker-end="url(#hero-arrow)"/>
+<path d="M394 167C394 197 332 208 302 218" fill="none" stroke="var(--accent)" stroke-width="3" marker-end="url(#hero-arrow)"/>
+</svg>
+</div></header>
+<div class="layout"><nav class="toc"><a href="#s1">01 · 读符号不是看图猜义</a><a href="#s2">02 · 符号—文字—语言</a><a href="#s3">03 · 破译的四道关</a><a href="#s4">04 · 如何证明读法</a><a href="#s5">05 · 196 BC 政令</a><a href="#s6">06 · 两种语言三种文字</a><a href="#rosetta">视觉 · 三套文字对照</a><a href="#s7">07 · 1799 军事发现</a><a href="#s8">08 · 战后转手与传播</a><a href="#s9">09 · 双语不能逐字套</a><a href="#s10">10 · 重复与频率</a><a href="#s11">11 · 王名圈</a><a href="#cipherlab">实验 · 双语专名推理</a><a href="#s12">12 · Young 的音值发现</a><a href="#s13">13 · 科普特语锚点</a><a href="#s14">14 · 1822 本土王名</a><a href="#s15">15 · 纯象形误解</a><a href="#s16">16 · 语音、词符、定符</a><a href="#signroles">交互 · 符号三角色</a><a href="#s17">17 · 补写与方向</a><a href="#s18">18 · 石头不是万能钥匙</a><a href="#s19">19 · 没有双语的线形 B</a><a href="#s20">20 · Alice Kober 的基础</a><a href="#s21">21 · Ventris 与 Chadwick</a><a href="#s22">22 · 宫廷账本</a><a href="#s23">23 · 玛雅的混合系统</a><a href="#s24">24 · Knorozov 的音节突破</a><a href="#s25">25 · 破译重写历史</a><a href="#s26">26 · 印度河难题</a><a href="#comparison">交互 · 已解与未解对比</a><a href="#s27">27 · 线形文字 A</a><a href="#s28">28 · AI 的能力边界</a><a href="#s29">29 · 计算与可复核</a><a href="#s30">30 · 2026 结构性进展</a><a href="#timeline">交互 · 历史时间轴</a><a href="#s31">31 · 数字归还与伦理</a><a href="#s32">32 · 识别伪破译</a><a href="#s33">33 · 最终认知升级</a><a href="#sources">研究线索</a><a href="#links">跨主题连接</a><a href="#upgrade">视角变化</a><a href="#questions">继续追问</a></nav><article><section id="s1"><div class="section-num">SECTION 01</div><h2>破译不是把图案“猜成中文”</h2><div class="bodycopy"><p>面对一排陌生符号，人最自然的动作是猜图意：圆形是不是太阳，鸟是不是鸟，波浪是不是水。但这只能说明我们在辨认图像，不代表我们已经读出了文字。真正的破译要求从一套有规则的记号，恢复它如何表示某种语言，并且能够在此前没见过的材料上复用这套规则。</p><p>一个成功的读法应当是“可迁移的机器”，而不是只替一件文物编一个动人的故事。如果一个人说某串符号表示“国王带来和平”，却不能解释其他百条文本、重复结构和变体，那么这最多是解释性猜想，不是完成破译。</p></div></section><section id="s2"><div class="section-num">SECTION 02</div><h2>第一个分层：符号、书写系统、语言并不是同一种东西</h2><div class="bodycopy"><p>符号是可见的图形；书写系统规定这些图形怎样排列、组合并映射到声音或词；语言则包含语音、词汇、语法和语义。认识一个符号的形状，不代表知道它代表一个音节还是整词；读出了发音，也不必然理解那个词在古代社会里的含义。</p><p>古代的线形文字 A 就特别能说明这种区分：它与已破译的线形文字 B 共享不少外形相似的记号，研究者因而能够推测一些音值，却仍没有可靠地读通其底层语言。把“有些字能念”误报为“整种文字已破译”，正是在混淆三个层次。</p></div></section><section id="s3"><div class="section-num">SECTION 03</div><h2>第二个分层：识别、转写、释读、翻译是四道关</h2><div class="bodycopy"><p>第一道是辨形：磨损表面这条划痕究竟是一个字符、两个字符，还是制作瑕疵？第二道是转写：不同地点、不同抄写员的变体能否归为同一个符号？第三道是释读：它们按什么规则表达发音或词语？第四道才是翻译：这些词在当时的制度、宗教和生活语境里意味着什么。</p><p>每一道都有不同的错误来源。机器视觉可以把模糊照片中的符号分类得很好，却未必知道该符号的音值；语音模型可以为符号串猜一个连贯句子，却可能与考古语境完全相悖。破译不是某个瞬间的灵感，而是四道关互相校准。</p></div></section><section id="s4"><div class="section-num">SECTION 04</div><h2>破译成功的最低要求：提出规则，然后拿陌生材料来检验</h2><div class="bodycopy"><p>一套假说若能解释训练材料，却不能读出新出土或事先保留的铭文，就很容易是事后配对。严谨做法要寻找可反驳的预测：如果某符号读 /p/，它应当在其他含 /p/ 的名称、词形和拼写环境里以合适方式出现。</p><p>研究者还会看规则是否能解释同一词的不同拼法、词尾变化、名词类别、书写方向与出土环境。真正的突破通常表现为“证据开始自己增殖”：一个已经解出的词又帮助识别另一个词，再经独立文本复核。</p></div></section><section id="s5"><div class="section-num">SECTION 05</div><h2>公元前 196 年：一份政令为何会成为破译钥匙</h2><div class="bodycopy"><p>罗塞塔石碑并非为未来的学者制作。它记载的是托勒密五世时代祭司会议发布的政令，目的在于确认王权和祭司集团之间的政治—宗教安排。由于政令需要跨越不同文字使用者传播，同一核心内容被刻成了三段书写形式。</p><p>石碑之所以关键，恰恰来自这个普通行政需要：已知一种语言的文本，为未知书写系统提供了外部参照。换句话说，古代治理制造了现代破译需要的“对照实验”。</p></div></section><section id="s6"><div class="section-num">SECTION 06</div><h2>石碑不是“三种语言”：是两种语言、三套文字</h2><div class="bodycopy"><p>上方的圣书体、中间的世俗体都记录埃及语，最下方的希腊文字则记录古希腊语。大英博物馆统计现存文字为圣书体 14 行、世俗体 32 行、希腊文 54 行。行数不同并不表示内容总量完全不相同：各套文字的书写密度与版面布局本来不同，而且石碑上部残缺。</p><p>理解这个差异非常重要。把它说成“三种语言三种写法”，会错误地夸大平行语料的独立性；把它说成三份逐字对应的翻译，又会误导后面的符号比对。</p></div></section>
+<section id="rosetta" class="visual-section"><div class="section-num">VISUAL / INTERACTIVE 01</div><h2>同一份政令，为什么“三段文字”就足以改变整个问题？</h2>
+<figure class="visual-figure"><div class="visual-title">罗塞塔石碑：两种语言、三套文字（结构示意，非原石拓本）</div>
+<svg class="rosetta-svg" viewBox="0 0 840 360" role="img" aria-label="石碑上方十四行埃及圣书体、中间三十二行埃及世俗体、下方五十四行希腊文的结构比例示意">
+<path d="M228 30 H610 Q622 30 622 50 V330 H218 V50 Q218 30 228 30Z" fill="var(--soft)" stroke="var(--line)" stroke-width="3"/>
+<rect x="245" y="52" width="349" height="77" rx="8" fill="var(--panel)" stroke="var(--accent)" stroke-width="2"/>
+<rect x="245" y="142" width="349" height="88" rx="8" fill="var(--panel)" stroke="var(--accent2)" stroke-width="2"/>
+<rect x="245" y="244" width="349" height="69" rx="8" fill="var(--panel)" stroke="var(--line)" stroke-width="2"/>
+<g stroke="var(--muted)" fill="none" stroke-width="2" opacity=".75"><path d="M261 73H570 M261 88H570 M261 103H570" stroke-dasharray="10 10"/><path d="M261 166H570 M261 178H570 M261 190H570 M261 202H570" stroke-dasharray="4 5"/><path d="M261 263H570 M261 276H570 M261 289H570"/></g>
+<g font-family="ui-sans-serif,system-ui,sans-serif" fill="var(--text)" font-size="15"><text x="34" y="78" font-weight="700">圣书体</text><text x="34" y="100" font-size="13" fill="var(--muted)">埃及语 · 14 行</text><text x="34" y="160" font-weight="700">世俗体</text><text x="34" y="182" font-size="13" fill="var(--muted)">埃及语 · 32 行</text><text x="34" y="260" font-weight="700">希腊文</text><text x="34" y="282" font-size="13" fill="var(--muted)">古希腊语 · 54 行</text></g>
+<g stroke="var(--accent)" stroke-width="2"><path d="M146 90H232"/><path d="M146 175H232"/><path d="M146 272H232"/></g>
+<g fill="var(--muted)" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12"><text x="640" y="97">图案 ≠ 纯粹表意</text><text x="640" y="188">手写化的埃及文字</text><text x="640" y="283">已知语言锚点</text></g>
+</svg>
+<div class="rosetta-mobile" aria-label="石碑的三个书写分区"><div><b>上：圣书体</b><small>埃及语 · 现存 14 行，石碑上部残缺</small></div><div><b>中：世俗体</b><small>埃及语 · 现存 32 行，是日常使用的手写式文字</small></div><div><b>下：希腊文字</b><small>古希腊语 · 54 行，为破译提供已知语言锚点</small></div></div><figcaption class="visual-caption">现存原石上部残缺，图中分区高度不表示实际行高；示意重点是三种文字记录同一核心政令，其中上两部分属于同一种语言。来源：大英博物馆 EA24。</figcaption>
+</figure>
+<div class="visual-reading"><b>怎么看：</b>先看希腊文是“内容锚点”，再看两段埃及文的形态差异。最重要的不是数每个字是否相等，而是比较同一王名、称号和重复公式如何跨体系出现。</div>
+<div class="switches rosetta-tabs" role="group" aria-label="切换石碑书写系统"><button type="button" class="active" data-stone="greek">希腊文 · 已知锚点</button><button type="button" data-stone="demotic">世俗体 · 中间桥梁</button><button type="button" data-stone="hieroglyph">圣书体 · 目标系统</button></div>
+<div class="detailbox" id="stoneDetail" aria-live="polite"></div>
+</section><section id="s7"><div class="section-num">SECTION 07</div><h2>1799：破译钥匙是在军事入侵中被发现的</h2><div class="bodycopy"><p>1799 年，拿破仑远征埃及时，法国军人在尼罗河三角洲拉希德（欧洲文献称 Rosetta）附近修筑要塞时发现了石碑，军官 Bouchard 意识到铭文的特别价值。此时古埃及圣书体知识已经失传许久，但希腊文仍可由古典学者阅读。</p><p>发现史不能只写成科学偶遇：它发生在法国军事行动期间，随后又经法国战败进入英国收藏。知识因此得以加速流传，也同时嵌入殖民战争与文物归属的争议。</p></div></section><section id="s8"><div class="section-num">SECTION 08</div><h2>1801—1802：石碑的所有权与石碑的知识价值分开走</h2><div class="bodycopy"><p>法国战败后，罗塞塔石碑根据 1801 年《亚历山大里亚条约》所处的战后安排转入英国，1802 年起进入大英博物馆体系。与此同时，铭文的拓印和复制件早已被传播，欧洲多地学者能够独立研究同一组图形。</p><p>这形成了双重历史：物的占有与知识的复制遵循不同逻辑。原石的位置具有政治象征意义，但破译工作依靠的证据可以通过印本跨国流通。今天关于归还的讨论也正是从这条分叉继续展开。</p></div></section><section id="s9"><div class="section-num">SECTION 09</div><h2>为什么“有双语”仍不等于一眼破解</h2><div class="bodycopy"><p>一份双语政令不是字典。古代政令会有公式化措辞，句子顺序可改变，头衔与称号可能被省略或扩写，两个语言的词形变化也未必一一对应。若直接用希腊文的第十个词套未知文字中的第十个符号，结果大概率错误。</p><p>真正可用的锚点通常是比较稳定的专名、重复的称号、数字和格式。它们先提供少量高可信对齐，再逐步外推整套音值与语法，而非一次性把整碑逐字符映射。</p></div></section><section id="s10"><div class="section-num">SECTION 10</div><h2>重复与频率如何帮助人找到边界</h2><div class="bodycopy"><p>最初面对一篇未知铭文，连一个“词”从哪里开始、在哪里结束都不清楚。研究者先统计符号出现频率、重复字符串、邻接顺序和行内位置。若某个短串多次出现在可能是“王”的位置，它可能是称号；若某个图形常跟在名词之后，则可能承担类别提示。</p><p>但频率只能形成假说。高频符号可能是语法词，也可能是常见音节；重复串可能是真正的词，也可能是宗教固定公式。统计为破译提供地图，却不能代替语言学解释。</p></div></section><section id="s11"><div class="section-num">SECTION 11</div><h2>王名圈：为什么“托勒密”比普通动词更容易打开缺口</h2><div class="bodycopy"><p>圣书体中，部分王名被写在带椭圆形轮廓的王名圈（cartouche）里。古希腊文字既然能读出 Ptolemy，就为未知字符中的对应名字提供了一个候选。专名跨语言保留相近发音，因此比日常动词或抽象概念更容易用于建立音值联系。</p><p>但王名圈只是组织线索：不是任何圈内符号都能直接按现代拼写逐字符替换，古埃及语的辅音书写和希腊文的元音表达不同，而且王名可能附带宗教称号。</p></div></section>
+<section id="cipherlab" class="visual-section"><div class="section-num">INTERACTIVE 03</div><h2>四步小实验：不认识一个符号，也能借平行文本推出读音</h2>
+<div class="puzzle"><p>这是<strong>完全虚构、为教学而设计</strong>的五符号文字。已知外部目录写有三个人名：<strong>MARA、MATO、TOMA</strong>；石板对应的未知文字如下。点击步骤观察如何交叉检验，而不是直接“看图猜义”。</p>
+<div class="puzzle-pairs"><div><b>MARA</b><span>◆ ○ △ ○</span></div><div><b>MATO</b><span>◆ ○ □ ◇</span></div><div><b>TOMA</b><span>□ ◇ ◆ ○</span></div></div>
+<div class="switches" id="puzzleButtons"><button type="button" class="active" data-step="0">① 寻找重复</button><button type="button" data-step="1">② 固定同位符</button><button type="button" data-step="2">③ 建立字母映射</button><button type="button" data-step="3">④ 用未见名字测试</button></div>
+<div class="detailbox" id="puzzleDetail" aria-live="polite"></div><div class="puzzle-new" id="puzzleNew"></div>
+</div>
+</section><section id="s12"><div class="section-num">SECTION 12</div><h2>Thomas Young 的贡献：证明图画也可能在拼声音</h2><div class="bodycopy"><p>英国学者 Thomas Young 在 19 世纪初研究罗塞塔石碑及其他材料，识别了部分埃及世俗体与圣书体之间的联系，并在“托勒密”王名中指出部分符号具有语音作用。这一步之所以重要，是因为当时很多人仍把圣书体主要理解成神秘图像或纯粹寓意符号。</p><p>他的解释不完整，但迫使问题改变方向：我们不该只问“这个图像是什么意思”，而要问“它在这里是否被拿来写一个声音”。科学突破有时不是拿到最终答案，而是淘汰让人始终走不通的提问方式。</p></div></section><section id="s13"><div class="section-num">SECTION 13</div><h2>Champollion 为什么需要科普特语：破译文字并不等于凭空创造语言</h2><div class="bodycopy"><p>Jean-François Champollion 熟悉科普特语，它是古埃及语的晚期形式，使用以希腊字母为主的书写系统，并在宗教传统中长期延续。科普特语帮助他把候选符号音值与真实埃及语词根联系起来，使推断不必完全依赖外来君主名字。</p><p>这是一种关键的三角校验：希腊文提供人名锚点，圣书体提供未知记号，科普特语提供可比较的埃及语词汇。三方同时约束，模型就比单靠“图形相似”可靠得多。</p></div></section><section id="s14"><div class="section-num">SECTION 14</div><h2>1822：从外来王名跨到埃及本土王名</h2><div class="bodycopy"><p>Champollion 于 1822 年 9 月公布关于语音圣书符号的重要成果；他能够从托勒密、克利奥帕特拉一类外来名字进一步解释拉美西斯等埃及本土王名。这一步含义巨大：语音书写不是专为希腊统治者名字临时借用的工具，而是古埃及书写体系的内在组成。</p><p>从此古埃及文字不再是只能“象征性解读”的图案。它开始成为可连续读出语音、语法并与古埃及语相对照的文字资料。</p></div></section><section id="s15"><div class="section-num">SECTION 15</div><h2>最要命的误解：象形文字不是“一个图形等于一个概念”</h2><div class="bodycopy"><p>一个画成嘴巴的符号，在某些位置可以表示与嘴相关的词，在另一些位置则可以只承担音 /r/。一个符号可以表示一个辅音、两个或三个辅音，也可以作为词符；另一些符号不发音，只用来提醒读者前面这个词属于“人”“活动”“地方”等语义类别。</p><p>这是一套混合书写系统。人们看见“像鸟的图形”，就本能地以为它一定在说鸟，正如不了解汉字的人看见“木”就想把所有含“木”的字解释成树木。这种过度直观化会把破译者带进死胡同。</p></div></section><section id="s16"><div class="section-num">SECTION 16</div><h2>三种符号角色：语音、词符、定符</h2><div class="bodycopy"><p>语音符号（phonogram）编码声音而非图中物体；词符（logogram）可以直接指称一个词或词素；定符（determinative）通常不读出声音，而负责限定类别、消解同音或近形歧义。写手可以把这几类符号组合起来，让一个词既有“怎样念”的线索，也有“属于哪类意义”的线索。</p><p>因此这不是“古文字比较落后”的证据，而是面向特定语言的一种冗余编码设计。现代工程师会认出它的价值：当若干符号读法可能相似时，语义分类信息帮助读者纠错。</p></div></section>
+<section id="signroles" class="visual-section"><div class="section-num">VISUAL / INTERACTIVE 02</div><h2>一个古文字符号可以承担三种完全不同的工作</h2>
+<div class="role-grid">
+<button class="role-card active" type="button" data-role="sound"><span class="glyph">◉</span><b>语音符号</b><small>告诉你怎么念</small></button>
+<button class="role-card" type="button" data-role="word"><span class="glyph">◧</span><b>词符</b><small>表示一个词或词素</small></button>
+<button class="role-card" type="button" data-role="class"><span class="glyph">▱</span><b>定符</b><small>告诉你属于什么类别</small></button>
+</div>
+<div class="detailbox" id="roleDetail" aria-live="polite"></div>
+<p class="visual-note">演示符号 ◉ ◧ ▱ 为本页自创的几何记号，不对应任何真实古埃及字符。真实埃及文字的分类与用法以 UCL Digital Egypt 的说明为准。</p>
+</section><section id="s17"><div class="section-num">SECTION 17</div><h2>书写方向与语音补足：那些看似多出来的符号有作用</h2><div class="bodycopy"><p>埃及圣书体可按不同方向排版，人物和动物头部朝向通常提供阅读方向线索；同一词中的单辅音记号有时用来补充多辅音符号的音值。这意味着“出现了重复音”并不必然表示必须再读一遍。</p><p>破译因此还要区分发音、拼写和版式。若读法在一块石碑上勉强通顺，却违反大量同类铭文的方向、补写习惯和语法结构，就很难称为可靠。</p></div></section><section id="s18"><div class="section-num">SECTION 18</div><h2>真正打开古埃及历史的不是“一块石头”，而是可迁移的规则</h2><div class="bodycopy"><p>罗塞塔石碑让古埃及文字有了第一个重要入口，但文字破译来自长期积累：更多王名圈、不同地区的铭文、科普特语语词、抄本比较以及研究者对错误读法的纠正。把故事全部压缩成 Champollion 的灵光一闪，会抹掉 Young 等人的工作，也会低估后续语言学的难度。</p><p>更准确的说法是：石碑是锚点，规则是成果，能够在石碑之外读通历史才是成功的证据。</p></div></section><section id="s19"><div class="section-num">SECTION 19</div><h2>没有“罗塞塔石碑”还能破译吗？线形文字 B 给出另一个答案</h2><div class="bodycopy"><p>20 世纪上半叶，克里特岛和希腊大陆出土了大量刻有线形文字 B 的泥板。它们没有一份像罗塞塔石碑那样对应已知语言的并列全文，但大量行政清单、符号重复与地点分布为统计方法提供了机会。</p><p>这类破译不像“对照翻译”，更像在不知道加密规则的情况下，利用内部语法模式、地名、重复词尾以及不同泥板书吏的书写习惯不断缩小可能性。</p></div></section><section id="s20"><div class="section-num">SECTION 20</div><h2>Alice Kober：真正的前提是发现词形变化，而不是先猜国家</h2><div class="bodycopy"><p>美国学者 Alice Kober 在 1940 年代系统整理线形文字 B 的符号与词尾变化，发现若干词形组之间存在规律性替换。这种“词根重复但尾部有系统变化”的模式，使人推测未知语言具有某种屈折变化机制。</p><p>她没有完成最终破译，却把零散石板转成可进行语言分析的结构化证据。后来的 Michael Ventris 正是在这类工作基础上推进假说。破解故事如果只记住最后宣布答案的天才，往往会忽略先建立证据空间的人。</p></div></section><section id="s21"><div class="section-num">SECTION 21</div><h2>1952：Ventris 的关键猜想为什么可以被反驳</h2><div class="bodycopy"><p>Michael Ventris 在 1952 年提出线形文字 B 实际记录的是一种早期希腊语，而非他一度设想的其他语言。这个结论需要面对严格检验：候选音值能否读出一系列地名、清单词语和词形变化？新的泥板是否仍旧符合希腊语的历史语法？</p><p>剑桥大学的研究回顾强调，John Chadwick 随后迅速加入，从古典语言学角度检验并发展读法。这里的科学性在于：它不是“某个单词看起来像希腊语”，而是整片语料逐渐被同一组规则解释。</p></div></section><section id="s22"><div class="section-num">SECTION 22</div><h2>破译让人意外的内容：史诗之前先出现的是仓库账本</h2><div class="bodycopy"><p>线形文字 B 的大量资料涉及宫廷经济：粮食、牲畜、织物、工人、献祭和库存。考古学者原本可能想从神秘文字中读到神话和王朝传奇，却首先得到了记账与分配资料。</p><p>这很值得玩味。书写发明与传播不只为诗歌和哲学服务，它也服务于行政治理。破译不仅解放古代的声音，也让粮仓、配给与劳动力管理重新进入历史叙述。</p></div></section><section id="s23"><div class="section-num">SECTION 23</div><h2>玛雅文字：第二个“大错误”也是把图画当成纯粹象征</h2><div class="bodycopy"><p>玛雅碑刻里有神灵、动物、面孔和复杂形体，长久以来一些学者倾向于把它们理解成主要表达宗教象征和历法信息。后来研究显示，玛雅文字是一套词符—音节混合系统：某些符号表示完整词，另一些符号表示辅音—元音音节；两者还可以互相补充。</p><p>这打开了王朝年表、战争、外交、继承和个人名字等大量历史信息。古代美洲的石刻不再只是装饰性仪式图像，而可以作为政治史档案阅读。</p></div></section><section id="s24"><div class="section-num">SECTION 24</div><h2>Knorozov 的转折：所谓“字母表”可能其实记的是音节</h2><div class="bodycopy"><p>苏联学者 Yuri Knorozov 重读殖民时代神职人员 Diego de Landa 记录的一组玛雅文字对照，意识到其中一些看似“单个字母”的结果更接近音节。1952 年他发表早期成果，使音节读法成为解开玛雅文字的一条关键路径。</p><p>这再次重演罗塞塔石碑的教训：面对陌生文字，不能预先假定“一格就对应一个字母”。如果该系统用音节写词，你拿现代拉丁字母逐个匹配就会制造许多假矛盾。</p></div></section><section id="s25"><div class="section-num">SECTION 25</div><h2>释读之后，历史本身会被改写</h2><div class="bodycopy"><p>当更多玛雅铭文能够被阅读，人们看见了大量具体人物、统治年限、战争和征服。文字破译改变的并不仅是某些名字如何发音，它还把“神秘古文明”的笼统描述，改写成充满政治竞争、个人选择与历史因果的多元社会。</p><p>同样，线形文字 B 延长了可读希腊语材料的时间纵深；埃及圣书体破译使漫长的法老史不必完全依赖希腊和罗马作者的转述。破译改变的是谁能在历史叙述中直接发声。</p></div></section><section id="s26"><div class="section-num">SECTION 26</div><h2>未破译之一：印度河符号为什么特别难</h2><div class="bodycopy"><p>印度河文明留下大量短铭记，常见于印章等小型器物。然而多数铭记很短，语言归属不确定，目前没有公认的双语对照，也缺少足够长的连续文本。研究者对其是否编码完整自然语言、或与徽记系统存在怎样的关系，仍有分歧。</p><p>这并非“现代技术还不够聪明”那么简单。它是信息不足的问题：如果绝大多数材料短到只有几个符号，很多相互矛盾的假说都能自圆其说。缺乏长文本意味着难以用句法和内部一致性淘汰候选读法。</p></div></section>
+<section id="comparison" class="visual-section"><div class="section-num">VISUAL / INTERACTIVE 04</div><h2>为什么有的文字很快打开，有的仍然沉默？关键是证据条件不同</h2>
+<div class="compare-grid"><button type="button" class="active" data-case="egypt"><b>埃及圣书体</b><small>已破译</small></button><button type="button" data-case="linearb"><b>线形文字 B</b><small>已破译</small></button><button type="button" data-case="maya"><b>玛雅文字</b><small>大部分可读</small></button><button type="button" data-case="lineara"><b>线形文字 A</b><small>未完整破译</small></button><button type="button" data-case="indus"><b>印度河符号</b><small>未公认破译</small></button></div>
+<div class="detailbox" id="caseDetail" aria-live="polite"></div>
+<div class="visual-reading"><b>怎么看：</b>请比较“平行文本”“语言线索”“语料量”“可检验词形”四个维度。一个系统能否被破译，与其外观多复杂没有简单正比关系；证据锚点与独立检验远比猜测才华重要。</div>
+</section><section id="s27"><div class="section-num">SECTION 27</div><h2>未破译之二：线形文字 A 让我们看见“可读符号 ≠ 可读语言”</h2><div class="bodycopy"><p>线形文字 A 与线形文字 B 共享某些字形，二者的相似性有助于推测若干符号读音；但 A 的底层语言仍未被可靠破译。即便把某串符号按类似 B 的音值念出来，如果它无法在已知语言中组成可检验的词和语法，问题依然没有解决。</p><p>2026 年 Cambridge University Press 出版的研究以分区语料和音节组合分布为证据，支持克里特岛不同地区的线形文字 A 大体编码同一语言，并与线形文字 B 所记录的希腊语不同。这是结构性进展，不是“2026 年已破解线形文字 A”。</p></div></section><section id="s28"><div class="section-num">SECTION 28</div><h2>为什么“人工智能破解古文字”常需要降低标题的兴奋程度</h2><div class="bodycopy"><p>机器学习特别擅长识别重复、聚类字形、预测损坏部分，以及在有对应语言或亲缘语言时寻找可能的音值。它能把研究者从耗时的图像整理与模式发现中解放出来，也能明确给出哪种猜法对语料最一致。</p><p>但是模型不能凭空补出消失的双语碑和历史语境。一个网络把未知符号翻译成流畅的现代句子，不等于句子可由独立证据验证。真正的测试包括事先保留材料、不同遗址样本、历史地名、考古上下文和专家复核。</p></div></section><section id="s29"><div class="section-num">SECTION 29</div><h2>数字计算最有价值的角色：把“证据链”变成可复核数据</h2><div class="bodycopy"><p>更现实的进步是建立高清图像、字符转写标准、版本化语料、词尾统计以及明示不确定性的候选读法。计算机可以发现人眼难以察觉的组合规则，也可以快速暴露某项读法在哪些文本上失败。</p><p>这种思路与现代软件测试很接近：重要的不是生成一个令人信服的解释，而是留下足够清晰的规则与错误记录，让别的研究者能够独立复算。</p></div></section><section id="s30"><div class="section-num">SECTION 30</div><h2>2026 的研究现场：线形文字 A 的“分布证据”与未完成任务</h2><div class="bodycopy"><p>2026 年 3 月上线的《The Undeciphered Aegean Scripts》研究章节比较克里特岛五个地区的线形文字 A 语料，以及用于对照的线形文字 B 区域语料。它通过音节组合的统计相似度，论证线形文字 A 的各地区文本很可能编码同一种语言，而 A 与 B 对应的语言显著不同。</p><p>这类进展非常重要，但也必须如实命名：它回答的是“各地是否写同一种语言”，不是“这些词具体是什么意思”。科学研究常会让一个大谜题分裂成若干已经解决和仍未解决的子问题。</p></div></section>
+<section id="timeline" class="visual-section"><div class="section-num">INTERACTIVE 05</div><h2>两个多世纪的破译史：从王名到语料，再到计算方法</h2>
+<div class="timeline"><button type="button" class="active" data-era="1799"><strong>1799</strong>罗塞塔发现</button><button type="button" data-era="1810s"><strong>1810s</strong>Young</button><button type="button" data-era="1822"><strong>1822</strong>Champollion</button><button type="button" data-era="1952"><strong>1952</strong>线形 B / 玛雅</button><button type="button" data-era="2024"><strong>2024</strong>计算方法综述</button><button type="button" data-era="2026"><strong>2026</strong>线形 A 新证据</button></div>
+<div class="detailbox" id="eraDetail" aria-live="polite"></div>
+</section><section id="s31"><div class="section-num">SECTION 31</div><h2>归还与复刻：谁拥有破译后的历史？</h2><div class="bodycopy"><p>2026 年 6 月，澳大利亚 ABC 报道艺术家团队以手机 LiDAR 扫描罗塞塔石碑、再利用地理定位增强现实把数字版本放回埃及拉希德的项目。这个行动不是原石的物理归还，也不能替代文物来源与法律讨论；它试图让“谁能接近历史、谁能讲述历史”变得可见。</p><p>同一块石碑至少牵涉三条彼此不能混为一谈的线：学者使用铭文的证据权、博物馆对实物的保管与展示责任、原属地社群对历史叙事的参与和归属诉求。破译使沉默文字再次可读，也让“谁替谁讲述”成为必须回答的问题。</p></div></section><section id="s32"><div class="section-num">SECTION 32</div><h2>最危险的三类伪破译：能讲故事、能凑相似、不能预测</h2><div class="bodycopy"><p>第一类把图画按现代直觉逐幅编故事；第二类先选定想要的民族或语言，再在庞大词库里寻找几个勉强相似的声音；第三类用模型在训练文本上给出自洽读法，却从不展示失败例子或独立验证。三者往往都能产出漂亮结果，但缺少真正的可证伪性。</p><p>可以要求最简单的试金石：公开字形划分规则、公开所有语料和拒绝解释的例子、在先前没有看过的铭文中预测词义，并接受独立语言学与考古证据的共同审查。</p></div></section><section id="s33"><div class="section-num">SECTION 33</div><h2>最深层的认知：破译不是找到“钥匙”，而是建造一个可检验的翻译接口</h2><div class="bodycopy"><p>我们喜欢罗塞塔石碑，是因为“神秘符号 + 万能钥匙”的故事极具戏剧性。但成熟破译其实更像工程：确认输入是什么，猜测底层表示，找到已知锚点，让假说跨材料迁移，再用反例修正规则。</p><p>这是一种可以迁移到科学、软件和历史研究的思维方式。未知系统面对我们时，重要的不是立刻猜出一个含义，而是逐渐建设“可复用、可失败、可独立校验”的映射。真正的边界不在于我们暂时读不懂，而在于我们是否知道怎样区分‘读懂了’与‘恰好猜对几个例子’。</p></div></section>
+<section id="sources"><div class="section-num">SOURCES</div><h2>研究线索与进一步阅读</h2><div class="bodycopy source-list"><p>• <a href="https://www.britishmuseum.org/blog/everything-you-ever-wanted-know-about-rosetta-stone" target="_blank" rel="noopener">British Museum · Rosetta Stone: everything you need to know</a>：原石 196 BC、两种语言三种文字、14/32/54 行及 Young、Champollion 的研究路径。</p><p>• <a href="https://www.britishmuseum.org/collection/object/Y_EA24" target="_blank" rel="noopener">British Museum · Rosetta Stone（EA24）</a>：文物年代、尺寸、发现与收藏记录。</p><p>• <a href="https://www.britishmuseum.org/exhibitions/hieroglyphs-unlocking-ancient-egypt/egyptian-hieroglyphs-decipherment-timeline" target="_blank" rel="noopener">British Museum · Hieroglyphs decipherment timeline</a>：1799—1822 研究史与 1822 年成果发布背景。</p><p>• <a href="https://www.ucl.ac.uk/museums-static/digitalegypt/writing/system.html" target="_blank" rel="noopener">UCL Digital Egypt · Egyptian writing system</a>：语音符号、表意 / 词符、定符及埃及语通常省略元音的特点。</p><p>• <a href="https://www.classics.cam.ac.uk/research/projects/mycep/decipherment" target="_blank" rel="noopener">University of Cambridge · Decipherment of Linear B</a>：Ventris、Chadwick 与 1952 年读出早期希腊语。</p><p>• <a href="https://www.cam.ac.uk/research/news/cracking-the-code-the-decipherment-of-linear-b-60-years-on" target="_blank" rel="noopener">University of Cambridge · Cracking the code</a>：Kober 的基础工作、Ventris Work Note 20 与验证。</p><p>• <a href="https://hollisarchives.lib.harvard.edu/catalog/dca00027" target="_blank" rel="noopener">Harvard Archives · Yuri Knorozov papers</a>：1952 年 Knorozov 的玛雅音节解释及其资料来源。</p><p>• <a href="https://www.unimelb.edu.au/mdap/research/2024-collaborations/using-deep-neural-network-models-in-the-decipherment-of-linear-a" target="_blank" rel="noopener">University of Melbourne · Linear A machine research</a>：线形文字 A 尚未破译，计算模型能处理什么。</p><p>• <a href="https://www.cambridge.org/core/books/abs/undeciphered-aegean-scripts/syllabotactic-analysis-of-linear-a/520BBD5B26C70ECF654C9B1A3A26C619" target="_blank" rel="noopener">Cambridge University Press · Syllabotactic Analysis of Linear A（2026）</a>：2026 年区域语料比较与结构性推断，非完整破译。</p><p>• <a href="https://aclanthology.org/2024.cl-2.7/" target="_blank" rel="noopener">ACL Anthology · Computational Approaches to Deciphering Scripts</a>：计算破译方法与诸多挑战的系统综述。</p><p>• <a href="https://www.worldhistory.org/Indus_Script/" target="_blank" rel="noopener">World History Encyclopedia · Indus Script</a>：短语料、无双语、底层语言未知等未解难点。</p><p>• <a href="https://www.abc.net.au/news/2026-06-23/rosetta-stone-looty-stuff-the-british-stole/106799654" target="_blank" rel="noopener">ABC News · The Rosetta Stone was taken from Egypt（2026-06-23）</a>：数字扫描与增强现实“归还”案例，和实体归属区分。</p></div></section>
+<section id="links"><div class="section-num">CROSS LINKS</div><h2>跨主题连接：破译改变了什么学科边界？</h2><div class="cross-grid"><a class="cross-card" href="../w38/2026-09-14-great-vowel-shift.html"><b>元音大推移｜Great Vowel Shift</b><p>文字系统常保存旧拼法，语音却不断变化。破译既要识别写法，更要理解声音与文字并不会一一同步。</p></a><a class="cross-card" href="../w39/2026-09-26-sprachbund.html"><b>语言联盟｜Sprachbund</b><p>不同语言会因接触而共享特征，但使用相似文字不等于说同一语言；线形 A 与 B 的差异能把“语言关系”和“书写系统关系”清楚分开。</p></a><a class="cross-card" href="../w37/2026-09-13-palimpsest.html"><b>重写本｜Palimpsest</b><p>重写本通过被覆盖的墨迹恢复文字；破译则从可见而不可读的符号恢复编码。两者都用多源证据反推失落知识。</p></a><a class="cross-card" href="../w38/2026-09-17-tomography.html"><b>层析成像｜Tomography</b><p>层析成像建立测量的前向模型，再从投影逆推内部结构；破译同样要先猜编码过程，再验证它能否解释陌生文本。</p></a></div></section>
+<section id="upgrade"><div class="section-num">COGNITIVE UPGRADE</div><h2>这个关键词改变了什么视角</h2><div class="bodycopy"><table class="matrix"><thead><tr><th>原来的直觉</th><th>破译之后更有解释力的视角</th></tr></thead><tbody>
+<tr><td>图案像什么，就表示什么。</td><td>先判断它是音、词还是类别线索，再寻找跨材料可验证的规律。</td></tr>
+<tr><td>拿到双语对照，问题就解决。</td><td>双语只提供锚点；符号切分、音值、语法与文化语境仍需逐步证明。</td></tr>
+<tr><td>能给某段碑文一个漂亮译文就算成功。</td><td>真正的成功是同一规则能预测未见文字，并经独立语料反复校验。</td></tr>
+<tr><td>一种文字若没破译，是因为还没人够聪明。</td><td>可能缺少足够长的文本、双语材料、语言亲缘线索或可靠的考古背景。</td></tr>
+<tr><td>古文字是静止的历史遗物。</td><td>破译会让失语的社群重新进入政治、经济与历史叙述，同时提出文物归属的伦理问题。</td></tr>
+</tbody></table><p>因此，文字破译训练的不是“更大胆地猜”，而是更明确地区分<strong>观察、假说、可验证推断与知识归属</strong>。把这套方法迁移到其他领域，就能避免把“能解释几个现象”误认成“掌握了一整套系统”。</p></div></section>
+<section id="questions"><div class="section-num">QUESTIONS</div><h2>真正值得继续追问的问题</h2><div class="bodycopy"><ol class="questions">
+<li>如果一种文字有长文本、清晰的字符边界，却不知道底层语言，破译还缺少哪些最重要的“锚点”？</li>
+<li>线形文字 A 的部分字符可以借用线形文字 B 的音值推测，为何仍然无法证明一整段文字的意义？</li>
+<li>当 AI 能生成成千上万个“看起来合理”的候选译文时，我们应建立怎样的盲测与保留语料机制来筛除伪破译？</li>
+<li>某些被外界称作“不可读文字”的符号，是否可能本来就不是完整语言，而是身份、数目或礼仪记号？</li>
+<li>破译让古文明重新“说话”以后，解释权、数据开放与文物归还应当怎样分配给学者、博物馆及原属地社群？</li>
+</ol></div></section></article></div>
+<footer class="footer">2026-10-08 · 文字破译 · GitHub Pages reading layer</footer></div><script>
+document.getElementById('theme').addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark'});
+const progress=document.getElementById('progress');addEventListener('scroll',()=>{let h=document.documentElement.scrollHeight-innerHeight;progress.style.transform='scaleX('+(h?scrollY/h:0)+')'});
+const sections=[...document.querySelectorAll('article section[id]')],toc=[...document.querySelectorAll('.toc a')];
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)toc.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id))}),{rootMargin:'-18% 0px -72%'});
+sections.forEach(s=>observer.observe(s));
+const stoneData={
+  greek:{title:'希腊文：锚定“说的是哪一件事”',text:'希腊文让研究者知道政令谈论的是托勒密五世的王权、祭司与具体称号，并为“托勒密”这类专名提供可比较的发音。它并不自动标明哪一个圣书符号等于哪一个希腊字母。'},
+  demotic:{title:'世俗体：展示同一种埃及语的另一种编码',text:'世俗体更接近日常手写传统，不是独立的第三种语言。比较它和圣书体可以帮助识别哪些差异来自字形与书写习惯，而非底层语言发生变化。'},
+  hieroglyph:{title:'圣书体：不能只凭图像猜意思',text:'目标是证明鸟、嘴、圆盘等图形何时承担语音功能，何时表示词，何时仅作为定符。王名圈里的名字是起点，读通本土词汇和新铭文才是检验。'}
+};
+function activate(buttons, attr, selected){document.querySelectorAll('['+attr+']').forEach(b=>{const yes=b.getAttribute(attr)===selected;b.classList.toggle('active',yes);b.setAttribute('aria-pressed',String(yes))})}
+function renderStone(k){activate(null,'data-stone',k);const d=stoneData[k];stoneDetail.innerHTML='<h3>'+d.title+'</h3><p>'+d.text+'</p>'}
+document.querySelectorAll('[data-stone]').forEach(b=>b.addEventListener('click',()=>renderStone(b.dataset.stone)));renderStone('greek');
+const roleData={
+ sound:{title:'语音符号：看上去像“物”，实际只借它来写“音”',text:'在古埃及圣书体里，某些符号读作一个或多个辅音，读者应优先拼读它们，而不是逐个翻译图形。用本页虚构 ◉ 举例，若约定它写 /m/，它在不同词里可以反复表示 /m/，与图形外观无关。'},
+ word:{title:'词符：一个图形就可以写出一个词或词素',text:'某些符号并非单纯拼音，而在约定语境中直接指称一个词或词素。混合文字可以在一段话里同时使用这种词符和拼音符号，而不必二选一。'},
+ class:{title:'定符：不发音，却能减少歧义',text:'一种写法可能对应多个发音相同或近似的词；结尾的定符用于提示该词属于人物、动作、地点等语义范畴。它提供的是类别信息，不能误当成还要读出的另一个音节。'}
+};
+function renderRole(k){activate(null,'data-role',k);let d=roleData[k];roleDetail.innerHTML='<h3>'+d.title+'</h3><p>'+d.text+'</p>'}
+document.querySelectorAll('[data-role]').forEach(b=>b.addEventListener('click',()=>renderRole(b.dataset.role)));renderRole('sound');
+const psteps=[
+['第一步：先发现重复模式','MARA 的第 2、4 位都是 A，未知文 ◆○△○ 的第 2、4 位也同为 ○。而 MATO 和 TOMA 使用了同一组四种字符，只是顺序变化。注意这只能提供候选，不构成最终证明。','目前只有“重复位置可能对应”的证据。'],
+['第二步：利用多个人名交叉约束','MARA 与 MATO 开头都为 MA，未知文字两串都以 ◆○ 开始，因此提出 ◆ = M、○ = A。若换到 TOMA，末尾也确实出现了 ◆○，所以这组猜测并非只适用于一条文本。','两条文本互相验证了“◆○”这个固定片段。'],
+['第三步：建立可重复的字母映射','由 MARA 与 MATO 的差异得到 △ = R、□ = T、◇ = O。五个未知符号被赋予统一且不冲突的值：◆→M，○→A，△→R，□→T，◇→O。接下来需要把它用于没有参与推理的材料。','◆=M　○=A　△=R　□=T　◇=O'],
+['第四步：独立预测，而不是继续编故事','如果新发现一条 ○◆◇△，按照之前的规则应读作 AMOR。研究者应先公开预测，再去核实它是否真的对应一个可能出现的人名。若失败，就得重新检查规则，而非临时修改音值。','未见串：○◆◇△　→　A M O R（教学预测）']
+];
+function renderStep(k){activate(null,'data-step',String(k));const s=psteps[+k];puzzleDetail.innerHTML='<h3>'+s[0]+'</h3><p>'+s[1]+'</p>';puzzleNew.textContent=s[2]}
+document.querySelectorAll('[data-step]').forEach(b=>b.addEventListener('click',()=>renderStep(b.dataset.step)));renderStep(0);
+const caseData={
+egypt:['埃及圣书体：拥有独立语义锚点','平行文本','罗塞塔石碑与其他双语材料。','语言知识','古希腊文可读；科普特语提供埃及语后继线索。','语料结构','王名圈与重复政令公式提供高可信起点。','验证状态','大量古埃及铭文可用同一规则阅读。'],
+linearb:['线形文字 B：没有双语，也可以靠内部结构解开','平行文本','没有罗塞塔式完整双语碑。','语言知识','假说是早期希腊语，历史语言学可反复检验。','语料结构','大量泥板、词尾变化、地名与行政清单。','验证状态','1952 年后的独立文本与语法验证成功。'],
+maya:['玛雅文字：把“像画”与“能写音节”结合','平行文本','缺少完整可用的罗塞塔式三文石碑。','语言知识','现代玛雅语族与殖民时期词语记录提供线索。','语料结构','大量碑刻、历法日期、人名及重复音节。','验证状态','大部分系统可读，但具体字符与语义研究仍发展。'],
+lineara:['线形文字 A：有符号线索，语言仍未恢复','平行文本','尚无决定性双语文本。','语言知识','与 B 字形近，但底层语言很可能不是希腊语。','语料结构','语料有限，可进行符号与组合统计。','验证状态','2026 年结构分析有进展，尚未完成破译。'],
+indus:['印度河符号：材料过短，容易产生互斥猜想','平行文本','缺少公认双语铭记。','语言知识','底层语言未知，符号是否完整编码语言也有争论。','语料结构','大量很短的印章铭记，缺少长篇连续文本。','验证状态','没有被普遍接受并可独立验证的完整读法。']};
+function renderCase(k){activate(null,'data-case',k);let d=caseData[k];caseDetail.innerHTML='<h3>'+d[0]+'</h3><table class="matrix"><tbody><tr><th>'+d[1]+'</th><td>'+d[2]+'</td></tr><tr><th>'+d[3]+'</th><td>'+d[4]+'</td></tr><tr><th>'+d[5]+'</th><td>'+d[6]+'</td></tr><tr><th>'+d[7]+'</th><td>'+d[8]+'</td></tr></tbody></table>'}
+document.querySelectorAll('[data-case]').forEach(b=>b.addEventListener('click',()=>renderCase(b.dataset.case)));renderCase('egypt');
+const eras={
+'1799':['1799：同一政令的多套文字重现','背景：法国远征埃及。变化：罗塞塔石碑被发现；可读希腊文为未知埃及文字提供外部锚点。意义：问题从“图形是什么意思”转到“如何跨文本校准”。'],
+'1810s':['1810 年代：Young 把“像图画”转成“可能拼音”','背景：学者比较已知王名与圣书体、世俗体。变化：若干符号语音性质得到识别。意义：纯象征说不再能解释全部材料。'],
+'1822':['1822：Champollion 的语音原则扩展到本土王名','背景：希腊文、王名圈与科普特语线索互相支持。变化：语音原则不再局限于外来人名。意义：一套跨碑文运作的古埃及语读法开始建立。'],
+'1952':['1952：两条不同文字的音节突破','背景：线形 B 有大量行政泥板，玛雅铭文有历法、姓名及殖民时期记录。变化：Ventris 证明线形 B 记录早期希腊语，Knorozov 提出玛雅音节读法。意义：没有“万能三语石碑”也能建立可检验模型。'],
+'2024':['2024：计算方法被系统比较','背景：数字语料与模型逐渐增多。变化：Computational Linguistics 的系统综述总结了古爱琴海、塞浦路斯文字的计算路线与 15 项挑战。意义：算法更强，独立验证仍不可省略。'],
+'2026':['2026：线形文字 A 的结构更清楚，但未被读通','背景：考古语料跨区域积累。变化：剑桥出版研究用五个区域的音节组合特征论证 A 可能在不同地区记录同一种非希腊语。意义：研究可以前进，却不必把每一步都说成“破解”。']};
+function renderEra(k){activate(null,'data-era',k);const d=eras[k];eraDetail.innerHTML='<h3>'+d[0]+'</h3><p>'+d[1]+'</p>'}
+document.querySelectorAll('[data-era]').forEach(b=>b.addEventListener('click',()=>renderEra(b.dataset.era)));renderEra('1799');
+</script></body></html>
