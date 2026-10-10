@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>埋藏学｜每日认知探索</title>
+<link rel="stylesheet" href="../../assets/style.css"><link rel="stylesheet" href="../../assets/visual.css">
+<style>
+.eq{font:600 15px/1.75 ui-monospace,SFMono-Regular,Consolas,monospace;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:18px 0;overflow:auto}
+.filter-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:18px 0}.filter-step{position:relative;border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:13px;min-height:126px}.filter-step b{display:block;color:var(--accent);font:700 13px/1.4 ui-sans-serif,system-ui,sans-serif}.filter-step p{font-size:13px;color:var(--muted);margin:7px 0 0}.filter-step:not(:last-child):after{content:'→';position:absolute;right:-12px;top:52px;color:var(--accent2);font-weight:700;z-index:2}
+.lab{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:18px;margin:20px 0}.lab-row{display:grid;grid-template-columns:180px 1fr 86px;gap:12px;align-items:center;margin:13px 0;font-family:ui-sans-serif,system-ui,sans-serif}.lab-row input{width:100%}.lab-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}.metric{border:1px solid var(--line);border-radius:15px;background:var(--soft);padding:13px}.metric b{display:block;color:var(--accent);font:700 20px/1.2 ui-sans-serif,system-ui,sans-serif}.metric span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.stagebar{height:18px;border-radius:999px;background:var(--line);overflow:hidden;margin:10px 0}.stagebar i{display:block;height:100%;width:50%;background:var(--accent);transition:width .2s ease}
+.tissue-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}.tissue{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px}.tissue b{display:block;color:var(--accent);font-family:ui-sans-serif,system-ui,sans-serif}.tissue p{color:var(--muted);font-size:14px;margin:6px 0 0}
+.timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:18px 0}.timeline button{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:15px;padding:12px;text-align:left;cursor:pointer;min-height:96px}.timeline button.active{border-color:var(--accent);background:var(--soft)}.timeline strong{display:block;color:var(--accent)}.timedetail2{border:1px solid var(--line);background:var(--soft);border-radius:18px;padding:18px;min-height:130px}
+.agechart{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:5px;align-items:end;height:190px;margin:18px 0;padding:12px 2px 0;border-bottom:1px solid var(--line)}.agecol{height:100%;display:flex;align-items:flex-end}.agecol i{display:block;width:100%;background:var(--accent);border-radius:6px 6px 0 0;min-height:2px}.age-labels{display:flex;justify-content:space-between;color:var(--muted);font:12px/1.4 ui-sans-serif,system-ui,sans-serif}
+.matrix{width:100%;border-collapse:collapse;margin:18px 0;font-size:15px}.matrix th,.matrix td{border:1px solid var(--line);padding:10px 12px;vertical-align:top}.matrix th{background:var(--soft);text-align:left}.source-list a{color:var(--accent);word-break:break-word}
+.cross-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.cross-card{display:block;border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:16px;text-decoration:none;color:var(--text)}.cross-card b{color:var(--accent);font-family:ui-sans-serif,system-ui,sans-serif}.cross-card p{color:var(--muted);margin:7px 0 0}.cross-card:hover,.cross-card:focus-visible{border-color:var(--accent);background:var(--soft);outline:none}
+@media(max-width:900px){.filter-grid{grid-template-columns:1fr 1fr 1fr}.filter-step:not(:last-child):after{display:none}.lab-metrics,.tissue-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.filter-grid,.lab-metrics,.tissue-grid,.cross-grid{grid-template-columns:1fr}.lab-row{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr}.matrix{font-size:14px}}
+@media(max-width:440px){.timeline{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="shell">
+<div class="topbar"><a href="index.html">← 返回本周目录</a><div class="tools"><a class="btn" href="2026-10-02-arrow-impossibility-theorem.html">← 上一篇</a><a class="btn" href="2026-10-04-gift-economy.html">下一篇 →</a><button class="btn" id="theme">切换明暗</button></div></div>
+
+<header class="hero">
+<div>
+<div class="eyebrow">2026-10-03 · 古生物学 · 地质学 · 考古学 · 法医学 · 信息偏差</div>
+<h1>埋藏学</h1><div class="en">Taphonomy</div>
+<div class="tagline">化石记录不是过去世界的照片，而是一份经过死亡、搬运、埋藏、化学改造与采样层层筛选后的“幸存者名单”。</div>
+<p class="intro">埋藏学研究一个生物从死亡开始，到它的遗骸被埋藏、改造、保存，最后被我们发现之间发生的一切。它把“化石里有什么”转成一个更困难的问题：什么被保存了，什么被系统性删除了，又有哪些看似真实的比例其实是保存机制制造出来的？一旦理解埋藏学，化石、遗址、尸体、古生态乃至任何历史档案都会显出同一种结构——我们观察到的从来不是过去本身，而是过去经过一串过滤器后的输出。</p>
+</div>
+<div class="visual">
+<svg viewBox="0 0 520 400" role="img" aria-label="从活着的群落到化石记录的多层过滤示意">
+<defs><marker id="fa" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L9 4 L0 8Z" fill="var(--accent)"/></marker></defs>
+<rect x="28" y="26" width="464" height="348" rx="26" fill="var(--panel)" stroke="var(--line)"/>
+<text x="260" y="58" text-anchor="middle" fill="var(--text)" font-size="16" font-weight="700">过去 → 记录：不是复制，而是过滤</text>
+<g fill="var(--soft)" stroke="var(--line)">
+<rect x="62" y="94" width="126" height="54" rx="14"/><rect x="332" y="94" width="126" height="54" rx="14"/>
+<rect x="62" y="194" width="126" height="54" rx="14"/><rect x="332" y="194" width="126" height="54" rx="14"/>
+<rect x="197" y="292" width="126" height="54" rx="14"/>
+</g>
+<g fill="var(--text)" font-size="13" font-weight="700" text-anchor="middle">
+<text x="125" y="125">活体群落</text><text x="395" y="125">死亡组合</text><text x="125" y="225">搬运 / 风化</text><text x="395" y="225">埋藏 / 成岩</text><text x="260" y="324">被发现的化石</text>
+</g>
+<path d="M188 121H314" stroke="var(--accent)" stroke-width="3" marker-end="url(#fa)"/>
+<path d="M395 148V180H125V186" fill="none" stroke="var(--accent)" stroke-width="3" marker-end="url(#fa)"/>
+<path d="M188 221H314" stroke="var(--accent)" stroke-width="3" marker-end="url(#fa)"/>
+<path d="M395 248V268H260V284" fill="none" stroke="var(--accent)" stroke-width="3" marker-end="url(#fa)"/>
+<text x="260" y="171" text-anchor="middle" fill="var(--muted)" font-size="12">腐败 · 捕食 · 拆散 · 选择性消失</text>
+<text x="260" y="273" text-anchor="middle" fill="var(--muted)" font-size="12">沉积 · 压实 · 矿化 · 再暴露 · 采集</text>
+</svg>
+</div>
+</header>
+
+<div class="layout">
+<nav class="toc">
+<a href="#s1">01 · 化石记录是一份编辑后的档案</a><a href="#s2">02 · 什么是埋藏学</a><a href="#s3">03 · Efremov 1940</a><a href="#s4">04 · 概念之前的埋藏推理</a><a href="#s5">05 · 活体群落与死亡组合</a><a href="#s6">06 · 生物埋藏学与成岩作用</a>
+<a href="#filter">视觉 · 六级过滤链</a><a href="#s7">07 · 死亡只是信息丢失的开始</a><a href="#s8">08 · 软组织为什么难保存</a><a href="#s9">09 · 骨架为什么会拆散</a><a href="#s10">10 · 食腐不是随机删除</a><a href="#s11">11 · 搬运会重新排序遗骸</a><a href="#s12">12 · 风化阶段是一只时钟</a>
+<a href="#preserve">交互 · 保存窗口实验</a><a href="#s13">13 · 快速埋藏为何重要</a><a href="#s14">14 · 缺氧并不是万能钥匙</a><a href="#burgess">视觉 · Burgess Shale</a><a href="#s15">15 · 异常保存的条件</a><a href="#s16">16 · 早期成岩与矿化</a><a href="#s17">17 · Lagerstätten</a><a href="#s18">18 · 硬组织偏差</a>
+<a href="#s19">19 · 偏差并不等于记录无用</a><a href="#s20">20 · 时间平均</a><a href="#timeavg">交互 · 时间分辨率实验</a><a href="#s21">21 · 一层岩石不是一个瞬间</a><a href="#s22">22 · 生物扰动与再搬运</a><a href="#s23">23 · 保存偏差 ≠ 采样偏差</a><a href="#inverse">视觉 · 逆问题</a><a href="#s24">24 · 从化石反推生态</a>
+<a href="#s25">25 · 新埋藏学</a><a href="#s26">26 · 法医埋藏学</a><a href="#s27">27 · 考古埋藏学</a><a href="#s28">28 · 三个常见误解</a><a href="#history">交互 · 思想演化</a><a href="#s29">29 · 2026 的现实锚点</a><a href="#s30">30 · 最深层启示</a><a href="#sources">研究线索</a><a href="#links">跨主题连接</a><a href="#upgrade">视角变化</a><a href="#questions">继续追问</a>
+</nav>
+
+<article>
+<section id="s1"><div class="section-num">SECTION 01</div><h2>第一步先放弃一个直觉：化石记录从来不是“过去生物的名单”</h2><div class="bodycopy">
+<p>如果某片远古海域生活过 100 种生物，今天在岩层里发现 30 种，我们不能把剩下 70 种简单解释成“当时不存在”。没有硬壳的身体可能腐烂，尸体可能被食腐动物拆散，骨骼可能被流水搬走，沉积物可能在埋藏前被反复扰动，埋藏后的矿物又可能溶解；即使化石最终形成，也可能深埋地下、被侵蚀掉，或者恰好没有被采集。</p>
+<p>所以化石记录更像经过多重压缩与删除的日志，而不是摄像机。埋藏学研究的，就是这套“日志系统”如何改变输入。</p>
+<div class="quote">过去不是直接被保存下来；过去先经历筛选，然后我们才得到证据。</div>
+</div></section>
+
+<section id="s2"><div class="section-num">SECTION 02</div><h2>埋藏学到底研究什么：从死亡到最终被发现之间的全部过程</h2><div class="bodycopy">
+<p>Taphonomy 来自希腊语 <em>taphos</em>（埋葬）与 <em>nomos</em>（规律、法则）。现代定义通常把它描述为有机遗骸从生物圈进入岩石圈的过程研究：死亡、腐败、拆散、捕食、搬运、磨蚀、埋藏、化学改造、矿化、再暴露，直到被研究者发现。</p>
+<p>这意味着埋藏学既不是“研究化石长什么样”，也不是单纯研究化石形成。它更关心<strong>保存过程怎样改变了原始信息</strong>。</p>
+</div></section>
+
+<section id="s3"><div class="section-num">SECTION 03</div><h2>1940：Efremov 给“从生物圈到岩石圈”的整条路径起了名字</h2><div class="bodycopy">
+<p>俄国古生物学家 Ivan Antonovich Efremov 在 1940 年提出 <em>taphonomy</em> 这个术语，把它定义为动物遗骸从生物圈向岩石圈转变的研究。这个命名的重要性在于：它把原本散落在古生物学、沉积学与化石描述里的问题，组织成一个独立的因果链。</p>
+<p>从此，研究者不再只问“这是什么动物”，还会问：“它死在哪里？死后多久被埋？哪些部分先消失？水流是否搬运过？我们看到的是一次死亡事件，还是几百年残骸叠在一起？”</p>
+</div></section>
+
+<section id="s4"><div class="section-num">SECTION 04</div><h2>这个概念比术语古老得多：达·芬奇已经在做埋藏推理</h2><div class="bodycopy">
+<p>Ronald Martin 对埋藏学史的回顾指出，达·芬奇观察山地里的双壳类化石时，就利用活体与死亡贝壳的状态判断它们是否被洪水远距离搬运；Steno 后来通过鲨鱼牙与“舌石”的相似性支持化石的生物起源。</p>
+<p>这里已经出现了现代埋藏学的基本逻辑：<strong>从遗骸的破损、位置、姿态和周围沉积物，反推它经历过什么过程。</strong>术语到 1940 年才出现，但这种“从结果倒推保存历史”的推理至少已有几个世纪。</p>
+</div></section>
+
+<section id="s5"><div class="section-num">SECTION 05</div><h2>活体群落、死亡组合、化石组合：三者从来不是同一个集合</h2><div class="bodycopy">
+<p>生态学中的活体群落是某地真正生活着的生物集合。死亡组合（death assemblage）是这些生物死后留下的壳、骨、牙、木材、叶片等残骸。化石组合则是其中进一步经历埋藏与成岩、最终在岩层中被保存并被采样的部分。</p>
+<p>每一步都会改变物种组成和数量比例。一个数量不多、但拥有厚壳的物种，可能在死亡组合里过度代表；一个数量极多、但身体柔软的物种，却可能几乎不进入化石记录。</p>
+</div></section>
+
+<section id="s6"><div class="section-num">SECTION 06</div><h2>一个关键分界：埋藏前叫 biostratinomy，埋藏后进入 diagenesis</h2><div class="bodycopy">
+<p>经典框架常把埋藏史分成两段。<strong>Biostratinomy</strong> 处理从死亡到最终埋藏之前的过程，包括腐败、拆散、食腐、搬运、磨蚀与溶解；<strong>diagenesis（成岩作用）</strong>则处理埋藏后沉积物与遗骸发生的物理、化学和生物变化。</p>
+<p>这不是绝对无缝的边界，但很有用，因为它把“尸体在地表或水体里怎样变”与“埋进沉积物后怎样继续变”分开讨论。</p>
+</div></section>
+
+<section id="filter"><div class="section-num">VISUAL 01</div><h2>六级过滤链：我们最后拿到的标本，是一路“幸存”下来的</h2>
+<div class="filter-grid">
+<div class="filter-step"><b>1 · 活着</b><p>真实生态群落：数量、体型、组织类型和栖息地决定最初输入。</p></div>
+<div class="filter-step"><b>2 · 死亡</b><p>死亡地点与方式决定尸体是否暴露、漂浮、被捕食或快速埋藏。</p></div>
+<div class="filter-step"><b>3 · 埋藏前</b><p>腐败、食腐、拆散、搬运、磨蚀和风化持续删除或重排信息。</p></div>
+<div class="filter-step"><b>4 · 埋藏</b><p>沉积速率、粒度、氧化还原环境决定遗骸是否被迅速封存。</p></div>
+<div class="filter-step"><b>5 · 成岩</b><p>压实、溶解、矿化、重结晶决定哪些结构继续存活。</p></div>
+<div class="filter-step"><b>6 · 发现</b><p>岩层是否出露、研究者采什么、识别能力如何，再次改变样本。</p></div>
+</div>
+<figure class="visual-figure"><div class="visual-title">同一个真实群落，可以被过滤成完全不同的化石组合</div>
+<svg viewBox="0 0 900 330" role="img" aria-label="不同组织从活体群落经过过滤后不同程度保留下来的示意">
+<g font-size="13" font-weight="700" fill="var(--text)"><text x="90" y="42">活体</text><text x="260" y="42">死亡组合</text><text x="440" y="42">埋藏前</text><text x="620" y="42">成岩后</text><text x="800" y="42">被发现</text></g>
+<g stroke="var(--line)" stroke-width="2"><line x1="120" y1="58" x2="120" y2="294"/><line x1="300" y1="58" x2="300" y2="294"/><line x1="480" y1="58" x2="480" y2="294"/><line x1="660" y1="58" x2="660" y2="294"/></g>
+<g fill="var(--accent)"><circle cx="72" cy="92" r="18"/><circle cx="72" cy="150" r="18"/><circle cx="72" cy="208" r="18"/><circle cx="72" cy="266" r="18"/>
+<circle cx="250" cy="92" r="16"/><circle cx="250" cy="150" r="15"/><circle cx="250" cy="208" r="12"/>
+<circle cx="430" cy="92" r="15"/><circle cx="430" cy="150" r="12"/>
+<circle cx="610" cy="92" r="14"/><circle cx="610" cy="150" r="9"/>
+<circle cx="790" cy="92" r="12"/></g>
+<g fill="var(--muted)" font-size="12"><text x="88" y="96">厚壳</text><text x="88" y="154">骨 / 牙</text><text x="88" y="212">薄壳</text><text x="88" y="270">软组织</text></g>
+<path d="M92 92H238M92 150H235M92 208H238M92 266H230" stroke="var(--accent)" opacity=".45"/>
+<path d="M266 92H418M265 150H418M262 208H410" stroke="var(--accent)" opacity=".45"/>
+<path d="M445 92H597M442 150H600" stroke="var(--accent)" opacity=".45"/>
+<path d="M625 92H777" stroke="var(--accent)" opacity=".45"/>
+<text x="450" y="316" text-anchor="middle" fill="var(--accent2)" font-size="14" font-weight="700">删除不是随机的：不同材料、环境与过程拥有不同“存活率”</text>
+</svg>
+<figcaption class="visual-caption">示意图不表示固定概率，而强调一个结构事实：从活体到化石的每一步都具有选择性，因此最终样本可能系统性偏向硬组织、快速埋藏环境和更容易出露的地层。</figcaption></figure>
+<div class="visual-reading"><b>怎么看：</b>从左向右不是“时间自然流逝”，而是不断筛选。真正的科学问题是：每一层过滤器更容易删除谁？只有知道这一点，才知道最终样本能代表什么、不能代表什么。</div>
+</section>
+
+<section id="s7"><div class="section-num">SECTION 07</div><h2>死亡不是保存的开始，而是高强度信息丢失的开始</h2><div class="bodycopy">
+<p>活体拥有颜色、行为、肌肉、内脏、微生物群、组织关系和完整姿态。死亡后，自溶和微生物分解迅速启动，食腐动物打开尸体，韧带逐渐失去连接作用，关节松脱，骨骼暴露到阳光、雨水、温度循环和土壤化学中。</p>
+<p>因此越靠近“活体状态”的信息通常越脆弱；越偏向矿化硬组织与大尺度形态的信息越容易跨过这道门槛。</p>
+</div></section>
+
+<section id="s8"><div class="section-num">SECTION 08</div><h2>软组织为什么难保存：它必须在腐败与物理破坏之前进入特殊通道</h2><div class="bodycopy">
+<p>肌肉、皮肤、消化道等非矿化组织对自溶、微生物分解、食腐和物理扰动都非常敏感。普通环境下，这些信息往往在埋藏前或早期埋藏阶段就消失。</p>
+<p>所以“保存了软组织”不是普通化石多了一点细节，而通常意味着某条异常的保存路径：极快埋藏、细粒沉积、化学环境变化、早期矿化或有机质被特殊方式固定。</p>
+</div></section>
+
+<section id="s9"><div class="section-num">SECTION 09</div><h2>骨架也不会一直保持“摆好姿势”：关节关系本身就是信息</h2><div class="bodycopy">
+<p>现代东非哺乳动物的观察显示，骨架拆散往往在死亡后不久开始，并呈现相对可预测的顺序；一项经典研究指出，在所研究的热带稀树草原环境里，许多骨架在约 5 年内已经接近完全拆散。</p>
+<p>因此化石是否关节相连、哪些关节仍保持连接、身体部位是否聚在一起，都能帮助推断埋藏速度与尸体暴露时间。完整骨架不只是“好看”，它本身就是埋藏史证据。</p>
+</div></section>
+
+<section id="s10"><div class="section-num">SECTION 10</div><h2>食腐不是把标本“随机啃坏”：它会产生有方向的偏差</h2><div class="bodycopy">
+<p>不同食腐者偏好不同组织和骨骼部位。大型肉食动物可能拆散关节、咬碎骨端并搬走肢骨；啮齿动物会啃咬骨表；海洋环境里的捕食与食腐也能造成特定骨片或壳体被选择性破坏。</p>
+<p>结果是：某些部位减少、某些部位被集中、某些咬痕成为过程证据。埋藏学因此既要“扣除偏差”，也会把偏差本身当成可读取的信息。</p>
+</div></section>
+
+<section id="s11"><div class="section-num">SECTION 11</div><h2>搬运会重新排序遗骸：化石所在地未必就是生物生活或死亡的地点</h2><div class="bodycopy">
+<p>水流、风、坡面运动和重力可以搬运遗骸。不同形状、尺寸、密度与浮力的骨片在水流中的行为不同：轻小部分更容易被远距离带走，重而紧凑的部分可能更早沉积。</p>
+<p>因此一个化石点里某些骨骼部位特别多，不必然意味着动物的身体原本就缺少其他部位；也可能是水动力学对“遗骸颗粒”做了分选。</p>
+</div></section>
+
+<section id="s12"><div class="section-num">SECTION 12</div><h2>风化可以当一只粗糙的时钟：骨头表面记录暴露史</h2><div class="bodycopy">
+<p>Anna K. Behrensmeyer 1978 年在肯尼亚 Amboseli 建立了著名的骨骼风化分级，把现代哺乳动物骨头表面的开裂、剥落等变化划为六个阶段，并用已知死亡时间的尸体进行校准。她指出，在当地条件下，多数骨头会在大约 10–15 年内风化到难以辨认。</p>
+<p>但这不是普适“骨龄表”。温度、湿度、土壤、日晒、动物体型和局部微环境都会改变速率。风化阶段真正提供的是<strong>环境依赖的暴露历史约束</strong>。</p>
+</div></section>
+
+<section id="preserve"><div class="section-num">INTERACTIVE 01</div><h2>保存窗口实验：为什么“快速埋藏”常比“总量很多”更重要</h2>
+<div class="lab">
+<p class="interaction-hint">教学模型，不是用于真实定年。拖动三个变量，观察从死亡到稳定埋藏之间的相对“信息存活率”。模型只表达方向关系：埋藏越快、搬运越弱、破坏越低，原始结构通常保留得越多。</p>
+<div class="lab-row"><label for="burial">埋藏速度</label><input id="burial" type="range" min="0" max="100" value="70"><output id="burialOut">70</output></div>
+<div class="lab-row"><label for="transport">搬运 / 扰动强度</label><input id="transport" type="range" min="0" max="100" value="35"><output id="transportOut">35</output></div>
+<div class="lab-row"><label for="decay">腐败 / 风化压力</label><input id="decay" type="range" min="0" max="100" value="45"><output id="decayOut">45</output></div>
+<div class="lab-metrics">
+<div class="metric"><b id="structureScore">72%</b><span>关节与空间结构保留</span></div>
+<div class="metric"><b id="hardScore">78%</b><span>硬组织相对保存</span></div>
+<div class="metric"><b id="softScore">35%</b><span>软组织相对保存</span></div>
+<div class="metric"><b id="biasScore">中等</b><span>最终组合偏差程度</span></div>
+</div>
+<div><span>整体保存窗口</span><div class="stagebar"><i id="stageFill"></i></div></div>
+<p id="preserveExplain" class="visual-note"></p>
+</div>
+</section>
+
+<section id="s13"><div class="section-num">SECTION 13</div><h2>快速埋藏为什么反复出现：它在最危险的阶段“关掉一部分通道”</h2><div class="bodycopy">
+<p>遗骸暴露在表面越久，食腐、风化、搬运和拆散就有越多时间工作。快速被泥、灰、细砂或其他沉积物覆盖，可以降低机械扰动和大型食腐者进入的机会，并改变局部氧与化学环境。</p>
+<p>这也是火山灰埋藏、浊流、洪水沉积、湖底细泥等环境常能制造高质量保存的原因之一。不过“埋得快”只是起点，埋藏后的化学过程仍然可能把遗骸溶掉。</p>
+</div></section>
+
+<section id="s14"><div class="section-num">SECTION 14</div><h2>“缺氧 = 不腐败 = 完美化石”是一个过度简化</h2><div class="bodycopy">
+<p>缺氧确实可能减少大型底栖动物扰动，也能改变微生物代谢路径，但并不意味着有机物停止分解。关于异常软组织保存的研究长期强调：单独缺氧往往不足以解释结果，早期成岩矿化、沉积速率、孔隙水化学与有机质输入等因素同样关键。</p>
+<p>换句话说，异常保存通常不是“关掉腐败”这么简单，而是<strong>让遗骸在彻底被分解前进入另一种稳定物质状态</strong>。</p>
+</div></section>
+
+<section id="burgess"><div class="section-num">VISUAL 02</div><h2>Burgess Shale：软体动物为什么能跨过五亿年的过滤</h2>
+<figure class="visual-figure">
+<div class="visual-title">异常保存不是单一条件，而是一条连续的过程链</div>
+<svg viewBox="0 0 900 360" role="img" aria-label="Burgess Shale式保存从快速埋藏到压扁化石的流程">
+<defs><marker id="ba" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L9 4 L0 8Z" fill="var(--accent)"/></marker></defs>
+<g>
+<rect x="35" y="95" width="150" height="150" rx="18" fill="var(--panel)" stroke="var(--line)"/><text x="110" y="126" text-anchor="middle" fill="var(--accent)" font-size="15" font-weight="700">1 · 快速埋藏</text><path d="M70 175 C95 140 130 140 155 175 C130 202 95 202 70 175Z" fill="var(--accent2)" opacity=".65"/><path d="M55 210H165" stroke="var(--line)" stroke-width="10"/><text x="110" y="231" text-anchor="middle" fill="var(--muted)" font-size="11">细粒泥流覆盖</text>
+<rect x="215" y="95" width="150" height="150" rx="18" fill="var(--panel)" stroke="var(--line)"/><text x="290" y="126" text-anchor="middle" fill="var(--accent)" font-size="15" font-weight="700">2 · 扰动降低</text><circle cx="290" cy="173" r="34" fill="var(--soft)" stroke="var(--accent2)"/><text x="290" y="178" text-anchor="middle" fill="var(--text)" font-size="12">低氧孔隙</text><text x="290" y="219" text-anchor="middle" fill="var(--muted)" font-size="11">食腐 / 生物扰动受限</text>
+<rect x="395" y="95" width="150" height="150" rx="18" fill="var(--panel)" stroke="var(--line)"/><text x="470" y="126" text-anchor="middle" fill="var(--accent)" font-size="15" font-weight="700">3 · 部分分解</text><path d="M425 182 C455 145 495 150 520 184" fill="none" stroke="var(--accent2)" stroke-width="8"/><text x="470" y="219" text-anchor="middle" fill="var(--muted)" font-size="11">易腐组织消失</text>
+<rect x="575" y="95" width="150" height="150" rx="18" fill="var(--panel)" stroke="var(--line)"/><text x="650" y="126" text-anchor="middle" fill="var(--accent)" font-size="15" font-weight="700">4 · 压实 / 固定</text><ellipse cx="650" cy="180" rx="55" ry="12" fill="var(--accent2)" opacity=".7"/><text x="650" y="219" text-anchor="middle" fill="var(--muted)" font-size="11">有机残膜 / 矿物作用</text>
+<rect x="755" y="95" width="110" height="150" rx="18" fill="var(--soft)" stroke="var(--accent)"/><text x="810" y="126" text-anchor="middle" fill="var(--accent)" font-size="15" font-weight="700">5 · 化石</text><path d="M780 180 C798 156 825 158 840 181 C825 199 797 200 780 180Z" fill="none" stroke="var(--text)" stroke-width="3"/><text x="810" y="219" text-anchor="middle" fill="var(--muted)" font-size="11">扁平压印</text>
+</g>
+<g stroke="var(--accent)" stroke-width="3" marker-end="url(#ba)"><path d="M185 170H205"/><path d="M365 170H385"/><path d="M545 170H565"/><path d="M725 170H745"/></g>
+<text x="450" y="310" text-anchor="middle" fill="var(--accent2)" font-size="14" font-weight="700">任何一环被改写，都可能得到完全不同的保存结果</text>
+</svg>
+<figcaption class="visual-caption">Royal Ontario Museum 对 Burgess Shale 的说明强调：细粒沉积快速埋藏、埋藏环境低氧、减少扰动可能是重要条件；但具体保存机制仍涉及粘土、有机质和后续成岩，不能缩成一个单因果故事。</figcaption></figure>
+<div class="visual-reading"><b>怎么看：</b>先看“时间竞争”：腐败正在删除信息，埋藏与化学固定必须足够早介入。再看“机制接力”：异常保存通常不是一个神奇环境，而是一串条件连续成立。</div>
+</section>
+
+<section id="s15"><div class="section-num">SECTION 15</div><h2>异常保存真正“异常”的地方：它让本来最先消失的信息穿过了过滤器</h2><div class="bodycopy">
+<p>Burgess Shale 型化石之所以改变我们对寒武纪生态的理解，不只是因为标本漂亮，而是因为它让大量缺乏硬壳的动物进入记录。如果只依赖普通矿化骨骼和壳体，我们看到的动物谱系会被大幅削窄。</p>
+<p>所以异常保存地层不是普通化石点的“高清版本”，它会系统性打开通常关闭的信息通道，从而改变我们对整个生态系统的结构判断。</p>
+</div></section>
+
+<section id="s16"><div class="section-num">SECTION 16</div><h2>早期成岩可以和腐败赛跑：矿物有时会“接管”软组织轮廓</h2><div class="bodycopy">
+<p>某些环境中，遗骸周围会发生局部硫酸盐还原、磷酸盐沉淀或其他自生矿化过程。若矿物形成足够早，它可能在软组织完全崩解前复制或固定形态。黄铁矿化就是一种著名路径。</p>
+<p>这提醒我们：成岩作用既可以毁掉信息，也可以保存信息。它不是单纯“埋得越久越坏”，而是材料、孔隙水与微生物反应共同决定结果。</p>
+</div></section>
+
+<section id="s17"><div class="section-num">SECTION 17</div><h2>Lagerstätten：有些地层保存“异常多”，有些保存“异常细”</h2><div class="bodycopy">
+<p>古生物学常用德语 <em>Lagerstätte</em> 指具有特殊化石价值的沉积地层。经典讨论会区分以大量集中化石著称的 <em>Konzentrat-Lagerstätten</em>，与以软组织或精细结构异常保存著称的 <em>Konservat-Lagerstätten</em>。</p>
+<p>这两类“丰富”不能混为一谈：前者可能因为水流、死亡事件或沉积过程把许多硬组织集中在一起；后者的价值则更多来自保存路径突破了通常的组织偏差。</p>
+</div></section>
+
+<section id="s18"><div class="section-num">SECTION 18</div><h2>硬组织偏差：为什么“有壳、有牙、有骨”会在地质时间里获得发言权</h2><div class="bodycopy">
+<p>矿化组织通常比软组织耐腐败、耐机械破坏，也更容易经历埋藏后仍保持可识别形态。这会产生一个巨大宏观偏差：许多没有硬组织的生物在普通化石记录中极难出现。</p>
+<p>于是“某类生物在某地层突然出现”有时既可能是演化事件，也可能是矿化能力变化、沉积环境变化或保存窗口变化。埋藏学迫使我们把生物演化与记录条件分开。</p>
+</div></section>
+
+<section id="s19"><div class="section-num">SECTION 19</div><h2>但“有偏差”不等于“化石记录没法用”：关键是知道偏差怎样作用</h2><div class="bodycopy">
+<p>1996 年关于化石记录质量的综述指出，在许多具有可保存硬组织的群体中，死亡组合能够相当好地保留群落组成与相对丰度的信息；2009 年 Amboseli 的长期研究甚至发现，现代骨骼组合能够在数十年尺度上追踪大型草食动物群落的变化。</p>
+<p>这正是埋藏学最成熟的态度：不是把记录想成完美镜子，也不是把它当成完全失真的废片，而是测量<strong>哪些信息保真、哪些被系统性扭曲</strong>。</p>
+</div></section>
+
+<section id="s20"><div class="section-num">SECTION 20</div><h2>时间平均：一块岩层里的“同时存在”，可能其实跨越了数百到数千年</h2><div class="bodycopy">
+<p>遗骸不是在同一天死亡，也不一定立刻被永久埋藏。壳体可能在海底表层经历反复翻动、浅埋和再暴露，新死亡个体不断加入，旧个体逐渐被破坏或最终埋藏。最终同一层里的化石可能来自许多世代。</p>
+<p>这叫 time-averaging。它会抹平季节、年度甚至世纪级变化，却也可能提供一种“长期平均生态”的稳定记录。</p>
+</div></section>
+
+<section id="timeavg"><div class="section-num">INTERACTIVE 02</div><h2>时间分辨率实验：同一层化石，究竟压缩了多少历史？</h2>
+<div class="lab">
+<p class="interaction-hint">下面用“遗骸在活动埋藏带中的半衰期”做教学模型。Gulf of California 的现代贝壳研究曾报告不同环境约 90–550 年的半衰期差异。这里用指数式移除模拟“被破坏或最终埋藏”的随机退出。</p>
+<div class="lab-row"><label for="halfLife">遗骸半衰期（年）</label><input id="halfLife" type="range" min="90" max="550" step="10" value="200"><output id="halfOut">200</output></div>
+<div class="lab-metrics">
+<div class="metric"><b id="halfMetric">200 年</b><span>约一半遗骸仍未退出活动层</span></div>
+<div class="metric"><b id="p90Metric">664 年</b><span>约 90% 已退出所需时间</span></div>
+<div class="metric"><b id="p99Metric">1329 年</b><span>约 99% 已退出所需时间</span></div>
+<div class="metric"><b id="resolutionMetric">世纪级</b><span>单层潜在时间混合尺度</span></div>
+</div>
+<div class="agechart" id="ageChart" aria-label="不同年龄遗骸在活动层中存留概率的示意柱状图"></div>
+<div class="age-labels"><span>刚死亡</span><span id="ageMax">2000 年前</span></div>
+<p id="timeExplain" class="visual-note"></p>
+</div>
+<div class="visual-reading"><b>怎么看：</b>半衰期越长，年龄分布尾巴越长，同一层越可能混入跨越更久时间的遗骸。地层给出的“同层”，不自动等于生态学上的“同时”。</div>
+</section>
+
+<section id="s21"><div class="section-num">SECTION 21</div><h2>一层岩石不等于一个瞬间：地质层面常是时间的“压缩文件”</h2><div class="bodycopy">
+<p>在河流环境里，骨骼可能先在洪泛平原暴露多年，再被洪水搬进河道；后来又与更年轻的骨骼一起进入同一沉积单元。Behrensmeyer 的经典研究指出，一些河流脊椎动物组合可能混合 10²–10⁴ 年尺度的残骸。</p>
+<p>因此如果研究者想判断“这些物种是否真的同一时间共存”，首先必须知道该化石组合的时间分辨率。</p>
+</div></section>
+
+<section id="s22"><div class="section-num">SECTION 22</div><h2>生物扰动与再搬运：埋下去不代表故事结束</h2><div class="bodycopy">
+<p>蠕虫、贝类、根系和其他掘穴生物会翻动沉积物，波浪与风暴也可能重新侵蚀浅层沉积，把旧遗骸带回活动层。埋藏因此可能是可逆的：浅埋、暴露、再埋可以循环多次。</p>
+<p>这会把不同时间的遗骸混合，也会让“保存状态”和“年龄”之间关系变得不直观——一个更老的壳并不一定看起来比年轻壳更破。</p>
+</div></section>
+
+<section id="s23"><div class="section-num">SECTION 23</div><h2>保存偏差、暴露偏差、采集偏差必须分开：不是所有缺失都叫 taphonomy</h2><div class="bodycopy">
+<p>严格来说，埋藏偏差主要指从生物死亡到化石形成与保存过程中产生的选择性。但我们真正拿到数据库之前，还会继续经历“哪些岩层今天出露”“研究者去了哪里”“筛网孔径多大”“哪些标本被认出来并发表”等采样过程。</p>
+<p>所以最终数据偏差至少有三层：<strong>生物学与埋藏过程、地质出露过程、人类采样过程</strong>。把它们混成一个“化石不完整”标签，会让纠偏失去方向。</p>
+</div></section>
+
+<section id="inverse"><div class="section-num">VISUAL 03</div><h2>埋藏学本质上是一个逆问题：我们看到输出，想恢复输入</h2>
+<figure class="visual-figure">
+<div class="visual-title">前向模型先问“过去怎样变成记录”，逆推才有可能可信</div>
+<svg viewBox="0 0 900 360" role="img" aria-label="真实生态经过埋藏算子形成化石样本，再从样本反演生态的示意">
+<defs><marker id="ia" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L9 4 L0 8Z" fill="var(--accent)"/></marker><marker id="ib" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0 L9 4 L0 8Z" fill="var(--accent2)"/></marker></defs>
+<rect x="40" y="90" width="210" height="170" rx="22" fill="var(--panel)" stroke="var(--line)"/><text x="145" y="122" text-anchor="middle" fill="var(--accent)" font-size="17" font-weight="700">真实生态 X</text><g fill="var(--accent)"><circle cx="95" cy="170" r="16"/><circle cx="145" cy="170" r="12"/><circle cx="195" cy="170" r="20"/><circle cx="120" cy="215" r="10"/><circle cx="180" cy="215" r="13"/></g><text x="145" y="244" text-anchor="middle" fill="var(--muted)" font-size="11">物种、丰度、年龄、空间关系</text>
+<rect x="345" y="75" width="210" height="200" rx="22" fill="var(--soft)" stroke="var(--accent2)"/><text x="450" y="110" text-anchor="middle" fill="var(--accent2)" font-size="17" font-weight="700">埋藏算子 T</text><text x="450" y="145" text-anchor="middle" fill="var(--text)" font-size="13">腐败 · 食腐 · 搬运</text><text x="450" y="173" text-anchor="middle" fill="var(--text)" font-size="13">埋藏 · 成岩 · 混合</text><text x="450" y="201" text-anchor="middle" fill="var(--text)" font-size="13">暴露 · 采样</text><text x="450" y="242" text-anchor="middle" fill="var(--muted)" font-size="11">选择性删除 + 重新加权</text>
+<rect x="650" y="90" width="210" height="170" rx="22" fill="var(--panel)" stroke="var(--line)"/><text x="755" y="122" text-anchor="middle" fill="var(--accent)" font-size="17" font-weight="700">观察样本 Y</text><g fill="var(--accent)"><circle cx="708" cy="175" r="17"/><circle cx="760" cy="175" r="11"/><circle cx="810" cy="175" r="8"/></g><text x="755" y="244" text-anchor="middle" fill="var(--muted)" font-size="11">真正被保存并被发现的子集</text>
+<path d="M250 174H330" stroke="var(--accent)" stroke-width="4" marker-end="url(#ia)"/><path d="M555 174H635" stroke="var(--accent)" stroke-width="4" marker-end="url(#ia)"/>
+<path d="M650 300 C520 340 310 340 250 300" fill="none" stroke="var(--accent2)" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#ib)"/>
+<text x="450" y="326" text-anchor="middle" fill="var(--accent2)" font-size="13" font-weight="700">逆推：只有理解 T，才有资格从 Y 估计 X</text>
+</svg>
+<figcaption class="visual-caption">埋藏学不是把“偏差”当噪声扔掉，而是尽可能建立前向过程模型。只有知道不同遗骸如何进入记录，才可能对原始生态做有边界的反演。</figcaption></figure>
+<div class="visual-reading"><b>怎么看：</b>先沿上方箭头看记录怎样被制造，再看下方虚线。真正困难的不是发现化石，而是判断哪些缺失来自过去本身，哪些缺失来自 T 这套过滤过程。</div>
+</section>
+
+<section id="s24"><div class="section-num">SECTION 24</div><h2>从化石反推生态时，最危险的错误是把“保存概率”当成 1</h2><div class="bodycopy">
+<p>假设某地层里羚羊骨很多、鸟骨少。可能是真实生态中羚羊更多，也可能鸟骨更轻、更易风化、更容易被搬运或更难被发现。正确推断必须把这些可能机制放进模型，而不是直接用化石计数等同于活体数量。</p>
+<p>这正像医学成像与天文反演：观测数据不是对象本身，而是对象经过传感器与物理过程后的输出。</p>
+</div></section>
+
+<section id="s25"><div class="section-num">SECTION 25</div><h2>新埋藏学（neo-taphonomy）：研究今天的死亡过程，为几百万年前建立校准器</h2><div class="bodycopy">
+<p>Behrensmeyer 等研究者长期在 Amboseli 这类现代生态系统中追踪尸体、骨骼、风化和群落变化。目的不是研究“今天的垃圾”，而是测量死亡组合怎样相对于活体群落发生偏移。</p>
+<p>这种 actualistic / neo-taphonomic 方法的逻辑很强：如果我们能在现代环境里同时看到输入与输出，就能估计过滤器 T 的性质，再把这些规律谨慎地带回古代地层。</p>
+</div></section>
+
+<section id="s26"><div class="section-num">SECTION 26</div><h2>法医埋藏学：同一套逻辑从“百万年前”缩短到“几天、几月、几年”</h2><div class="bodycopy">
+<p>法医埋藏学研究尸体死亡后受到的腐败、昆虫、微生物、食腐动物、土壤、水流与气候作用，目标可能是估计死亡后间隔、判断尸体是否被搬动、解释骨骼为何缺失。</p>
+<p>2026 年一篇关于河流环境法医埋藏学的系统综述汇总了 92 份报告，强调两个现实难点：水流会改变尸体与遗骸的运输位置；不同河流环境条件又让死亡后浸水时间的估计非常困难。几百万年的古生物问题与几个月的法医问题，在结构上竟然高度相似：<strong>都需要从最终位置反推过程历史。</strong></p>
+</div></section>
+
+<section id="s27"><div class="section-num">SECTION 27</div><h2>考古埋藏学：一块骨头上的切痕，是人类行为还是自然过程？</h2><div class="bodycopy">
+<p>考古遗址里，人为切割、敲击取骨髓、烧灼、犬科咬痕、啮齿动物啃咬、根蚀、沉积磨蚀都可能在骨表留下痕迹。真正困难的不是“看到一个痕迹”，而是区分不同过程是否会制造相似结果。</p>
+<p>因此考古埋藏学常把痕迹形态、骨骼部位选择、空间分布、破裂方式与沉积背景一起分析。它把“遗物是什么”推进到“遗址是怎样形成的”。</p>
+</div></section>
+
+<section id="s28"><div class="section-num">SECTION 28</div><h2>三个常见误解：没有化石、很多化石、完整骨架都不能直接按字面读</h2><div class="bodycopy">
+<table class="matrix"><thead><tr><th>直觉</th><th>为什么危险</th><th>更好的问题</th></tr></thead><tbody>
+<tr><td>“没找到化石，所以这里没有这种生物。”</td><td>可能没有进入保存窗口，或者记录未出露、未被采集。</td><td>这种生物在该环境下的保存概率有多低？</td></tr>
+<tr><td>“某种化石最多，所以当时它最常见。”</td><td>厚壳、牙齿、坚硬骨骼会被过度保存。</td><td>死亡组合与活体丰度之间的保真度如何？</td></tr>
+<tr><td>“完整骨架说明它原地死亡。”</td><td>快速搬运后整体埋藏、尸体漂浮或特殊保存也可能维持连接。</td><td>关节连接、姿态、沉积结构和搬运证据是否一致？</td></tr>
+</tbody></table>
+</div></section>
+
+<section id="history"><div class="section-num">INTERACTIVE 03</div><h2>从“解释化石”到“校准记录”：埋藏学的思想重心怎样变化</h2>
+<div class="timeline">
+<button class="active" data-era="leonardo"><strong>15–17 世纪</strong>达·芬奇 / Steno</button>
+<button data-era="efremov"><strong>1940</strong>Efremov</button>
+<button data-era="amboseli"><strong>1970s</strong>Amboseli 实验场</button>
+<button data-era="fidelity"><strong>1990s–2000s</strong>保真度 / 时间平均</button>
+<button data-era="now"><strong>2020s</strong>多尺度记录科学</button>
+</div>
+<div class="timedetail2" id="timeDetail"></div>
+</section>
+
+<section id="s29"><div class="section-num">SECTION 29</div><h2>2026 的现实锚点：研究前沿正在把“化石有多久的时间分辨率”变成可校准问题</h2><div class="bodycopy">
+<p>Anna K. Behrensmeyer 在 2026 年《Annual Review of Earth and Planetary Sciences》的综述 <em>Rocks, Fossils, and Ecology: Understanding How Time Is Sampled in the Fossil Record</em> 中，把几十年的现代环境观测、沉积学、地层学和化石研究串成同一个问题：不同化石组合究竟采样了多少时间？</p>
+<p>她特别指出，从数天到数万年的时间窗口往往最难校准，但这恰好决定我们能否用化石讨论短期生态变化、长期群落结构或演化转折。今天的埋藏学早已不只是“化石怎样形成”，而是在研究一种更普遍的东西：<strong>历史记录的时间响应函数</strong>。</p>
+</div></section>
+
+<section id="s30"><div class="section-num">SECTION 30</div><h2>最深层的启示：任何历史证据都应该同时研究“保存机制”</h2><div class="bodycopy">
+<p>化石告诉我们的从来不是“过去有些什么”这么简单，而是“什么东西以什么概率、通过什么路径，活到了我们能观察它的今天”。一旦接受这一点，缺失不再自动等于不存在，丰富不再自动等于常见，同层不再自动等于同时。</p>
+<p>这套思维可以迁移到很多领域：档案史要问哪些文件更容易被保存，互联网日志要问哪些事件被采样，医学数据要问哪些患者进入数据库，遥感要问传感器对哪些目标更敏感。埋藏学训练的是一种底层习惯：<strong>在解释记录之前，先解释记录是怎样被制造出来的。</strong></p>
+<div class="quote">证据不是过去留下来的“窗口”，而是过去与保存机制共同生产的对象。</div>
+</div></section>
+
+<section id="sources"><div class="section-num">SOURCES</div><h2>研究线索与进一步阅读</h2><div class="bodycopy source-list">
+<p>• <a href="https://www.cambridge.org/core/books/abs/taphonomy/introduction-the-science-of-taphonomy/BCEB31DEA1729456C0495AEB97412EEC" target="_blank" rel="noopener">Cambridge · Introduction: the science of taphonomy</a>：Efremov 1940、词源与埋藏学基本框架。</p>
+<p>• <a href="https://repository.si.edu/items/805e6bde-382a-47b2-9057-937077480a51" target="_blank" rel="noopener">Smithsonian · Anna K. Behrensmeyer, Taphonomy</a>：从死亡到埋藏与保存的现代定义，以及埋藏偏差。</p>
+<p>• <a href="https://www.cambridge.org/core/services/aop-cambridge-core/content/view/E68855B2E781D777631B0E464320808C/S0094837300005820a.pdf/taphonomic-and-ecologic-information-from-bone-weathering.pdf" target="_blank" rel="noopener">Behrensmeyer 1978 · Bone Weathering</a>：Amboseli 六级骨骼风化体系及已知年龄校准。</p>
+<p>• <a href="https://www.annualreviews.org/content/journals/10.1146/annurev-earth-032924-010934" target="_blank" rel="noopener">Annual Reviews 2026 · Rocks, Fossils, and Ecology</a>：时间平均与化石记录时间分辨率的最新综述。</p>
+<p>• <a href="https://burgess-shale.rom.on.ca/science/the-burgess-shale/geological-background/transforming-the-dead-organisms-into-fossils/" target="_blank" rel="noopener">Royal Ontario Museum · Burgess Shale fossilization</a>：快速埋藏、低氧与压缩保存的过程说明。</p>
+<p>• <a href="https://www.annualreviews.org/content/journals/10.1146/annurev.earth.24.1.433" target="_blank" rel="noopener">Annual Reviews · The Quality of the Fossil Record</a>：死亡组合保真度、时间平均与化石记录质量。</p>
+<p>• <a href="https://repository.si.edu/items/3edd439e-82f6-4244-befc-13dcd679567d" target="_blank" rel="noopener">Smithsonian · Bone Assemblages Track Animal Community Structure</a>：Amboseli 40 年现代骨骼组合与活体群落对照。</p>
+<p>• <a href="https://pubmed.ncbi.nlm.nih.gov/42537505/" target="_blank" rel="noopener">Forensic Science International 2026 · Fluvial forensic taphonomy</a>：河流环境中的法医埋藏学系统综述。</p>
+</div></section>
+
+<section id="links"><div class="section-num">CROSS LINKS</div><h2>跨主题连接：埋藏学其实在研究“记录如何被生成”</h2><div class="cross-grid">
+<a class="cross-card" href="../w39/2026-09-24-ice-core.html"><b>冰芯｜Ice Core</b><p>冰芯不是过去的录像带，气泡、同位素、冰流与年代模型共同塑造可见信号；化石记录同样需要先理解“自然档案”的编码与失真机制。</p></a>
+<a class="cross-card" href="../w37/2026-09-13-palimpsest.html"><b>重写本｜Palimpsest</b><p>重写本保存的是被覆盖、刮除、重用后的文本层；埋藏学保存的是死亡、搬运、成岩后的生物层。两者都要求从残留反推被删除的历史。</p></a>
+<a class="cross-card" href="../w38/2026-09-17-tomography.html"><b>层析成像｜Tomography</b><p>层析成像先建立“内部结构怎样变成测量信号”的前向模型，再做反演；埋藏学也必须先理解生物怎样变成化石，才有资格从化石反推生态。</p></a>
+<a class="cross-card" href="../w39/2026-09-25-color-constancy.html"><b>颜色恒常性｜Color Constancy</b><p>视觉收到的是“光源 × 表面”的混合结果；古生物学收到的是“真实生态 × 埋藏过滤器”的混合结果。两者都提醒我们：观测不是对象本身。</p></a>
+</div></section>
+
+<section id="upgrade"><div class="section-num">COGNITIVE UPGRADE</div><h2>这个关键词改变了什么视角</h2><div class="bodycopy">
+<div class="filter-grid">
+<div class="filter-step"><b>旧直觉</b><p>发现什么，就说明过去有什么。</p></div>
+<div class="filter-step"><b>第一层升级</b><p>记录有系统性缺失，而且不是随机缺失。</p></div>
+<div class="filter-step"><b>第二层升级</b><p>偏差本身可以反推腐败、搬运与埋藏过程。</p></div>
+<div class="filter-step"><b>第三层升级</b><p>“同层”可能是时间平均，“丰度”可能是保存加权。</p></div>
+<div class="filter-step"><b>第四层升级</b><p>任何反演都需要显式的前向保存模型。</p></div>
+<div class="filter-step"><b>最终视角</b><p>历史记录是过去与记录机制共同生成的对象。</p></div>
+</div>
+</div></section>
+
+<section id="questions"><div class="section-num">QUESTIONS</div><h2>真正值得继续追问的问题</h2><div class="bodycopy"><ol class="questions">
+<li>当某次“大灭绝”同时伴随沉积环境剧烈变化时，我们怎样区分真实灭绝强度与保存窗口变化？</li>
+<li>能否像医学成像那样，把不同组织和环境的保存概率显式写成可估计的“埋藏响应函数”？</li>
+<li>时间平均在什么情况下是缺点，在什么情况下反而能更好地恢复一个生态系统的长期典型状态？</li>
+<li>异常保存地层会不会因为信息过于丰富，反而让我们高估软体生物在普通生态系统中的比例？</li>
+<li>法医、考古与古生物埋藏学能否共享一套更统一的“前向过程 → 逆推历史”方法框架？</li>
+</ol></div></section>
+</article></div>
+
+<footer class="footer">2026-10-03 · 埋藏学 · GitHub Pages reading layer</footer>
+</div>
+
+<script>
+const theme=document.getElementById('theme');theme.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark'});
+const progress=document.getElementById('progress');addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;progress.style.transform='scaleX('+(h?scrollY/h:0)+')'});
+const sections=[...document.querySelectorAll('article section[id]')],toc=[...document.querySelectorAll('.toc a')];const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)toc.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))})},{rootMargin:'-18% 0px -72%'});sections.forEach(s=>obs.observe(s));
+
+const burial=document.getElementById('burial'),transport=document.getElementById('transport'),decay=document.getElementById('decay');
+function renderPreserve(){
+ const b=+burial.value,t=+transport.value,d=+decay.value;
+ burialOut.textContent=b;transportOut.textContent=t;decayOut.textContent=d;
+ const structure=Math.max(3,Math.min(98,20+0.78*b-0.42*t-0.30*d));
+ const hard=Math.max(5,Math.min(99,38+0.55*b-0.28*t-0.17*d));
+ const soft=Math.max(1,Math.min(92,-10+0.72*b-0.25*t-0.48*d));
+ const overall=(structure*.35+hard*.4+soft*.25);
+ structureScore.textContent=Math.round(structure)+'%';hardScore.textContent=Math.round(hard)+'%';softScore.textContent=Math.round(soft)+'%';stageFill.style.width=Math.round(overall)+'%';
+ const bias=Math.max(hard,structure)-soft;
+ biasScore.textContent=bias>45?'很高':bias>25?'较高':bias>12?'中等':'较低';
+ preserveExplain.textContent= b>70&&t<35 ? '这组参数接近“快速封存”窗口：空间结构更容易保留，软组织仍比硬组织脆弱，但过滤差距缩小。' :
+ (t>65 ? '高搬运会优先破坏关节关系、混合来源并产生水动力分选；即使硬组织还在，原始空间信息也会明显下降。' :
+ (d>70 ? '高腐败 / 风化压力会扩大硬组织与软组织之间的保存差距，最终组合更容易偏向牙齿、厚骨和矿化壳体。' :
+ '中等条件下，多种过程同时工作。最终样本既保留真实生态信号，也叠加了选择性删除。'));
+}
+[burial,transport,decay].forEach(x=>x.addEventListener('input',renderPreserve));renderPreserve();
+
+const halfLife=document.getElementById('halfLife');
+function renderTime(){
+ const h=+halfLife.value;halfOut.textContent=h;halfMetric.textContent=h+' 年';
+ const p90=Math.round(Math.log(10)/Math.log(2)*h),p99=Math.round(Math.log(100)/Math.log(2)*h);
+ p90Metric.textContent=p90+' 年';p99Metric.textContent=p99+' 年';
+ resolutionMetric.textContent=p90<500?'数百年':p90<1300?'世纪—千年':'千年级';
+ const max=Math.ceil(p99/200)*200;ageMax.textContent=max+' 年前';
+ ageChart.innerHTML='';
+ for(let i=0;i<14;i++){const age=max*i/13,surv=Math.pow(.5,age/h);const c=document.createElement('div');c.className='agecol';const bar=document.createElement('i');bar.style.height=Math.max(2,surv*100)+'%';c.appendChild(bar);ageChart.appendChild(c)}
+ timeExplain.textContent='在这个简化模型里，半衰期 '+h+' 年意味着旧遗骸会形成长尾：即使大多数样本较年轻，少量更老个体仍能被混入同一活动层。时间平均因此不是“所有年份平均得一样”，而是带长尾的混合。';
+}
+halfLife.addEventListener('input',renderTime);renderTime();
+
+const eras={
+leonardo:['15–17 世纪 · 先有推理，后有学科','达·芬奇利用贝壳状态判断化石是否原地生活，Steno 通过现代鲨鱼牙理解“舌石”。核心方法已经是：比较现代过程与古代遗骸，从形态和位置反推形成历史。'],
+efremov:['1940 · Efremov 命名 taphonomy','Efremov 把“遗骸从生物圈进入岩石圈”的整条路径组织成一门学科。注意力从单纯分类化石，扩展到记录是怎样被制造出来的。'],
+amboseli:['1970s · 现代生态系统变成天然实验室','Behrensmeyer 等人在 Amboseli 追踪已知年龄骨骼、风化、拆散和死亡组合。埋藏学开始从历史推测转向可校准的过程科学。'],
+fidelity:['1990s–2000s · 从“偏差”转向“偏差有多大”','研究者定量比较活体群落与死亡组合、测量时间平均、保存保真度和采样窗口。问题不再是“化石记录是否不完整”，而是“不完整到什么程度、保留了哪些统计量”。'],
+now:['2020s · 多尺度记录科学','现代埋藏学同时进入古生态、考古、法医、地球化学与计算模型。2026 年的综述尤其强调：理解一个化石组合采样了多少时间，本身就是重建过去生态的关键参数。']
+};
+function renderEra(k){document.querySelectorAll('[data-era]').forEach(b=>b.classList.toggle('active',b.dataset.era===k));const d=eras[k];timeDetail.innerHTML='<strong style="color:var(--accent)">'+d[0]+'</strong><p>'+d[1]+'</p>'}
+document.querySelectorAll('[data-era]').forEach(b=>b.addEventListener('click',()=>renderEra(b.dataset.era)));renderEra('leonardo');
+</script>
+</body>
+</html>
