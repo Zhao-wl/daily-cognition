@@ -1,0 +1,238 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="岛屿生物地理学：40节完整深度长文，以7组图解和交互解释移入、灭绝、动态平衡、物种面积关系、佛罗里达红树林实验、森林破碎化与保护区设计争议。"><title>岛屿生物地理学｜为什么一座孤岛的物种数会接近平衡？｜每日认知探索</title><link rel="stylesheet" href="../../assets/style.css"><link rel="stylesheet" href="../../assets/visual.css"><style>
+:root{color-scheme:light dark}
+.reader-head{padding:38px 0 30px;border-bottom:1px solid var(--line)}
+.reader-head h1{font-size:clamp(40px,8.5vw,74px);line-height:1.13;margin:12px 0 20px;letter-spacing:-.045em}
+.reader-sub{font-size:clamp(22px,3vw,31px);line-height:1.5;max-width:820px}
+.reader-intro{color:var(--muted);font-size:17px;max-width:820px}
+.reading{display:grid;grid-template-columns:215px minmax(0,790px);gap:36px;align-items:start;padding:20px 0 0}
+.article-outline{position:sticky;top:15px;max-height:91vh;overflow:auto;font:13px/1.5 system-ui,sans-serif}
+.article-outline a{display:block;padding:6px 10px;border-left:2px solid var(--line);color:var(--muted);text-decoration:none}
+.article-outline a:hover,.article-outline a:focus-visible{border-color:var(--accent);color:var(--accent)}
+.maintext{min-width:0}
+.maintext>section{border-top:1px solid var(--line);padding:26px 0 31px;scroll-margin-top:16px}
+.maintext h2{font-size:clamp(24px,3.2vw,31px);line-height:1.38;margin:6px 0 17px}
+.maintext section>p{font-size:18px;line-height:1.98;margin:13px 0 19px;text-indent:0}
+.maintext strong{color:var(--accent)}
+.maintext a{color:var(--accent)}
+.number{font:700 12px/1.5 system-ui,sans-serif;letter-spacing:.12em;color:var(--accent)}
+.visual-figure{margin:30px 0!important}
+.visual-figure svg{width:100%;max-width:100%;height:auto;display:block;overflow:visible}
+.visual-figure h3{font:700 19px/1.5 system-ui,sans-serif;margin:2px 0 9px}
+.visual-figure p,.visual-figure figcaption{font:15px/1.85 system-ui,sans-serif}
+.visual-reading{font:15px/1.85 system-ui,sans-serif}
+.v-controls{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0 18px}
+.v-controls button{border:1px solid var(--line);border-radius:100px;background:var(--panel);color:var(--text);padding:10px 16px;cursor:pointer;font:700 13px/1.3 system-ui,sans-serif;min-height:41px}
+.v-controls button[aria-pressed="true"]{background:var(--soft);border-color:var(--accent);color:var(--accent)}
+.v-controls button:focus-visible{outline:3px solid var(--accent2);outline-offset:2px}
+.v-split{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
+.v-split>*{min-width:0}
+.v-sliders{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.v-sliders label{display:block;min-width:0;border:1px solid var(--line);border-radius:13px;padding:12px 14px;background:var(--soft);font:700 14px/1.7 system-ui,sans-serif}
+.v-sliders input{display:block;width:100%;margin-top:9px;accent-color:var(--accent)}
+.v-sliders output{color:var(--accent);margin-left:8px}
+.v-readout{padding:14px 16px;border:1px solid var(--line);background:var(--soft);border-radius:13px;font:15px/1.8 system-ui,sans-serif;min-height:76px}
+.diagram-legend{font:13px/1.6 system-ui,sans-serif;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;margin:11px 0}
+.diagram-legend span:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--accent);margin-right:6px;vertical-align:middle}
+.diagram-legend span:last-child:before{background:var(--accent2)}
+.species-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:13px 0}
+.species-card{background:var(--soft);border:1px solid var(--line);border-radius:13px;padding:11px;min-width:0;font:14px/1.8 system-ui,sans-serif}
+.species-card b{color:var(--accent)}
+.trans{fill:var(--panel);stroke:var(--line);stroke-width:2}
+svg text{fill:var(--text);font-family:system-ui,sans-serif}
+svg .axis{stroke:var(--muted);stroke-width:2}
+svg .guide{stroke:var(--line);stroke-dasharray:5 5;stroke-width:1.5}
+.cross-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.cross-grid a{display:block;border:1px solid var(--line);border-radius:17px;padding:18px;text-decoration:none;color:var(--text);background:var(--panel);font:15px/1.7 system-ui,sans-serif}
+.cross-grid b{display:block;color:var(--accent);margin-bottom:6px}
+.cross-grid a:focus-visible,.cross-grid a:hover{border-color:var(--accent);background:var(--soft)}
+.source-list li{margin:12px 0;font:15px/1.75 system-ui,sans-serif;overflow-wrap:anywhere}
+.footer-nav{display:flex;flex-wrap:wrap;gap:20px;border-top:1px solid var(--line);padding:24px 0;font:14px/1.6 system-ui,sans-serif}
+.footer-nav a{color:var(--accent)}
+@media(max-width:850px){.reading{display:block}.article-outline{position:static;max-height:240px;display:flex;flex-wrap:wrap;overflow:auto;margin:12px 0 27px}.article-outline a{border:0;border-bottom:2px solid var(--line);padding:9px 8px}.maintext>section{padding:22px 0}}
+@media(max-width:630px){.shell{padding:0 15px}.v-split,.v-sliders,.cross-grid{grid-template-columns:1fr}.maintext section>p{font-size:17px;line-height:1.88}.reader-head{padding:20px 0 24px}.visual-figure{padding:13px!important}.visual-figure svg{max-height:340px}}
+</style></head><body><div class="progress" id="progress" aria-hidden="true"></div><div class="shell"><nav class="topbar"><a href="index.html">← 2026-W44 周目录</a><div class="tools"><a href="../index.html">年度目录</a><button type="button" class="btn" id="theme">切换明暗</button></div></nav><header class="reader-head"><div class="eyebrow">2026 年 10 月 27 日 · 生态学 × 生物地理学 × 数学模型 × 自然保护</div><h1>岛屿生物地理学</h1><p class="reader-sub">为什么一座孤岛的物种数会接近平衡，<br>而岛上的生命仍在不断更替？</p><p class="reader-intro">Island Biogeography · 从一座岛上的移入与局地消失，理解群落如何涌现、森林为何破碎化，以及保护区为什么不存在一条万能面积公式。40 个递进小节、7 组具有解释价值的 SVG 视觉模块，其中 6 组可直接操作。</p></header><div class="reading"><nav class="article-outline" aria-label="文章目录"><a href="#sec-1">01 一座岛上有多少种生命，为什么不是无限多？</a><a href="#sec-2">02 什么才算一座“岛”</a><a href="#sec-3">03 达尔文、华莱士：地理分布不是物种名单</a><a href="#sec-4">04 先把三个数量分开</a><a href="#sec-5">05 区域物种库，是所有可能的来客吗？</a><a href="#sec-6">06 抵达、存活、繁殖，是三道不同的门</a><a href="#sec-7">07 为什么移入曲线通常向下</a><a href="#sec-8">08 为什么局地灭绝曲线通常向上</a><a href="#sec-9">09 两条曲线相交，模型真正说了什么？</a><a href="#sec-10">10 离大陆多远：机会会被怎样折损</a><a href="#sec-11">11 岛屿越大，灭绝率往往为何更低</a><a href="#sec-12">12 用一张图同时改变距离与面积</a><a href="#sec-13">13 演示模型：为什么交点会移动</a><a href="#sec-14">14 稳定的数量，不代表稳定的成员</a><a href="#sec-15">15 从空岛到平衡：时间如何进入模型</a><a href="#sec-16">16 物种—面积关系：另一条著名曲线</a><a href="#sec-17">17 指数 z 改变的，是面积的弹性</a><a href="#sec-18">18 为什么要把坐标轴取对数</a><a href="#sec-19">19 大岛物种多，是否只是因为采得更久？</a><a href="#sec-20">20 把岛的生物先移走：科学家如何做实验</a><a href="#sec-21">21 红树林实验究竟观察到了什么</a><a href="#sec-22">22 一个漂亮实验，为什么不能证明所有岛都一样</a><a href="#sec-23">23 喀拉喀托：当岛屿被喷发重新塑造</a><a href="#sec-24">24 先驱者与后来者，不是抽签随机到达</a><a href="#sec-25">25 生态时间与演化时间不能混成一条线</a><a href="#sec-26">26 捕食者、竞争与互利，会改写曲线</a><a href="#sec-27">27 外来种：传播屏障被技术突然缩短</a><a href="#sec-28">28 从海岛到斑块：集合种群</a><a href="#sec-29">29 廊道并非一条万能的绿色线</a><a href="#sec-30">30 破碎化不只是把总面积切成小块</a><a href="#sec-31">31 同样的总面积，边缘比例可以差很多</a><a href="#sec-32">32 延迟到来的损失：灭绝债务</a><a href="#sec-33">33 “一种”和“一种”，在保护里价值相同吗？</a><a href="#sec-34">34 α、β、γ：为什么几个小岛的总数不能简单相加</a><a href="#sec-35">35 SLOSS 争议：一大块还是多小块？</a><a href="#sec-36">36 交互实验：让物种重叠率决定结论</a><a href="#sec-37">37 为什么模型的预测不能脱离尺度</a><a href="#sec-38">38 模型中的随机性，与现实的偶然</a><a href="#sec-39">39 调查努力改变，物种数也会“改变”</a><a href="#sec-40">40 时间轴：从自然史直觉到实验与政策</a><a href="#sec-41">41 现实决策：保护区设计要同时算哪几笔账</a><a href="#sec-42">42 离岛国家面对的不是简单的“海平面变量”</a><a href="#sec-43">43 一个模型的伟大，也包括它允许被反驳</a><a href="#sec-44">44 这个关键词改变了什么视角</a><a href="#sec-45">45 四个真正值得继续追问的问题</a><a href="#connections">跨主题连接</a><a href="#sources">参考来源</a></nav><main class="maintext"><section id="sec-1"><div class="number">01 / 45</div><h2>一座岛上有多少种生命，为什么不是无限多？</h2><p>　　设想你乘船驶向一座远离大陆的岛。岛上有树林、沙滩、淡水洼地和岩壁，看上去可以成为无数物种的家。然而，并非所有能生活在这里的生物都真的到达过，抵达者也未必能繁殖，有些已经繁盛的种群还会悄然消失。因此，物种总数既不是由土地面积单独决定，也不是由物种的“适应能力”单独决定。</p><p>　　岛屿生物地理学（island biogeography）研究生物怎样跨越空间障碍，到达、定居、消失，并在历史过程中形成可观察的群落。它的独特之处，是把一个看起来像静态清单的问题——“岛上有什么”——变成一个可推演的动态问题：“进入的速度与离开的速度怎样共同塑造清单？”</p><p>　　本篇的主线是从自然史观察走向数学模型，再由可控实验走向自然保护。必须提前说明：理论中的“平衡”不是所有岛都会稳定不变，更不是生态系统应当达到的目标；它是一套解释某些条件下物种数趋向某个范围的简化模型。</p></section>
+<section id="sec-2"><div class="number">02 / 45</div><h2>什么才算一座“岛”</h2><p>　　地理上，海洋将岛与大陆分开；生态学中，隔离可能来自完全不同的基质。农田里的树林、城市中的公园、山顶上的高寒草甸，甚至某些专性昆虫栖居的一株寄主植物，都可能像“岛”一样拥有有限面积和程度不等的外来补充。</p><p>　　但这些并不是可以任意互换的比喻。海水对某种鸟可能只是短暂飞行，对不会游泳的地栖哺乳动物却几乎是绝对屏障；一片农田对于鸟、昆虫和真菌的可穿越性也不同。<strong>岛的边界不是一条人人相同的地理线，而是针对特定生物类群定义的通行成本。</strong></p></section>
+<section id="sec-3"><div class="number">03 / 45</div><h2>达尔文、华莱士：地理分布不是物种名单</h2><p>　　19 世纪自然史学家在群岛上反复遇到令人困惑的现象：相距不远的岛屿为什么出现不同的近缘物种？为什么有的岛屿物种少，却拥有独一无二的演化支系？达尔文的加拉帕戈斯观察和华莱士在马来群岛的工作，使地理隔离与物种历史联系起来。</p><p>　　这些研究主要关心物种如何起源、怎样扩散以及为何具有区域差异。后来麦克阿瑟和威尔逊提出的平衡理论，重点则是较短生态时间尺度上的物种数变化。两者相连却不相同：一套解释演化谱系如何生成，一套解释现有物种如何移入与局地消失。</p></section>
+<section id="sec-4"><div class="number">04 / 45</div><h2>先把三个数量分开</h2><p>　　一个研究区可以同时讨论物种丰富度、种群数量与个体总数。丰富度 S 是观察到多少种；种群数量是每个物种有多少个体；总个体数则是另一种度量。岛上只有一只偶然飞到的鸟，与拥有稳定繁殖群的同种鸟，在物种清单上可能被记成同一个名字，却代表完全不同的生态状态。</p><p>　　所以“记录到”并不等于“成功定居”，丰富度恢复也不等于数量和功能恢复。后面佛罗里达红树林实验之所以重要，正因为研究者发现部分岛的物种数已接近实验前，而种群密度仍明显偏低。<a href="#sources">[2]</a></p></section>
+<section id="sec-5"><div class="number">05 / 45</div><h2>区域物种库，是所有可能的来客吗？</h2><p>　　必须先定义外来物种从哪里来。模型里的区域物种库 P，不是地球上所有生物，而是附近地区中有机会被输送、又可能在目的地生存的候选集合。研究的是海岛上的蜘蛛、森林中的树木或湖泊里的水生昆虫，P 都会改变。</p><p>　　当岛上已有的物种数 S 接近候选物种库时，新增一个从未出现过的物种通常会越来越难；飞来更多个体不一定意味着增加新物种。模型常把这种机会减少画为一条随 S 下降的曲线，但真实过程受季节、风向、迁移行为和环境过滤影响。</p></section>
+<section id="sec-6"><div class="number">06 / 45</div><h2>抵达、存活、繁殖，是三道不同的门</h2><p>　　一粒种子随鸟粪来到岛上属于传播，一粒种子萌发属于早期存活，长成可持续繁殖的植物才意味着更可靠的定居。海流、风暴和飞行动物决定第一道门；土壤、淡水与食物决定第二道门；性别比例、授粉者和种群规模还会决定第三道门。</p><p>　　同一批抵达事件中，许多从未留下长期记录。生态研究若只测量岛边的到达率，就可能高估真正的移入速率。需要把传播体压力、定居成功率和形成独立种群的机会区别开来。</p></section>
+<section id="sec-7"><div class="number">07 / 45</div><h2>为什么移入曲线通常向下</h2><p>　　考虑一个有六十种潜在鸟类的区域。岛上尚无鸟类时，一位到来的新成员极可能代表一种此前没有出现的物种；如果岛上已有五十九种，来客多半属于现有物种。于是，以“每年新增物种数”为单位的移入率，会随着 S 上升而下降。</p><p>　　这只是一种有用的第一近似。它不要求每个物种具有同等抵达概率；相反，某些善飞的物种会很早出现，深林专性物种可能长期缺席。对于真实海岛，栖息地变化还会改变可定居物种库本身。</p></section>
+<section id="sec-8"><div class="number">08 / 45</div><h2>为什么局地灭绝曲线通常向上</h2><p>　　这里的“灭绝”通常指一个物种在研究岛屿上不再有繁殖种群，并非它在地球上完全消失。随着越来越多物种定居，岛上有更多可能失去的种群；部分种群非常稀少，又会受天气、疾病、竞争与偶然人口波动影响。</p><p>　　经典模型常把局地灭绝率画为随 S 上升的曲线。它不是说“生物越多一定越危险”，而是抽象地表示拥有较多驻留物种时，单位时间内可能出现更多局地消失事件。气候骤变、火灾或新捕食者到来，会让真实曲线突然发生跳跃。</p></section>
+<section id="sec-9"><div class="number">09 / 45</div><h2>两条曲线相交，模型真正说了什么？</h2><p>　　设 I(S) 表示单位时间新定居的物种数，E(S) 表示单位时间局地消失的物种数，则物种数的平均变化率为 dS/dt = I(S) − E(S)。当 I 大于 E，丰富度倾向增加；反过来则倾向减少。交点 S* 满足 I(S*)=E(S*)，被称为动态平衡丰富度。</p><p>　　注意，这里比较的是<strong>速率</strong>，不是静态两堆个体；不等于每个物种都永久安全。下面的交互用线性化教学函数演示机制，方便理解因果方向，不把任意参数冒充野外实测数据。</p></section>
+<section id="sec-10"><div class="number">10 / 45</div><h2>离大陆多远：机会会被怎样折损</h2><p>　　如果一个岛离候选物种的来源地很远，绝大多数传播体可能在途中消失，某些物种根本没有办法穿越屏障。经典图景中，距离较远使移入曲线整体下移：在相同 S 下，单位时间能新增的物种更少。</p><p>　　但“直线距离”并不能完全表示隔离。洋流方向、风带、鸟类的中途停歇点、海峡宽度与人类交通，都影响功能距离。遥远的岛也可能偶然迎来一次强烈风暴带来的大规模移入，之后又长期沉寂。</p></section>
+<section id="sec-11"><div class="number">11 / 45</div><h2>岛屿越大，灭绝率往往为何更低</h2><p>　　较大的岛往往拥有更多可用空间、较大的繁殖种群和更多样的栖息环境。较大的种群面对偶然死亡时，不容易整体归零；多样的栖息地还让物种可以在局部扰动之后转移。</p><p>　　因此在经典模型里，把面积从小改为大，主要表现为局地灭绝曲线下移。面积也可能增加岛屿被传播体“撞上”的目标尺寸，并增多环境类型，但这些额外机制不能简单等同为灭绝率改变。</p></section>
+<section id="sec-12"><div class="number">12 / 45</div><h2>用一张图同时改变距离与面积</h2><p>　　四种岛屿并非凭空分成四种“生态等级”。近而大的岛通常拥有较多新来者、较小的局地消失风险；远而小的岛则更容易缺少补充且种群脆弱。近小与远大谁更丰富，取决于两种力量的具体大小，不能只靠口号排序。</p><p>　　下方图中移入曲线和灭绝曲线的位置可以通过按钮改变。看图先确认同一横坐标代表同一个 S，再观察哪条曲线上移或下移，最后才看交点变化；静态的“结果数字”只是这种动态机制的一个截面。</p>
+<figure class="visual-figure"><h3>视觉实验 01｜两条曲线怎样决定平衡物种数？</h3>
+<p>同时切换距大陆的远近和岛屿面积。观察<span style="color:var(--accent)">移入</span>曲线、<span style="color:var(--accent2)">局地灭绝</span>曲线及其交点。所有速率和物种数都是演示参数。</p>
+<div class="v-controls" aria-label="距离" id="distance-choices"><button type="button" data-dist="near" aria-pressed="true">靠近来源地</button><button type="button" data-dist="far" aria-pressed="false">远离来源地</button></div>
+<div class="v-controls" aria-label="面积" id="size-choices"><button type="button" data-size="large" aria-pressed="true">较大岛屿</button><button type="button" data-size="small" aria-pressed="false">较小岛屿</button></div>
+<svg viewBox="0 0 680 350" role="img" aria-labelledby="eq-title"><title id="eq-title">平衡模型：移入与局地灭绝随岛上物种数改变的关系</title>
+<line class="axis" x1="65" y1="284" x2="627" y2="284"/><line class="axis" x1="65" y1="284" x2="65" y2="30"/>
+<line class="guide" x1="65" y1="185" x2="620" y2="185"/><line class="guide" x1="65" y1="87" x2="620" y2="87"/>
+<text x="65" y="308" font-size="17">0</text><text x="604" y="308" font-size="17">60</text><text x="258" y="339" font-size="18">岛上已有物种数 S</text>
+<text x="65" y="20" font-size="18">每年物种变化速率（示意）</text>
+<path id="eq-i" fill="none" stroke="var(--accent)" stroke-width="6"/><path id="eq-e" fill="none" stroke="var(--accent2)" stroke-width="6"/>
+<line id="eq-vertical" x1="0" y1="285" x2="0" y2="0" stroke="var(--muted)" stroke-dasharray="6 5" stroke-width="2"/>
+<circle id="eq-dot" cx="0" cy="0" r="9" fill="var(--text)" stroke="var(--panel)" stroke-width="3"/></svg>
+<div class="diagram-legend"><span>新增物种移入率 I(S)</span><span>局地灭绝率 E(S)</span></div>
+<div class="v-readout" id="eq-read" role="status" aria-live="polite"></div>
+<div class="visual-reading"><b>怎么看</b>：先固定面积，仅改距离，看移入曲线是否下移；再固定距离，仅改面积，看灭绝曲线是否下移。交点表示平均新增与消失速度相等，绝不表示岛上没有消失事件。</div>
+<figcaption>示意函数：I(S)=I₀(1−S/60)，E(S)=Eₘₐₓ·S/60。它们是帮助理解方向的参数化模型，并非某座真实岛屿的观测曲线。</figcaption></figure></section>
+<section id="sec-13"><div class="number">13 / 45</div><h2>演示模型：为什么交点会移动</h2><p>　　我们为教学设 P=60，使用 I(S)=I₀(1−S/P)，E(S)=Eₘₐₓ(S/P)。I₀ 用来代表空岛上可能的最大新增物种速率，Eₘₐₓ 代表这个人为线性模型的高丰富度灭绝速率。平衡解为 S*=P·I₀/(I₀+Eₘₐₓ)。</p><p>　　“距离近”被设为较大的 I₀，“面积大”被设为较小的 Eₘₐₓ。请重点观察参数怎样改变曲线与结果，而不是记住示例中的精确物种数；自然界很少有真正恒定的物种库或严格线性的速率关系。</p></section>
+<section id="sec-14"><div class="number">14 / 45</div><h2>稳定的数量，不代表稳定的成员</h2><p>　　设想平衡附近一年进入两种、消失两种，明年的总数可能完全不变，但岛上的成员已经更替。这就是 turnover，物种周转。丰富度的稳定与物种组成的稳定，是两套不同的问题。</p><p>　　因此，两次调查都发现三十种，并不能证明群落从未改变。必须对照物种身份，记录进入、消失和重新出现事件。模型允许持续变化与统计平衡同时存在，这正是它最反直觉的核心。</p></section>
+<section id="sec-15"><div class="number">15 / 45</div><h2>从空岛到平衡：时间如何进入模型</h2><p>　　如果初始 S=0，新增速率很高而局地消失速率很低，物种数通常增长得快；随着可新增物种减少、部分种群消失，增长会慢下来。在我们的线性模型里，S(t)=S*·[1−exp(−(I₀+Eₘₐₓ)t/P)]。</p><p>　　它描述的是平均期望轨迹，而不是保证每年单调增长的预言。实际岛屿可以因强风暴、连续旱年、群落竞争或新入侵种出现而上下波动。拖动时间滑块，分别查看曲线上的位置、当前移入与局地消失速率。</p>
+<figure class="visual-figure"><h3>视觉实验 02｜物种数恢复后，还在发生什么？</h3>
+<p>在同一个线性模型里，从 S(0)=0 开始，移动时间。阴影与圆点显示当前阶段；下方同时报告移入、局地消失与净增长率。沿用上一幅图选择的岛屿条件。</p>
+<div class="v-sliders"><label>经历年数 <output id="year-n">8 年</output><input id="year" type="range" min="0" max="30" value="8" step="1"></label></div>
+<svg viewBox="0 0 680 300" role="img" aria-label="从空岛到物种数动态平衡的理论轨迹">
+<line class="axis" x1="65" y1="246" x2="633" y2="246"/><line class="axis" x1="65" y1="246" x2="65" y2="30"/>
+<line class="guide" x1="65" y1="138" x2="630" y2="138"/><text x="65" y="19" font-size="18">物种丰富度 S（期望）</text><text x="55" y="270" font-size="17">0</text><text x="600" y="270" font-size="17">30 年</text>
+<path id="col-path" fill="none" stroke="var(--accent)" stroke-width="6"/><line id="col-line" stroke="var(--accent2)" stroke-width="2" stroke-dasharray="7 4" x1="65" y1="245" x2="65" y2="35"/><circle id="col-dot" r="9" fill="var(--accent2)" cx="65" cy="246"/></svg>
+<div class="v-readout" id="col-read" role="status" aria-live="polite"></div>
+<div class="visual-reading"><b>怎么看</b>：初期两种速率差很大，曲线迅速上升；靠近平衡后净增长变小，但移入率和局地灭绝率并未归零，因此物种组成仍可能周转。</div>
+<figcaption>曲线为连续平均值模型，不是野外逐年整数物种数的预言。时间单位是示意参数中的“年”。</figcaption></figure></section>
+<section id="sec-16"><div class="number">16 / 45</div><h2>物种—面积关系：另一条著名曲线</h2><p>　　除了移入—灭绝的时间模型，生态学家常用经验函数 S=cA^z 描述物种丰富度与面积关系。A 是面积，c 与 z 依赖取样范围、环境类型、物种类群和尺度；在双对数坐标里，这条关系变成 log S=log c+z·log A。</p><p>　　不要把这个经验关系当成上面的两条速率曲线推导出的普适定律。相似的物种—面积图像，可以由栖息地异质性、采样效应、种群动态等多种原因造成；不同岛屿甚至可能属于完全不同的演化历史。</p></section>
+<section id="sec-17"><div class="number">17 / 45</div><h2>指数 z 改变的，是面积的弹性</h2><p>　　如果 S=cA^z，面积乘以 2，预测丰富度乘以 2^z；面积减半，则乘以 0.5^z。z 不是所有海岛都通用的固定常数。一个地区的鸟类、昆虫与真菌可能具有不同的尺度特征。</p><p>　　更重要的是，这样的关系描述跨面积的关联，不直接告诉你“把一个保护区砍掉一半，马上会消失多少种”。缩减栖息地的过程还有时间滞后、位置效应、边缘变化和人为干预。下方实验计算的是纯模型变化，并非灭绝数预报。</p></section>
+<section id="sec-18"><div class="number">18 / 45</div><h2>为什么要把坐标轴取对数</h2><p>　　在普通坐标中，面积从一到一百的跨度，会让小岛被挤到图的一角；双对数坐标把成倍变化转换成等间隔，便于比较弹性。直线的斜率是 z，截距与 c 有关。研究者通过回归估计参数时，还必须考虑采样偏差、误差结构和可能的非线性。</p><p>　　你可以调节 z 和相对面积，在图上观察一条斜率改变的线。看曲线时不要把“物种数增加”误读为个体数量增加，更不能据此忽略那些只存在于特定小岛的特有物种。</p>
+<figure class="visual-figure"><h3>视觉实验 03｜面积增加一倍，丰富度如何变化？</h3>
+<p>保持演示尺度系数 c=15，把面积指数 z 当作可调参数。图中横轴按面积的对数展开；实际计算、变化率和适用边界都在图外说明。</p>
+<div class="v-sliders"><label>指数 z <output id="z-n">0.25</output><input type="range" id="z" min="0.10" max="0.45" value="0.25" step="0.01"></label><label>相对面积 A <output id="area-n">20</output><input type="range" id="area" min="1" max="100" value="20" step="1"></label></div>
+<svg viewBox="0 0 680 310" role="img" aria-label="双对数物种面积关系曲线示意">
+<line class="axis" x1="63" y1="258" x2="635" y2="258"/><line class="axis" x1="63" y1="258" x2="63" y2="32"/>
+<line class="guide" x1="63" y1="145" x2="635" y2="145"/>
+<text x="62" y="19" font-size="18">log S（对数刻度）</text><text x="250" y="297" font-size="18">log A（对数刻度）</text><text x="60" y="282" font-size="16">1</text><text x="328" y="282" font-size="16">10</text><text x="600" y="282" font-size="16">100</text>
+<path id="sar-path" fill="none" stroke="var(--accent)" stroke-width="6"/><circle id="sar-dot" cx="0" cy="0" r="9" fill="var(--accent2)"/></svg>
+<div class="v-readout" id="sar-read" role="status" aria-live="polite"></div>
+<div class="visual-reading"><b>怎么看</b>：在双对数坐标上曲线为直线。改变 z 主要改变斜率；改变 A 则改变标记点的位置。不要把这条经验关联直接当成具体栖息地被破坏后的即时灭绝数量。</div>
+<figcaption>面积 A 为无单位的示意尺度，c=15 仅为便于观察而设；所有计算只解释公式 S=cA^z。</figcaption></figure></section>
+<section id="sec-19"><div class="number">19 / 45</div><h2>大岛物种多，是否只是因为采得更久？</h2><p>　　更大的样地包含更多个体，随机采样就可能记录更多种，这被称为采样效应的一种形式；同时，大岛也可能拥有不同海拔、土壤与气候，从而支持更多生态位。即使不考虑移入与局地灭绝，两种机制也可能制造正相关。</p><p>　　要真正判断岛屿面积的因果作用，不能只拿几个岛的清单画一条拟合线。研究者需要控制调查努力、区域物种库、栖息地多样性、历史条件和空间自相关。多条机制可以共同解释同一个统计规律。</p></section>
+<section id="sec-20"><div class="number">20 / 45</div><h2>把岛的生物先移走：科学家如何做实验</h2><p>　　20 世纪 60 年代，丹尼尔·辛伯洛夫和爱德华·威尔逊在佛罗里达湾的红树林小岛开展了著名操纵实验。实验对象是面积很小、组成较简单的红树小岛，研究团队先详尽调查其节肢动物，再采用覆帐熏蒸方式去除陆生节肢动物，随后连续追踪重新定居过程。<a href="#sources">[2][3]</a></p><p>　　现代保护实践不应将这种历史研究手段视为可随意复制的操作方案。研究意义在于：与被动比较不同岛屿不同，研究者能够观察近似从零开始的群落重建，并用对照岛与重复调查改善推断。</p></section>
+<section id="sec-21"><div class="number">21 / 45</div><h2>红树林实验究竟观察到了什么</h2><p>　　1969 年发表的研究报告指出，六个被处理小岛中的大部分，在去除原有节肢动物后约 250 天内，物种数和组成恢复到与未经处理岛屿相近的水平；最远的小岛恢复较慢。实验中群落成员持续进入、消失，远不是一旦恢复便固定下来。<a href="#sources">[3]</a></p><p>　　但群落中个体数量并未同步恢复，早到的类群与晚到的蚂蚁也有不同动态。1970 年的后续记录继续支持某些岛屿存在近似稳定的物种数，同时强调组分仍在不断变化。<a href="#sources">[4]</a></p></section>
+<section id="sec-22"><div class="number">22 / 45</div><h2>一个漂亮实验，为什么不能证明所有岛都一样</h2><p>　　实验验证了经典机制的若干预测，却不意味着所有物种与岛屿必然服从同一平衡曲线。样地非常小，研究对象主要是能够跨越短距离的节肢动物；热带大岛上的鸟类、哺乳动物和树木，既有不同的传播能力，也有复杂的捕食和演化过程。</p><p>　　科学上的外推必须说明范围。一个清晰的可控系统能让我们识别机制；走向广阔自然界时，则要重新把环境过滤、物种相互作用、历史事件和测量尺度放进解释中。</p></section>
+<section id="sec-23"><div class="number">23 / 45</div><h2>喀拉喀托：当岛屿被喷发重新塑造</h2><p>　　1883 年喀拉喀托火山猛烈喷发后，岛群成为研究生命重新定居的重要自然观察窗口。研究者长期记录植物恢复、动物扩散与植被演替，发现不同类群恢复速度并不一致。1989 年的一项植物恢复综述描述了从先驱群落向多种森林类型演替的过程。<a href="#sources">[5]</a></p><p>　　它与红树林实验有一项本质区别：火山不只减少物种，还可能彻底改变地形、土壤和可生存环境；因此我们看到的是物种移入、栖息地形成与群落演替交织在一起的历史。</p>
+<figure class="visual-figure"><h3>视觉讲解 04｜佛罗里达红树林实验的识别逻辑</h3>
+<svg viewBox="0 0 680 230" role="img" aria-label="通过基线调查、去除节肢动物、重复监测与对照岛，区分殖入与局地消失">
+<rect x="10" y="36" width="150" height="156" rx="15" fill="var(--soft)" stroke="var(--line)" stroke-width="2"/>
+<rect x="180" y="36" width="150" height="156" rx="15" fill="var(--soft)" stroke="var(--line)" stroke-width="2"/>
+<rect x="350" y="36" width="150" height="156" rx="15" fill="var(--soft)" stroke="var(--line)" stroke-width="2"/>
+<rect x="520" y="36" width="150" height="156" rx="15" fill="var(--soft)" stroke="var(--line)" stroke-width="2"/>
+<g font-size="23" font-weight="700" text-anchor="middle"><text x="85" y="89">原始调查</text><text x="255" y="89">实验扰动</text><text x="425" y="89">长期监测</text><text x="595" y="89">与对照比较</text></g>
+<g font-size="18" text-anchor="middle"><text x="85" y="124">有什么种类</text><text x="255" y="124">重置初始状态</text><text x="425" y="124">谁进入、谁消失</text><text x="595" y="124">恢复及组成</text></g>
+<g font-size="26" fill="var(--accent)"><text x="163" y="119">›</text><text x="333" y="119">›</text><text x="503" y="119">›</text></g></svg>
+<div class="visual-reading"><b>怎么看</b>：第一步建立基线；第二步创造可比较的初始状态；第三步测量随时间变化的物种清单；第四步对照未处理岛。只有将过程与对照结合，才能比单次物种清点更有力地检验移入与周转假说。</div>
+<figcaption>按 1969 年系列研究的设计逻辑绘制的抽象流程示意，并非现场照片。历史上实际采用的化学处理方法不代表当代推荐操作。</figcaption></figure></section>
+<section id="sec-24"><div class="number">24 / 45</div><h2>先驱者与后来者，不是抽签随机到达</h2><p>　　能够随风、海漂或鸟类传播的生物可能首先登陆裸地，但登陆不等于最终优势。先驱植物改变遮阴、土壤和养分条件，才逐渐使其他物种具备定居条件；某些最早占据的物种也可能在后来的群落中减少。</p><p>　　这种演替意味着模型中的定居率与局地消失率也会随着岛屿环境改变。早期一条曲线和百年后的另一条曲线，可能不是同一个系统。把演替理解为固定且必然的单一路线，同样过度简化。</p></section>
+<section id="sec-25"><div class="number">25 / 45</div><h2>生态时间与演化时间不能混成一条线</h2><p>　　在几十年的生态时间尺度上，我们常统计外部物种的移入与局地消失；在成千上万年的演化时间尺度上，岛屿上的种群可能逐渐分化，形成新物种，甚至发生适应性辐射。隔离此时一面限制外部补充，一面又为独立演化提供条件。</p><p>　　因此，远岛即使当下物种数较少，也可能具有很高的特有性与不可替代的谱系价值。保护不能只把总物种数当成唯一分数，否则一个拥有少量独特物种的岛，会被错误地评为“不重要”。</p></section>
+<section id="sec-26"><div class="number">26 / 45</div><h2>捕食者、竞争与互利，会改写曲线</h2><p>　　经典平衡模型把群落压缩为 S 一项变量，但真实物种并非一组可互换的棋子。一种大型食草动物可能改变植被，一种强捕食者可能压低多个猎物种群，传粉者与寄主植物甚至互为定居前提。</p><p>　　这意味着移入并不是与已有成员完全独立的过程：一种新种的加入可能帮助另一种定居，也可能让旧种局地消失。所谓生态相互作用模型，是在平衡思想之上加入这些关系，而不是宣布最初的简化完全无用。</p></section>
+<section id="sec-27"><div class="number">27 / 45</div><h2>外来种：传播屏障被技术突然缩短</h2><p>　　船舶、货物、旅游和人类迁移能够绕过海洋原有的地理隔离，将某些物种直接送到孤岛。经典模型中看似稳定的长期移入率，会受到一次新航线、港口建设或货物贸易剧增的重大改变。</p><p>　　新来的物种未必都成为入侵者；但缺乏特定防御或生殖机会有限的岛屿本地物种，可能对某些引入种特别脆弱。需要把“外来”“已归化”“具有生态危害”清楚区分，避免把地理来源直接等同于危害判断。</p></section>
+<section id="sec-28"><div class="number">28 / 45</div><h2>从海岛到斑块：集合种群</h2><p>　　生境被道路和农田割裂后，同一种生物可能以多个局部种群形式分布在不同斑块。某片林子里暂时消失的物种，只要相邻斑块还有种群并且能够穿越基质，就可能重新定居。集合种群理论正是把局地灭绝与重新殖入组织成空间网络。</p><p>　　它与岛屿生物地理学共享“到达—失去”的思想，却把研究对象从整体群落物种数转向某个物种在多个地点上的占据状态。连通性、斑块大小和种群同步波动都可能决定长期维持能力。</p></section>
+<section id="sec-29"><div class="number">29 / 45</div><h2>廊道并非一条万能的绿色线</h2><p>　　若两块林地之间建立适宜栖息廊道，某些物种的移动成功率可以提高，从而加强迁入补充。但廊道效果高度依赖物种行为、廊道宽度、质量、被跨越土地的性质，以及是否同时帮助捕食者、病原体或外来种传播。</p><p>　　“距离近”与“真正连通”不是同义词。一个隔着高速路的近邻斑块可能比相距更远但沿河谷相连的斑块更难到达。生态规划需要对目标类群分别评估，而非只在地图上画一条相接的绿带。</p></section>
+<section id="sec-30"><div class="number">30 / 45</div><h2>破碎化不只是把总面积切成小块</h2><p>　　把完整森林切成几块，即使保留面积总和不变，也增加了边界与周围土地的接触。边缘处可能更热、更干、更亮，风害与人类干扰不同于内部。对于依赖阴湿核心森林的物种，同面积的四个小斑块，未必提供与一个大斑块相同的有效内部栖息地。</p><p>　　2015 年《Science Advances》发表的综合研究指出，其研究使用的森林覆盖资料中，约七成剩余森林位于距边缘一公里之内；这是特定资料和分析定义下的估计，不能当作每片森林的恒定属性。<a href="#sources">[6]</a></p></section>
+<section id="sec-31"><div class="number">31 / 45</div><h2>同样的总面积，边缘比例可以差很多</h2><p>　　对正方形斑块，边长 L、边缘影响深入距离 d 时，保留的几何核心面积是 max(L−2d,0)²。把边长 200 的大正方形切成四个边长 100 的正方形，总面积没变，但总周长增加，处在边缘带内的面积通常增加。</p><p>　　下面的 SVG 用相同总面积演示这一点。滑块中的 d 是人为设定的统一边缘影响深度，不代表真实森林各方向均匀受扰。更复杂的边界、面积分布与微地形会改变结果。</p>
+<figure class="visual-figure"><h3>视觉实验 05｜同样总面积，碎成四块还剩多少内部生境？</h3>
+<p>两种形状在演示中总面积都为 40,000 平方单位。浅色为边缘影响带，深色为保留下来的“几何核心”；边缘深度 d 可调。</p>
+<div class="v-sliders"><label>边缘影响深度 d <output id="edge-n">20</output><input type="range" id="edge-depth" min="0" max="45" value="20" step="5"></label></div>
+<svg viewBox="0 0 680 300" role="img" aria-label="边长200的单个正方形与四个边长100的正方形核心区面积比较">
+<text x="58" y="29" font-size="22" font-weight="700">一个大斑块</text><text x="375" y="29" font-size="22" font-weight="700">四个小斑块</text>
+<rect x="65" y="53" width="180" height="180" rx="3" fill="var(--accent2)" opacity=".38"/>
+<rect id="big-core" x="83" y="71" width="144" height="144" fill="var(--accent)" opacity=".85"/>
+<g fill="var(--accent2)" opacity=".38"><rect x="387" y="53" width="86" height="86"/><rect x="486" y="53" width="86" height="86"/><rect x="387" y="152" width="86" height="86"/><rect x="486" y="152" width="86" height="86"/></g>
+<g fill="var(--accent)" opacity=".85"><rect id="small-1" x="400" y="66" width="60" height="60"/><rect id="small-2" x="499" y="66" width="60" height="60"/><rect id="small-3" x="400" y="165" width="60" height="60"/><rect id="small-4" x="499" y="165" width="60" height="60"/></g>
+<text x="68" y="267" font-size="18">面积：40,000</text><text x="382" y="267" font-size="18">总面积：40,000</text></svg>
+<div class="diagram-legend"><span>内部核心</span><span>边缘影响带</span></div><div class="v-readout" id="edge-read" role="status" aria-live="polite"></div>
+<div class="visual-reading"><b>怎么看</b>：先把深度设为 0，两种方案的全部面积都算核心；再逐渐增加 d。碎片化会增加暴露边界，但真实的核心生境还取决于边缘效应是否存在、物种需求及形状。</div>
+<figcaption>严格几何练习：大斑块核心 max(200−2d,0)²；四小斑块总核心 4·max(100−2d,0)²。这里没有预测实际物种数。</figcaption></figure></section>
+<section id="sec-32"><div class="number">32 / 45</div><h2>延迟到来的损失：灭绝债务</h2><p>　　设想原本繁盛的林地被突然缩小，一些寿命长的树木或活动范围大的动物可能仍存在很多年，但新环境已不足以保证后续世代补充。记录到“目前还活着”，不能证明它们拥有长期可持续的种群。未来的局地消失风险，可能已经由过去的破碎化决定。</p><p>　　生态学称这种时间差的一类现象为灭绝债务。2015 年的长期实验综合研究指出，破碎化的不利影响可能随着时间推移加强，较大斑块的反应也可能更缓慢。恢复连通性与生境质量需要考虑时间窗口，不能只等待丰富度下降后再行动。<a href="#sources">[6]</a></p></section>
+<section id="sec-33"><div class="number">33 / 45</div><h2>“一种”和“一种”，在保护里价值相同吗？</h2><p>　　如果只测 S，独有的濒危物种与广泛分布的常见物种在数学上各贡献 1。保护决策通常还需要看威胁程度、特有性、系统发育独特性、生态功能及维持种群的可能性。</p><p>　　岛屿理论解释为什么物种数与面积、隔离相关，却没有提供一套完整的伦理和政策权重。用一个漂亮的曲线直接决定谁值得保护，会把学科间的价值判断藏在看似中立的数字里。</p></section>
+<section id="sec-34"><div class="number">34 / 45</div><h2>α、β、γ：为什么几个小岛的总数不能简单相加</h2><p>　　α 多样性可表示单个样地的局地多样性；β 描述不同样地之间组成差异；γ 则是更大区域的物种总集合。四个岛各有五种，如果全是同样五种，区域总数仍为五；如果彼此有不同成员，区域总数可能明显更高。</p><p>　　这里“各自丰富度”与“总体独特性”不是一回事。为了判断保护多个小斑块能留下多少不同物种，至少要知道物种清单的重叠程度，而不能只知道每块有多少种。后面的交互允许改变小斑块之间的重叠。</p></section>
+<section id="sec-35"><div class="number">35 / 45</div><h2>SLOSS 争议：一大块还是多小块？</h2><p>　　20 世纪 70 年代，自然保护领域出现 single large or several small（SLOSS）争论：相同总面积下，集中成一块还是分成多个保护地更好？大型斑块通常有核心面积和维持广域物种的优势；若小斑块位于不同环境、容纳不同稀有物种，多块相加却可能覆盖更多区域物种。</p><p>　　重要的逻辑误区是：S=cA^z 是单块面积与丰富度之间的关系，不能在不知道物种重叠的情况下，把几块的预测值直接相加当成总丰富度。文献对单大优先规则长期存在争论，2022 年的综述也强调必须比较同总面积下斑块集合的 γ 多样性。<a href="#sources">[7]</a></p>
+<figure class="visual-figure"><h3>视觉实验 06｜一大块与多小块：物种名单比数量更重要</h3>
+<p>选择不同的“小斑块群落重叠”情形，观察集合内独特字母的数量。大斑块作为固定比较基准，始终包含 A—H 共 8 种。</p>
+<div class="v-controls" id="sloss-choices"><button type="button" data-sloss="overlap" aria-pressed="true">高度重叠</button><button type="button" data-sloss="distinct" aria-pressed="false">相互互补</button><button type="button" data-sloss="rare" aria-pressed="false">存在独有种</button></div>
+<div class="species-grid" id="sloss-tiles"></div><div class="v-readout" id="sloss-read" role="status" aria-live="polite"></div>
+<div class="visual-reading"><b>怎么看</b>：比较的不是四个小块的物种数相加，而是四块物种清单的“并集”。即使并集更多，也不能据此判定小块方案更能长期支持大范围物种。</div>
+<figcaption>全部字母都是虚构物种；示意只说明 α、β、γ 与保护决策的关系。不存在由这三组案例推出的通用保育结论。</figcaption></figure></section>
+<section id="sec-36"><div class="number">36 / 45</div><h2>交互实验：让物种重叠率决定结论</h2><p>　　下面三组卡片故意使用虚构的字母物种。一个大斑块包含八种；四个小斑块在不同情境下分别有很高重叠、不同组合或含有某些大斑块欠缺的独有种。切换情境，区域物种并集会发生实质变化。</p><p>　　这不是保育规划算法，更不是宣称多小或单大永远占优。即使某方案 γ 更高，也可能无法支持一只需要大范围连续森林的掠食动物。数量、组成、种群稳定性和保护成本必须并列讨论。</p></section>
+<section id="sec-37"><div class="number">37 / 45</div><h2>为什么模型的预测不能脱离尺度</h2><p>　　以草地昆虫为对象的小斑块，可能与以大型兽类为对象的大斑块有不同的功能隔离。一百米、十公里和一个大陆尺度的移入机制，可能分别由日常移动、代际扩散和地质历史主导。</p><p>　　时间尺度也如此：一年内观察到的暂时消失，和一万年里留下的地方性演化谱系，并不是同一个过程。模型写下 S 时，必须同时写清“谁、在哪里、统计多久、用什么检测方法”。</p></section>
+<section id="sec-38"><div class="number">38 / 45</div><h2>模型中的随机性，与现实的偶然</h2><p>　　某一年没有新种抵达，不代表平均移入率为零；两只鸟在同一场暴风中来到岛上，也不能据此把长期速率翻倍。大多数生态事件具有偶然性，单次记录和长期期望不同。</p><p>　　如果系统里只有很少物种或很小的种群，随机波动就可能使实际轨迹与平滑的平均曲线相去甚远。用随机过程、状态空间模型或重复观测估计不确定性，通常比给出一条没有误差带的曲线更诚实。</p>
+<figure class="visual-figure"><h3>视觉实验 07｜五次视角转换：从地理名单到生态系统治理</h3>
+<p>点击任一时期，查看当时的重要问题、获得的新解释，以及尚未解决的困难。</p>
+<div class="v-controls" id="timeline-choices">
+<button type="button" data-era="0" aria-pressed="true">19 世纪</button><button type="button" data-era="1" aria-pressed="false">1967</button><button type="button" data-era="2" aria-pressed="false">1969—70</button><button type="button" data-era="3" aria-pressed="false">1970 年代</button><button type="button" data-era="4" aria-pressed="false">2015—22</button></div>
+<div class="v-readout" id="timeline-read" role="status" aria-live="polite" style="min-height:126px"></div>
+<figcaption>以代表性科学史节点组织的解释性时间轴；阶段之间仍有大量并行发展，不表示理论在每一年发生整齐的替换。</figcaption></figure></section>
+<section id="sec-39"><div class="number">39 / 45</div><h2>调查努力改变，物种数也会“改变”</h2><p>　　一次夜间调查可能没有找到白天隐藏的昆虫；某些稀有种在雨季才出现；识别能力提高以后，以前被误归到同一个名字下的两个物种可能被分开。记录物种数 S_obs 并不完全等于真实物种数 S_true。</p><p>　　所以历史序列中一条漂亮的上升曲线，也可能混有采样天数增加、仪器提升、分类学更新等因素。生态学家常用标准化抽样、重复检测和显式侦测概率模型，尽量把观察过程与真实生态过程分开。</p></section>
+<section id="sec-40"><div class="number">40 / 45</div><h2>时间轴：从自然史直觉到实验与政策</h2><p>　　岛屿生物地理学并非某人在 1967 年突然创造的全部知识。它建立在生物地理调查、种群生态学、数学建模和后来的操纵实验之上。之后几十年，理论反过来影响自然保护区设计，又在现实证据面前被反复修正。</p><p>　　点击下面时间轴中的阶段，会看到当时的核心问题、主要推进与留下的局限。重要的不是记忆几个年份，而是理解学科怎样从“在哪里发现了什么”转向“哪些过程让它出现”，最后转向“怎样干预这些过程”。</p></section>
+<section id="sec-41"><div class="number">41 / 45</div><h2>现实决策：保护区设计要同时算哪几笔账</h2><p>　　如果有一笔有限预算，首先应明确保护目标：是拯救某个濒危种，保护整体谱系独特性，还是维持授粉和水源等生态功能？接下来才评估土地面积、栖息地质量、廊道连通性、管理能力与未来开发压力。</p><p>　　经典岛屿模型可以提醒人们关注移入和局地消失，也可以帮助提出待检验的假设，却无法直接替代现场调查与社会决策。保护一块土地不是在纸上最大化一个 S，而是在长期变化的社会—生态系统中减少不可逆损失。</p></section>
+<section id="sec-42"><div class="number">42 / 45</div><h2>离岛国家面对的不是简单的“海平面变量”</h2><p>　　气候变暖、海平面上升、干旱与更极端的事件可能改变某些海岛的面积、盐度、地下淡水和栖息地结构。受影响的不仅是岛有多大，还包括剩下的环境是否仍适合物种繁殖，传播通道是否发生变化。</p><p>　　因此把未来岛屿生态简化为“面积下降 20%，物种数按照固定 z 下降”是不完整的。更严谨的研究需要生境投影、物种生理限制、历史分布、不确定性和管理行为等信息。</p></section>
+<section id="sec-43"><div class="number">43 / 45</div><h2>一个模型的伟大，也包括它允许被反驳</h2><p>　　麦克阿瑟与威尔逊的成就不是宣布所有自然系统都服从单一公式，而是把模糊的群落复杂性提炼为能够画曲线、做实验、提出反例的机制假说。能够说出模型什么情况下可能失败，恰恰意味着真正理解模型。</p><p>　　当岛屿的栖息地持续成长、物种库快速变化、强相互作用支配群落或人类频繁引入外来种时，简单平衡解释就必须扩展。保留它作为入门心智模型，并不意味着放弃后续更真实的历史与生态机制。</p></section>
+<section id="sec-44"><div class="number">44 / 45</div><h2>这个关键词改变了什么视角</h2><p>　　从前，我们容易把一片森林或一座岛当作装着固定物种的容器，失去了多少就再“补回”多少。岛屿生物地理学提醒我们：群落更像一条有进有出的生命流，数量可能暂时稳定，成员却在更替；相同面积也可能因为形状、距离、连通性和历史而截然不同。</p><p>　　最重要的认知变化是：<strong>对一个生态系统的判断，不应只看它此刻拥有什么，还要看未来有哪些物种进得来、哪些种群留得住，以及我们能否在损失显现之前发现正在改变的条件。</strong></p></section>
+<section id="sec-45"><div class="number">45 / 45</div><h2>四个真正值得继续追问的问题</h2><p>　　第一，如果某个远岛拥有很高的特有性、却只有少数物种，按照丰富度排名会造成怎样的保护偏差？第二，在同等总面积下，怎样将核心生境、区域物种并集与大型动物的最低种群规模一起纳入规划？</p><p>　　第三，当移入与局地灭绝都很快时，物种数的平衡究竟意味着系统具有韧性，还是意味着持续的高风险周转？第四，如果我们只观察了一个季节，如何区分真实生态变化与“没看见”的侦测误差？</p></section><section id="connections"><div class="number">CROSS-TOPIC NAVIGATION</div><h2>四个能够继续打开的思考方向</h2><div class="cross-grid"><a href="../w38/2026-09-15-percolation.html"><b>渗流</b>当森林斑块连成网络，关键问题不只是面积，还包括是否出现能够跨越景观的连通通道；从几何结构理解生态移动门槛。</a><a href="../w38/2026-09-20-mycorrhiza.html"><b>菌根</b>岛上的植物群落不是彼此独立的物种计数器：根与真菌的共生关系，可能改变传播后能否真正定居。</a><a href="../w37/2026-09-07-commons.html"><b>公地</b>保护区的面积和连通性最终要由产权、治理与共同资源制度决定；生态可行不等于制度自动可行。</a><a href="../w36/2026-08-31-emergence.html"><b>涌现</b>由个体到达、繁殖与消失生成的宏观物种数，展示了群体统计规律如何从微观事件中涌现。</a></div></section><section id="sources"><div class="number">SOURCES & BOUNDARIES</div><h2>文献与研究边界</h2><p>　　本文将原始实验、经典理论及后续保育争论分开呈现。SVG 中的预测值、几何推演与字母物种均为教学模型，不等同于任何特定地区的监测结果。下列来源可继续核对历史事件和经验结论。</p><ol class="source-list"><li>MacArthur, R. H. & Wilson, E. O. (1967), <a href="https://doi.org/10.1515/9781400881376">The Theory of Island Biogeography</a>，经典理论著作（所链接为后续数字版本）。</li><li>Wilson, E. O. & Simberloff, D. S. (1969), <a href="https://doi.org/10.2307/1934855">Defaunation and Monitoring Techniques</a>，Ecology 50:267–278。</li><li>Simberloff, D. S. & Wilson, E. O. (1969), <a href="https://doi.org/10.2307/1934856">The Colonization of Empty Islands</a>，Ecology 50:278–296。</li><li>Simberloff, D. S. & Wilson, E. O. (1970), <a href="https://doi.org/10.2307/1933995">A Two-Year Record of Colonization</a>，Ecology 51:934–937。</li><li>Tagawa, H. (1989), <a href="https://doi.org/10.18960/seitai.39.3_203">Process of Vegetational Recovery on the Krakatau Islands</a>，Japanese Journal of Ecology。</li><li>Haddad, N. M. et al. (2015), <a href="https://doi.org/10.1126/sciadv.1500052">Habitat fragmentation and its lasting impact on Earth's ecosystems</a>，Science Advances。</li><li>Fahrig, L. et al. (2022), <a href="https://doi.org/10.1111/brv.12792">Resolving the SLOSS dilemma for biodiversity conservation: a research agenda</a>，Biological Reviews。</li></ol></section></main></div><nav class="footer-nav" aria-label="文章间导航"><a href="2026-10-26-dome.html">← 上一篇：穹顶</a><a href="index.html">本周目录</a><a href="../index.html">2026 年度目录</a><a href="../../index.html">网站首页</a></nav><footer class="footer">Daily Cognition · GitHub main 为唯一长期内容源 · 交互图为教学表达，不应直接作为现实规划依据</footer></div><script>
+(function(){
+'use strict';
+const by=id=>document.getElementById(id);
+document.getElementById('theme').addEventListener('click',()=>{let r=document.documentElement;r.dataset.theme=r.dataset.theme==='dark'?'':'dark';try{localStorage.setItem('dc-theme',r.dataset.theme)}catch(e){}});
+try{document.documentElement.dataset.theme=localStorage.getItem('dc-theme')||''}catch(e){}
+let dist='near',size='large',lastStar=0;
+const P=60,px=s=>65+562*s/P,py=r=>284-9.5*r;
+function rates(){return {i0:dist==='near'?22:11,e0:size==='large'?8:18};}
+function updateButtons(id,attr,value){by(id).querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset[attr]===value)));}
+function updateEq(){
+const {i0,e0}=rates(),s=P*i0/(i0+e0),turn=i0*(1-s/P);lastStar=s;
+by('eq-i').setAttribute('d','M '+px(0)+' '+py(i0)+' L '+px(P)+' '+py(0));
+by('eq-e').setAttribute('d','M '+px(0)+' '+py(0)+' L '+px(P)+' '+py(e0));
+by('eq-dot').setAttribute('cx',px(s));by('eq-dot').setAttribute('cy',py(turn));
+by('eq-vertical').setAttribute('x1',px(s));by('eq-vertical').setAttribute('x2',px(s));by('eq-vertical').setAttribute('y2',py(turn));
+by('eq-read').innerHTML='<strong>交点 S* ≈ '+s.toFixed(1)+' 种；交点处进入与消失速率均约 '+turn.toFixed(1)+' 种/年。</strong> '+(dist==='near'?'近岛的传播补充较强。':'远岛的传播补充较弱。')+(size==='large'?'较大的岛使示例局地灭绝曲线偏低。':'较小的岛使示例局地灭绝曲线偏高。')+' 这是统计平衡，不是停止更替。';
+updateButtons('distance-choices','dist',dist);updateButtons('size-choices','size',size);updateCol();
+}
+by('distance-choices').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{dist=b.dataset.dist;updateEq()}));
+by('size-choices').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{size=b.dataset.size;updateEq()}));
+function updateCol(){
+let t=+by('year').value,{i0,e0}=rates(),k=(i0+e0)/P,s0=lastStar,fn=x=>s0*(1-Math.exp(-k*x)), coords=[];
+for(let j=0;j<=60;j++){let x=30*j/60;coords.push((j?'L':'M')+(65+560*x/30).toFixed(2)+' '+(246-205*fn(x)/60).toFixed(2));}
+by('col-path').setAttribute('d',coords.join(' '));
+let s=fn(t),x=65+560*t/30,y=246-205*s/60,imm=i0*(1-s/P),ext=e0*s/P;
+by('col-dot').setAttribute('cx',x);by('col-dot').setAttribute('cy',y);by('col-line').setAttribute('x1',x);by('col-line').setAttribute('x2',x);by('col-line').setAttribute('y2',y);
+by('year-n').value=t+' 年';by('col-read').innerHTML='<strong>t='+t+' 年：期望丰富度 '+s.toFixed(1)+' 种（长期交点 '+s0.toFixed(1)+'）。</strong> 新增 '+imm.toFixed(2)+' 种/年，局地消失 '+ext.toFixed(2)+' 种/年，净变化 '+(imm-ext).toFixed(2)+' 种/年。正的净增长减小，并不意味着进入与消失事件停止。';
+}
+by('year').addEventListener('input',updateCol);updateEq();
+function updateArea(){
+let z=+by('z').value,A=+by('area').value,s=a=>15*Math.pow(a,z),x=a=>63+570*Math.log10(a)/2,y=a=>258-206*Math.log(s(a)/10)/Math.log(120/10),d=[];
+for(let i=0;i<=70;i++){let a=Math.pow(100,i/70);d.push((i?'L':'M')+x(a).toFixed(2)+' '+y(a).toFixed(2));}
+by('sar-path').setAttribute('d',d.join(' '));by('sar-dot').setAttribute('cx',x(A));by('sar-dot').setAttribute('cy',y(A));by('z-n').value=z.toFixed(2);by('area-n').value=A;
+by('sar-read').innerHTML='<strong>当 A='+A+'、z='+z.toFixed(2)+' 时，S≈'+s(A).toFixed(1)+'；把面积加倍，预测丰富度乘以 '+Math.pow(2,z).toFixed(3)+'。</strong> 若面积减半，公式给出的相对减少为 '+((1-Math.pow(.5,z))*100).toFixed(1)+'%。这不是瞬时物种灭绝预测。';
+}
+['z','area'].forEach(id=>by(id).addEventListener('input',updateArea));updateArea();
+function updateEdge(){
+let d=+by('edge-depth').value,k=.9,bd=180-2*d*k,bArea=Math.pow(Math.max(200-2*d,0),2),sArea=4*Math.pow(Math.max(100-2*d,0),2);
+by('big-core').setAttribute('x',65+d*k);by('big-core').setAttribute('y',53+d*k);by('big-core').setAttribute('width',Math.max(0,bd));by('big-core').setAttribute('height',Math.max(0,bd));
+[[387,53],[486,53],[387,152],[486,152]].forEach((q,i)=>{let el=by('small-'+(i+1)),v=Math.max(0,86-.86*2*d);el.setAttribute('x',q[0]+d*.86);el.setAttribute('y',q[1]+d*.86);el.setAttribute('width',v);el.setAttribute('height',v)});
+by('edge-n').value=d;by('edge-read').innerHTML='<strong>大斑块核心 '+bArea.toLocaleString()+'（'+(bArea/400).toFixed(1)+'%）；四小斑块合计核心 '+sArea.toLocaleString()+'（'+(sArea/400).toFixed(1)+'%）。</strong> 相同总面积下，内部生境的差异来自形状与暴露边缘的比例，而非突然消失的土地。';
+}
+by('edge-depth').addEventListener('input',updateEdge);updateEdge();
+const cases={
+overlap:[['A','B','C','D','E'],['A','B','C','D'],['B','C','D','E'],['A','B','D','F']],
+distinct:[['A','B','C','D'],['E','F','G','H'],['I','J','A','B'],['K','L','C','D']],
+rare:[['A','B','C','I'],['C','D','E','J'],['A','F','G','I'],['B','D','I','J']]};
+let sloss='overlap';
+function updateSloss(){
+let sets=cases[sloss],union=new Set(sets.flat()),large=new Set('ABCDEFGH'.split('')),onlySmall=[...union].filter(x=>!large.has(x)),missing=[...large].filter(x=>!union.has(x));
+by('sloss-tiles').innerHTML=sets.map((arr,i)=>'<div class="species-card"><b>小斑块 '+(i+1)+'</b><div>'+arr.join(' · ')+'</div><span>局地丰富度 '+arr.length+'</span></div>').join('');
+by('sloss-read').innerHTML='<strong>四块的区域物种并集 γ = '+union.size+' 种；对照的大斑块有 8 种。</strong> 小块组合独有：'+(onlySmall.join('、')||'无')+'；大斑块有而小块缺少：'+(missing.join('、')||'无')+'。单块种数不能直接相加：同种在不同小块里出现，区域统计仍只算一种。';
+updateButtons('sloss-choices','sloss',sloss);
+}
+by('sloss-choices').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{sloss=b.dataset.sloss;updateSloss()}));updateSloss();
+const eras=[
+['19 世纪｜从自然史到生物地理','问题：为何某些岛有近缘独特物种，另一些岛却缺少大陆常见种？推进：达尔文、华莱士等人的分布记录把隔离与演化历史联系起来。局限：还没有一套能解释新增与消失速率的统一群落模型。'],
+['1967｜麦克阿瑟与威尔逊','问题：岛屿丰富度能否用简单机制而不是长名单来解释？推进：《岛屿生物地理学理论》系统组织面积、距离、移入和局地灭绝的动态平衡思想。局限：现实中的生境质量、物种差异和进化过程被极大简化。'],
+['1969—1970｜小红树林实验','问题：动态平衡能否在操纵实验中检验？推进：辛伯洛夫与威尔逊记录节肢动物从近乎清空到重新定居，看到恢复与持续周转。局限：小而简单的系统不保证大岛或所有生物类群有同样过程。'],
+['1970 年代｜保育规划争议','问题：相同保护面积究竟应该集中还是分散？推进：SLOSS 争论促使研究者区分局地丰富度、区域物种并集、物种组成差异和栖息地连续性。局限：没有不依赖具体目标、物种与尺度的万能答案。'],
+['2015—2022｜破碎化证据与重评','问题：现实森林的边缘效应、时间滞后及小斑块的互补性如何进入决策？推进：长期破碎化实验综合与 SLOSS 综述不断修订简单规则。局限：因果识别、尺度差异与未来变化仍要求当地数据。']];
+function updateEra(i){
+by('timeline-read').innerHTML='<strong>'+eras[i][0]+'</strong><p style="margin:8px 0 0">'+eras[i][1]+'</p>';updateButtons('timeline-choices','era',String(i));
+}
+by('timeline-choices').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>updateEra(+b.dataset.era)));updateEra(0);
+let pending=false;function progress(){if(pending)return;pending=true;requestAnimationFrame(()=>{let n=Math.max(1,document.documentElement.scrollHeight-innerHeight);by('progress').style.transform='scaleX('+Math.max(0,Math.min(1,scrollY/n))+')';pending=false})}
+window.addEventListener('scroll',progress,{passive:true});progress();
+})();</script></body></html>
