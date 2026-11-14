@@ -5,7 +5,7 @@ const cards=xs=>'<div class="mobile-cards">'+xs.map(x=>'<div><b>'+x[0]+'</b>'+x[
 $("theme").addEventListener("click",()=>{const e=document.documentElement;e.dataset.theme=e.dataset.theme==="dark"?"":"dark"});
 const distances=[["邻近恒星",4.2],["局部区域",1000],["银河半径",50000],["银河直径",100000]];let di=2;
 function drawDistance(){const d=distances[di],speed=+$("ship-speed").value,t=d[1]/speed,log=x=>Math.max(0,Math.min(1,(Math.log10(x)+1)/10));press("distance-ctl","distance",di);
-write("distance-svg",'<text x="35" y="30">选定距离 '+d[1].toLocaleString()+" 光年</text>"+'<text x="35" y="70">光速传播</text><rect x="175" y="52" width="'+(500*log(d[1]))+'" height="26" rx="5" fill="var(--accent)"/><text x="35" y="124">飞船传播</text><rect x="175" y="106" width="'+(500*log(t))+'" height="26" rx="5" fill="var(--accent2)"/><text x="175" y="166">长度为对数刻度，非线性同比例；光速不可被有质量飞船达到。</text>");
+write("distance-svg",'<text x="35" y="30">选定距离 '+d[1].toLocaleString()+" 光年</text>"+'<text x="35" y="70">光速传播</text><rect x="175" y="52" width="'+(500*log(d[1]))+'" height="26" rx="5" fill="var(--accent)"/><text x="35" y="124">飞船传播</text><rect x="175" y="106" width="'+(500*log(t))+'" height="26" rx="5" fill="var(--accent2)"/><text x="175" y="166">长度为对数刻度，非线性同比例；光速不可被有质量飞船达到。</text>');
 write("distance-mobile",cards([["距离",fmt(d[1])+" 光年"],["光行时",fmt(d[1])+" 年"],["飞船速度",speed+"c"],["理想飞行时间",fmt(t)+" 年"]]));
 write("distance-out","<strong>"+d[0]+"："+d[1].toLocaleString()+" 光年</strong><p>光至少需要 "+fmt(d[1])+" 年；以 "+speed+"c 匀速飞行、忽略加减速时，需要 "+fmt(t)+" 年。距离与可达性是两个不同的问题。</p>");}
 $("distance-ctl").addEventListener("click",e=>{let b=e.target.closest("[data-distance]");if(b){di=+b.dataset.distance;drawDistance()}});$("ship-speed").addEventListener("change",drawDistance);drawDistance();
